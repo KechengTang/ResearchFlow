@@ -35,7 +35,7 @@ collect paper list -> paper analysis -> build index -> research assist
 ## Skill Routing
 
 - Reusable workflows live in `.agents/skills` and `.claude/skills`
-- Use `.claude/skills/User_README.md` when you need a quick map of which workflow to invoke
+- Use `.claude/skills/User_README.md` for the English quick skill map or `.claude/skills/User_README_ZN.md` for the Chinese version
 - Main workflow families:
   - paper collection
   - PDF download and repair

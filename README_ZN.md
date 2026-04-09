@@ -1,8 +1,24 @@
-# ResearchFlow
+<p align="center">
+  <img src="./assets/LOGO.png" alt="ResearchFlow logo" width="280"/>
+</p>
 
-**半自动化本地科研知识库与 research assistant，覆盖 paper analysis、idea generation、coding、experiments、writing 与 publication workflows。**
+<h1 align="center">ResearchFlow</h1>
 
-[English](README.md) | [中文](README_ZN.md)
+<p align="center"><strong>半自动化本地科研知识库与 research assistant，覆盖 paper analysis、idea generation、coding、experiments、writing 与 publication workflows。</strong></p>
+
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README_ZN.md">中文</a>
+</p>
+
+<p align="center">
+  <img alt="Semi-automated" src="https://img.shields.io/badge/Semi--automated-Research%20Workflow-1f6feb?style=flat-square"/>
+  <img alt="Knowledge base" src="https://img.shields.io/badge/Local-Knowledge%20Base-0f766e?style=flat-square"/>
+  <img alt="Claude Code compatible" src="https://img.shields.io/badge/Claude%20Code-compatible-d97706?style=flat-square"/>
+  <img alt="Codex CLI compatible" src="https://img.shields.io/badge/Codex%20CLI-compatible-7c3aed?style=flat-square"/>
+  <img alt="Obsidian optional" src="https://img.shields.io/badge/Obsidian-optional-475569?style=flat-square"/>
+  <img alt="MIT license" src="https://img.shields.io/badge/License-MIT-111827?style=flat-square"/>
+</p>
 
 ---
 

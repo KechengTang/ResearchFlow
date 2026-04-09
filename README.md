@@ -1,12 +1,24 @@
+<p align="center">
+  <img src="./assets/LOGO.png" alt="ResearchFlow logo" width="280"/>
+</p>
 
+<h1 align="center">ResearchFlow</h1>
 
-# ResearchFlow
+<p align="center"><strong>Semi-automated local research knowledge base and research assistant for paper analysis, ideation, coding, experiments, writing, and publication workflows.</strong></p>
 
-**Semi-automated local research knowledge base and research assistant for paper analysis, ideation, coding, experiments, writing, and publication workflows.**
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README_ZN.md">Chinese</a>
+</p>
 
-[English](README.md) | [Chinese](README_ZN.md)
-
-
+<p align="center">
+  <img alt="Semi-automated" src="https://img.shields.io/badge/Semi--automated-Research%20Workflow-1f6feb?style=flat-square"/>
+  <img alt="Knowledge base" src="https://img.shields.io/badge/Local-Knowledge%20Base-0f766e?style=flat-square"/>
+  <img alt="Claude Code compatible" src="https://img.shields.io/badge/Claude%20Code-compatible-d97706?style=flat-square"/>
+  <img alt="Codex CLI compatible" src="https://img.shields.io/badge/Codex%20CLI-compatible-7c3aed?style=flat-square"/>
+  <img alt="Obsidian optional" src="https://img.shields.io/badge/Obsidian-optional-475569?style=flat-square"/>
+  <img alt="MIT license" src="https://img.shields.io/badge/License-MIT-111827?style=flat-square"/>
+</p>
 
 ---
 

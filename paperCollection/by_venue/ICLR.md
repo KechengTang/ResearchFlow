@@ -5,9 +5,7 @@ venue: ICLR
 tags:
   - paperCollection
   - index/venue
-generated: 2026-04-06T23:55
-created: 2026-04-06T23:55
-updated: 2026-04-06T23:55
+generated: 2026-04-09T19:50
 ---
 
 # Venue: ICLR
@@ -15,6 +13,7 @@ updated: 2026-04-06T23:55
 - Back: [[paperCollection/by_venue/_Index.md|Venue index]]
 
 ## 2026
+- [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.md|Variation-aware Flexible 3D Gaussian Editing (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]] · techniques: #gaussian-splatting #3dgs #scene-editing #native-3d-editing #knowledge-distillation #variation-prediction #cross-view-consistency #feed-forward #parallel-decoding #real-time
 - [[paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.md|ReactDance: Hierarchical Representation for High-Fidelity and Coherent Long-Form Reactive Dance Generation (ICLR 2026)]] · [[paperPDFs/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.pdf|PDF]] · task: [[paperCollection/by_task/Motion_Generation_Text_Speech_Music_Driven.md|Motion_Generation_Text_Speech_Music_Driven]] · techniques: #diffusion #vq-tokenizer #reactive-dance #hierarchical-representation #long-form-generation
 
 ## 2025

@@ -62,7 +62,8 @@ All analysis body text (except YAML frontmatter, hyperlinks, and formulas) is wr
 
 - **不展开推导**；不逐项解释 loss；不逐符号解读每个变量。
 - 如必须提及公式：最多保留 **1-2 条"口头化"的目标/约束描述**，挂在信息流解释之下。
-- 只允许极简占位符（可选）：\(x\)（条件/观测）、\(z\)（潜表征）、\(f_\theta\)（模型）、\(\mathcal{L}\)（目标）。必须服务于"机制→能力"叙事，不做公式推导。
+- Markdown / Obsidian 兼容写法：行内公式统一用 `$...$`；块公式统一用独立的 `$$...$$` 包裹。**不要输出原始 `\(...\)` 或 `\[...\]` 定界符，也不要写成 `$$` 套 `\[...\]`。**
+- 只允许极简占位符（可选）：`$x$`（条件/观测）、`$z$`（潜表征）、`$f_\theta$`（模型）、`$\mathcal{L}$`（目标）。必须服务于"机制→能力"叙事，不做公式推导。
 
 ### Content scope
 
@@ -164,6 +165,7 @@ Use the same path as `pdf_ref` in frontmatter.
    - **Supplementary materials**: skip by default. Read supplementary only if the main PDF explicitly defers critical method details (e.g. algorithm pseudocode, key ablation design) to the supplement and those details are necessary to answer the Three Questions.
 3. **Generate the `.md`** with the structure above. Follow Writing Principles throughout.
 4. **Structural check**: If any of Part I / Part II / Part III or the "Aha!" subsection is missing or clearly thin, regenerate once. If still not fitting, keep best attempt + note + tag `analysis_mismatch`.
+   - If the note contains math, verify Markdown delimiters are Obsidian-safe: inline `$...$`, block `$$...$$`, with no raw `\(...\)` / `\[...\]`.
 5. **Write the file** to the resolved MD path. Ensure `pdf_ref` and final `![[...]]` point to the same PDF path.
 6. **Update log**: After processing each batch, update `paperAnalysis/analysis_log.csv`:
    - Successful, structure-complete → `checked`

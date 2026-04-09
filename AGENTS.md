@@ -52,3 +52,21 @@ collect paper list -> paper analysis -> build index -> research assist
 - Compare multiple papers and extract transferable operators or design patterns
 - Generate question banks and idea notes grounded in the current literature
 - In a linked code repository, retrieve relevant papers before editing model- or method-related code
+
+## Current User Research Tracks
+
+The original repository contains motion-generation examples, but the current user's active research direction is Gaussian Splatting, especially:
+
+- `3DGS_Editing`
+- `3DGS_Reconstruction`
+- `4DGS_Editing`
+- `4DGS_Reconstruction`
+- `Gaussian_Splatting_Foundation`
+
+When adding new papers for the current user:
+
+- Prefer the category folders above under both `paperPDFs/` and `paperAnalysis/`
+- Keep using the shared `paperAnalysis/analysis_log.csv` as the intake log
+- Assign `analysis_log.csv.importance` automatically for new Gaussian-track papers instead of leaving it blank; use the rubric in `GAUSSIAN_SPLATTING_KB_GUIDE.md` and bias slightly high because the user usually curates strong papers
+- Treat the motion-related entries as reference examples unless the user explicitly asks about that domain
+- For KB-wide answers, ground Gaussian Splatting discussions in the user's own categories first, then reuse the existing framework for compare / question-bank / idea generation

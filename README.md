@@ -31,7 +31,7 @@ collect paper list -> paper analysis -> build index -> research assist
 It can serve three usage modes at the same time:
 
 - Claude Code / Cursor: via `.claude/skills`
-- Codex CLI: via `AGENTS.md` and `.agents/skills`
+- Codex CLI: via `AGENTS.md`, which routes into `.claude/skills`
 - Other AI research tools: by directly reading local Markdown, PDFs, and indexes
 
 Its focus is not just "paper management". The real goal is to turn local literature accumulation into an agent-ready knowledge base that can be retrieved, compared, reused for ideation, and linked to a code repository.
@@ -249,10 +249,11 @@ ResearchFlow ships with `.claude/skills`, so tools that support this convention 
 
 ResearchFlow also supports Codex CLI in two layers:
 
-- `AGENTS.md` tells Codex the repo workflow and source-of-truth directories
-- `.agents/skills` directly links to `.claude/skills`, so there is no need to duplicate a second skill library
+- `AGENTS.md` is the stable Codex entry point for repo-level instructions
+- the actual reusable workflow definitions live in `.claude/skills/`
+- when a task matches a workflow, Codex should open the corresponding `.claude/skills/<skill>/SKILL.md`
 
-This lets one repository serve Claude Code and Codex CLI at the same time, instead of maintaining two divergent prompt systems.
+This keeps one canonical skill library in normal tracked files, which works for GitHub clones, Windows setups without symlink support, and GitHub ZIP downloads.
 
 ### Other AI Research Tools
 
@@ -290,9 +291,8 @@ One code repository can link one ResearchFlow, and multiple code repositories ca
 ```text
 ResearchFlow/
 ├── AGENTS.md
-├── LOGO.jpg
+├── LOGO.png
 ├── .claude/skills/
-├── .agents/skills -> ../.claude/skills
 ├── paperAnalysis/
 │   └── analysis_log.csv
 ├── paperCollection/
@@ -314,6 +314,7 @@ ResearchFlow/
 - If analysis notes are added or modified, rebuild the index before using the knowledge base for broader research assistance
 - The main state flow in `analysis_log.csv` is `Wait -> Downloaded -> checked`, with `Missing` and `Skip` as side states
 - Obsidian is optional; the repository still works as a normal local folder for agents
+- For Codex, prefer `AGENTS.md` + `.claude/skills/` over any symlink-based `.agents/` mirror
 - The shared Obsidian package is public-safe and has had private workspace state and share tokens removed
 - If the extracted folder is named `obsidian setting`, rename it to `.obsidian` before placing it in the repository root
 

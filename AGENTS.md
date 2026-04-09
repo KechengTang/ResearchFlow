@@ -34,7 +34,13 @@ collect paper list -> paper analysis -> build index -> research assist
 
 ## Skill Routing
 
-- Reusable workflows live in `.agents/skills` and `.claude/skills`
+- For Codex, the stable repo-level entry is `AGENTS.md`, not `.agents/skills`
+- The canonical skill library lives in `.claude/skills/`
+- When a task matches a workflow, Codex should:
+  1. open `.claude/skills/User_README.md` or `.claude/skills/User_README_ZN.md` for quick routing
+  2. open the matching `.claude/skills/<skill>/SKILL.md`
+  3. follow that skill file as the workflow definition
+- Do not rely on `.agents/skills` symlink-style mirroring for Codex portability across Windows or GitHub ZIP downloads
 - Use `.claude/skills/User_README.md` for the English quick skill map or `.claude/skills/User_README_ZN.md` for the Chinese version
 - Main workflow families:
   - paper collection

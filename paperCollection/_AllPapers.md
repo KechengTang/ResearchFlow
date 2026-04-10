@@ -4,7 +4,7 @@ dimension: all
 tags:
   - paperCollection
   - index/all
-generated: 2026-04-09T19:50
+generated: 2026-04-10T14:39
 ---
 
 # All papers (grouped)
@@ -41,6 +41,9 @@ generated: 2026-04-09T19:50
 - [[paperAnalysis/4DGS_Reconstruction/CVPR_2025/2025_MoSca_Dynamic_Gaussian_Fusion_from_Casual_Videos_via_4D_Motion_Scaffolds.md|MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds (CVPR 2025)]] · [[paperPDFs/4DGS_Reconstruction/CVPR_2025/2025_MoSca_Dynamic_Gaussian_Fusion_from_Casual_Videos_via_4D_Motion_Scaffolds.pdf|PDF]] · techniques: #gaussian-splatting #4dgs #monocular-video #casual-video #motion-scaffold #foundation-model-priors #disentangled-deformation #bundle-adjustment #wild-reconstruction
 
 ## Gaussian_Splatting_Foundation
+### arXiv 2024
+- [[paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2024/2024_Segment_Any_4D_Gaussians.md|Segment Any 4D Gaussians (arXiv 2024)]] · [[paperPDFs/Gaussian_Splatting_Foundation/arXiv_2024/2024_Segment_Any_4D_Gaussians.pdf|PDF]] · techniques: #gaussian-splatting #4dgs #4d-segmentation #temporal-identity-field #gaussian-drifting #dynamic-scene-editing #semantic-grounding
+
 ### arXiv 2025
 - [[paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2025/2025_4DLangVGGT_4D_Language_Visual_Geometry_Grounded_Transformer.md|4DLangVGGT: 4D Language Visual Geometry Grounded Transformer (arXiv 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/arXiv_2025/2025_4DLangVGGT_4D_Language_Visual_Geometry_Grounded_Transformer.pdf|PDF]] · techniques: #4d-language-grounding #feed-forward #streamvggt #semantic-bridging-decoder #geometry-language-alignment #multi-scene-training #cross-scene-generalization #open-vocabulary-query
 

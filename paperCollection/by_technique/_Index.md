@@ -4,7 +4,7 @@ dimension: technique
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-09T19:50
+generated: 2026-04-10T14:39
 ---
 
 # Technique index
@@ -16,6 +16,7 @@ generated: 2026-04-09T19:50
 - [[paperCollection/by_technique/4d-feature-field.md|4d-feature-field]]
 - [[paperCollection/by_technique/4d-language-field.md|4d-language-field]]
 - [[paperCollection/by_technique/4d-language-grounding.md|4d-language-grounding]]
+- [[paperCollection/by_technique/4d-segmentation.md|4d-segmentation]]
 - [[paperCollection/by_technique/4dgs.md|4dgs]]
 - [[paperCollection/by_technique/agentic-ai.md|agentic-ai]]
 - [[paperCollection/by_technique/arap-regularization.md|arap-regularization]]
@@ -38,6 +39,7 @@ generated: 2026-04-09T19:50
 - [[paperCollection/by_technique/diffusion-guidance.md|diffusion-guidance]]
 - [[paperCollection/by_technique/disentangled-deformation.md|disentangled-deformation]]
 - [[paperCollection/by_technique/drag-based-editing.md|drag-based-editing]]
+- [[paperCollection/by_technique/dynamic-scene-editing.md|dynamic-scene-editing]]
 - [[paperCollection/by_technique/dynamic-scene-rendering.md|dynamic-scene-rendering]]
 - [[paperCollection/by_technique/edit-efficiency.md|edit-efficiency]]
 - [[paperCollection/by_technique/editable-dynamic-scene.md|editable-dynamic-scene]]
@@ -47,6 +49,7 @@ generated: 2026-04-09T19:50
 - [[paperCollection/by_technique/flow-guidance.md|flow-guidance]]
 - [[paperCollection/by_technique/foundation-model-distillation.md|foundation-model-distillation]]
 - [[paperCollection/by_technique/foundation-model-priors.md|foundation-model-priors]]
+- [[paperCollection/by_technique/gaussian-drifting.md|gaussian-drifting]]
 - [[paperCollection/by_technique/gaussian-selection.md|gaussian-selection]]
 - [[paperCollection/by_technique/gaussian-splatting.md|gaussian-splatting]]
 - [[paperCollection/by_technique/geometry-aware-editing.md|geometry-aware-editing]]
@@ -97,6 +100,7 @@ generated: 2026-04-09T19:50
 - [[paperCollection/by_technique/score-distillation.md|score-distillation]]
 - [[paperCollection/by_technique/scribble-guidance.md|scribble-guidance]]
 - [[paperCollection/by_technique/semantic-bridging-decoder.md|semantic-bridging-decoder]]
+- [[paperCollection/by_technique/semantic-grounding.md|semantic-grounding]]
 - [[paperCollection/by_technique/semantic-tracing.md|semantic-tracing]]
 - [[paperCollection/by_technique/single-reference-editing.md|single-reference-editing]]
 - [[paperCollection/by_technique/spacetime-gaussians.md|spacetime-gaussians]]
@@ -108,6 +112,7 @@ generated: 2026-04-09T19:50
 - [[paperCollection/by_technique/status-deformable-network.md|status-deformable-network]]
 - [[paperCollection/by_technique/streamvggt.md|streamvggt]]
 - [[paperCollection/by_technique/temporal-consistency.md|temporal-consistency]]
+- [[paperCollection/by_technique/temporal-identity-field.md|temporal-identity-field]]
 - [[paperCollection/by_technique/temporal-inpainting.md|temporal-inpainting]]
 - [[paperCollection/by_technique/temporal-opacity.md|temporal-opacity]]
 - [[paperCollection/by_technique/temporal-refinement.md|temporal-refinement]]

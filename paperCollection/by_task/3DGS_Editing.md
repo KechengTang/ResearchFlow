@@ -5,7 +5,7 @@ task: 3DGS_Editing
 tags:
   - paperCollection
   - index/task
-generated: 2026-04-09T19:50
+generated: 2026-04-10T14:39
 ---
 
 # Task: 3DGS_Editing

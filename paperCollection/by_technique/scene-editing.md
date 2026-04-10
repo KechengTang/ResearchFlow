@@ -5,7 +5,7 @@ technique: scene-editing
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-09T19:50
+generated: 2026-04-10T14:39
 ---
 
 # Technique: scene-editing

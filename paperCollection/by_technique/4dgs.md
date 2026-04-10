@@ -5,7 +5,7 @@ technique: 4dgs
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-09T19:50
+generated: 2026-04-10T14:39
 ---
 
 # Technique: 4dgs
@@ -21,5 +21,6 @@ generated: 2026-04-09T19:50
 - [[paperAnalysis/4DGS_Reconstruction/CVPR_2024/2024_4D_Gaussian_Splatting_for_Real_Time_Dynamic_Scene_Rendering.md|4D Gaussian Splatting for Real-Time Dynamic Scene Rendering (CVPR 2024)]] · [[paperPDFs/4DGS_Reconstruction/CVPR_2024/2024_4D_Gaussian_Splatting_for_Real_Time_Dynamic_Scene_Rendering.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
 - [[paperAnalysis/4DGS_Reconstruction/CVPR_2024/2024_SC_GS_Sparse_Controlled_Gaussian_Splatting_for_Editable_Dynamic_Scenes.md|SC-GS: Sparse-Controlled Gaussian Splatting for Editable Dynamic Scenes (CVPR 2024)]] · [[paperPDFs/4DGS_Reconstruction/CVPR_2024/2024_SC_GS_Sparse_Controlled_Gaussian_Splatting_for_Editable_Dynamic_Scenes.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
 - [[paperAnalysis/4DGS_Reconstruction/CVPR_2024/2024_Spacetime_Gaussian_Feature_Splatting_for_Real_Time_Dynamic_View_Synthesis.md|Spacetime Gaussian Feature Splatting for Real-Time Dynamic View Synthesis (CVPR 2024)]] · [[paperPDFs/4DGS_Reconstruction/CVPR_2024/2024_Spacetime_Gaussian_Feature_Splatting_for_Real_Time_Dynamic_View_Synthesis.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
+- [[paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2024/2024_Segment_Any_4D_Gaussians.md|Segment Any 4D Gaussians (arXiv 2024)]] · [[paperPDFs/Gaussian_Splatting_Foundation/arXiv_2024/2024_Segment_Any_4D_Gaussians.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
 - [[paperAnalysis/Gaussian_Splatting_Foundation/CVPR_2025/2025_4D_LangSplat_4D_Language_Gaussian_Splatting_via_Multimodal_Large_Language_Models.md|4D LangSplat: 4D Language Gaussian Splatting via Multimodal Large Language Models (CVPR 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/CVPR_2025/2025_4D_LangSplat_4D_Language_Gaussian_Splatting_via_Multimodal_Large_Language_Models.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
 - [[paperAnalysis/Gaussian_Splatting_Foundation/CVPR_2025/2025_Feature4X_Bridging_Any_Monocular_Video_to_4D_Agentic_AI_with_Versatile_Gaussian_Feature_Fields.md|Feature4X: Bridging Any Monocular Video to 4D Agentic AI with Versatile Gaussian Feature Fields (CVPR 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/CVPR_2025/2025_Feature4X_Bridging_Any_Monocular_Video_to_4D_Agentic_AI_with_Versatile_Gaussian_Feature_Fields.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]

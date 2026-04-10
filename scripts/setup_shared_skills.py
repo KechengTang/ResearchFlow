@@ -9,6 +9,8 @@ This script creates compatibility aliases under:
 - `.codex/skills`
 - `.codex/skills-config.json`
 
+These aliases are local generated state and are intentionally not tracked by git.
+
 On macOS/Linux it uses symlinks.
 On Windows it uses directory junctions for folders and hard links for the
 config file so the same skill library is shared without copying.

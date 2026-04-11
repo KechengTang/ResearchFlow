@@ -1,6 +1,6 @@
 # 用户 README（Skill 使用说明）
 
-[English](User_README.md) | [中文](User_README_ZN.md)
+[English](User_README.md) | [中文](User_README_CN.md)
 
 本文件用于**快速选 skill**。
 仅作导航，不参与执行。
@@ -159,5 +159,5 @@
 
 - 实际路由只依赖 `.claude/skills-config.json` 与各 skill 的 `SKILL.md`
 - `.claude/skills` 是唯一维护源。如需 `.codex/skills` 的兼容路径，请运行 `python3 scripts/setup_shared_skills.py` 或 `py -3 scripts\setup_shared_skills.py`
-- 本 `User_README_ZN.md` 仅作导航，不影响执行
+- 本 `User_README_CN.md` 仅作导航，不影响执行
 - `User_README.md` 同样仅作导航，不在注册表中

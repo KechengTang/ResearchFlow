@@ -1,6 +1,6 @@
 # User README (Skill Usage Guide)
 
-[English](User_README.md) | [Chinese](User_README_ZN.md)
+[English](User_README.md) | [Chinese](User_README_CN.md)
 
 This file is a **quick skill selection guide**.
 It is navigation-only and does not participate in execution.
@@ -160,4 +160,4 @@ Trigger mode notes:
 - Actual routing depends only on `.claude/skills-config.json` and each skill's `SKILL.md`.
 - `.claude/skills` is the maintained source of truth. Run `python3 scripts/setup_shared_skills.py` or `py -3 scripts\setup_shared_skills.py` if you also need `.codex/skills` compatibility aliases.
 - This `User_README.md` is not part of the registry and does not affect execution.
-- `User_README_ZN.md` is also navigation-only and does not affect execution.
+- `User_README_CN.md` is also navigation-only and does not affect execution.

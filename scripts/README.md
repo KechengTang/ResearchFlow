@@ -1,6 +1,7 @@
-# ResearchWY scripts
+# ResearchFlow scripts
 
-This folder centralizes all executable maintenance/collection scripts for the ResearchWY vault.
+This folder centralizes executable maintenance and collection scripts for the
+ResearchFlow repository.
 
 ## Structure
 
@@ -33,7 +34,7 @@ This folder centralizes all executable maintenance/collection scripts for the Re
   - `python3 scripts/paper_collector_online/collect_from_urls.py --help`
 - Shared skill aliases are managed by `scripts/setup_shared_skills.py`.
   - Maintained source of truth: `.claude/skills` and `.claude/skills-config.json`
-  - Tracked Codex file: `.codex/README.md`
   - Local generated Codex aliases: `.codex/skills`, `.codex/skills-config.json`
+  - `.codex/` is local generated state and is not tracked by git
   - Example: `python3 scripts/setup_shared_skills.py --check`
 - Some scripts depend on optional packages (e.g. `requests`, `pypdf`).

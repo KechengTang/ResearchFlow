@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="README.md">English</a> |
-  <a href="README_ZN.md">中文</a>
+  <a href="README_CN.md">中文</a>
 </p>
 
 <p align="center">
@@ -488,8 +488,8 @@ ResearchFlow/
 - `paperCollection/` is the generated navigation / statistics layer, not the primary retrieval layer.
 - `paperIDEAs/` stores downstream research outputs.
 - `.claude/skills` is the only source of truth.
-- `.codex/README.md` is tracked as documentation, while `.codex/skills` and `.codex/skills-config.json` are local generated files.
-- For the fastest bilingual skill overview, see `.claude/skills/User_README.md` and `.claude/skills/User_README_ZN.md`.
+- `.codex/` is optional local generated state for Codex CLI compatibility and is not tracked by git.
+- For the fastest bilingual skill overview, see `.claude/skills/User_README.md` and `.claude/skills/User_README_CN.md`.
 
 ---
 
@@ -502,7 +502,7 @@ ResearchFlow/
 
 Claude Code / Cursor does not need this step. Codex CLI does.
 
-The repository intentionally tracks only `.codex/README.md`. After clone, generate `.codex/skills` and `.codex/skills-config.json` locally on the current platform:
+The repository does not track `.codex/`. After clone, generate `.codex/skills` and `.codex/skills-config.json` locally on the current platform:
 
 macOS / Linux:
 
@@ -559,7 +559,7 @@ If you want to keep the methodology but use a more neutral framing, you can also
 - If analysis notes are added or modified and you want refreshed `paperCollection/` pages, rebuild the index.
 - Obsidian is optional; the repository still works as a normal local folder for agents.
 - `.claude/skills` is the only maintained source.
-- `.codex/skills` and `.codex/skills-config.json` are local generated files; Codex users should run `scripts/setup_shared_skills.py` after clone.
+- `.codex/` is local generated state; Codex users should run `scripts/setup_shared_skills.py` after clone.
 - `build index` is optional for agents. Run it when you want overview pages and statistics.
 
 ## License

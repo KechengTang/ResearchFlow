@@ -3,8 +3,7 @@ obsidian setting
 __pycache__/
 .agents/skills
 .agents/skills-config.json
-.codex/skills
-.codex/skills-config.json
+.codex/
 linkedCodebases/*
 !linkedCodebases/README.md
 .agents/skills

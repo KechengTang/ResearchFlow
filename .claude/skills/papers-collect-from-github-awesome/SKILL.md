@@ -1,22 +1,36 @@
 ---
-name: papers-collect-from-github-awesome
-description: Collects paper candidates from a GitHub awesome / curated repo README. Agent fetches the README, analyzes its format, writes a one-off parser, and outputs rows aligned with analysis_log.csv. No pre-built scripts — agent adapts to each repo's format on the fly.
+name: papers-collect-from-github-repo
+description: "Collects paper candidates from any GitHub repository README or docs — awesome lists, survey companion repos, lab paper lists, conference accepted-paper repos, benchmark leaderboards, etc. Agent fetches the README (or specified doc), analyzes its format, writes a one-off parser, and outputs rows aligned with analysis_log.csv. No pre-built scripts — agent adapts to each repo's format on the fly."
 ---
 
-# Papers Collect From GitHub Awesome
+# Papers Collect From GitHub Repo
 
 ## Purpose
 
-Extract paper candidates from GitHub awesome / curated repository READMEs and output rows aligned with `paperAnalysis/analysis_log.csv`.
+Extract paper candidates from **any GitHub repository** and output rows aligned with `paperAnalysis/analysis_log.csv`.
 
-Because awesome-list formats vary widely (Markdown tables, bullet lists, mixed HTML, etc.), this skill **does not include fixed scripts**. The agent writes one-off parsing logic for each target README.
+Supported repo types (non-exhaustive):
+
+| Type | Example |
+|------|---------|
+| Awesome / curated list | `Foruck/Awesome-Human-Motion` |
+| Survey companion repo | `ChenHsing/Awesome-Video-Diffusion-Models` (CSUR) |
+| Lab / group paper list | `showlab/showlab.github.io` |
+| Conference accepted papers | `ICLR/ICLR-2026-accepted-papers` |
+| Benchmark / leaderboard repo | `open-compass/opencompass` |
+| Topic-specific collection | `soraproducer/Awesome-Human-Interaction-Motion-Generation` |
+| Any repo with a structured paper list in README or docs | — |
+
+Because repo formats vary widely (Markdown tables, bullet lists, mixed HTML, nested docs, multiple files, etc.), this skill **does not include fixed scripts**. The agent writes one-off parsing logic for each target.
 
 ## Input
 
 User provides:
-- **GitHub repo URL**: for example `https://github.com/Foruck/Awesome-Human-Motion`
-- **include/exclude keywords** (optional): for example include `motion generation`, exclude `survey`
-- **target category** (optional): for example `Motion_Generation_Text_Speech_Music_Driven`
+- **GitHub repo URL**: e.g. `https://github.com/Foruck/Awesome-Human-Motion`
+- **target file** (optional): defaults to `README.md`; can be a specific path like `docs/papers.md` or a directory to scan
+- **include/exclude keywords** (optional): e.g. include `motion generation`, exclude `survey`
+- **target category** (optional): e.g. `Motion_Generation_Text_Speech_Music_Driven`
+- **venue/year hint** (optional): e.g. `CVPR 2025` — used as default when venue cannot be parsed
 
 ## Output Format
 
@@ -32,38 +46,43 @@ Field notes:
 |----|-------------|------|
 | state | `Wait` | Later can be changed manually to `Skip`, or remain `Wait` for download |
 | importance | empty | Later manually labeled as S/A/B/C |
-| paper_title | parsed from README | paper title |
-| venue | parsed from README, fallback `Unknown` | e.g., `CVPR 2025`, `ICLR 2026`; if only on open platforms, use `arXiv YYYY` |
+| paper_title | parsed from repo | paper title |
+| venue | parsed from repo, fallback `Unknown` | e.g., `CVPR 2025`, `ICLR 2026`; if only on open platforms, use `arXiv YYYY` |
 | project_link_or_github_link | project page or GitHub link | prefer project page; if confirmed no open source, use `N/A` |
 | paper_link | arXiv / OpenReview link | prefer arXiv abs link |
-| sort | section/category heading in README | join words with `_`, e.g. `Motion_Generation` |
+| sort | section/category heading in source | join words with `_`, e.g. `Motion_Generation` |
 | pdf_path | empty | filled later by `papers-download-from-list` |
 
 See `paperAnalysis/analysis_log.csv` in the repository for examples.
 
 ## Workflow
 
-### 1. Fetch README
+### 1. Fetch Source Content
 
-- Fetch raw README from the GitHub repo URL
-- Prefer `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/README.md`
-- Optionally save raw README to `paperAnalysis/processing/github_awesome/<repo_slug>/README.raw.md` for debugging
+- Determine what to fetch:
+  - Single README: `https://raw.githubusercontent.com/<owner>/<repo>/<branch>/README.md`
+  - Specific file: user-specified path within the repo
+  - Multiple files: if repo organizes papers across multiple `.md` files (e.g. `papers/2025.md`, `papers/2026.md`), fetch all relevant files
+- Optionally save raw content to `paperAnalysis/processing/github_awesome/<repo_slug>/` for debugging
+  - Note: the `github_awesome` directory name is kept for backward compatibility; it stores artifacts from all GitHub repo sources, not just awesome lists
 
 ### 2. Analyze Format
 
-Agent reads README and determines structure:
-- Markdown table, bullet list, or mixed format?
+Agent reads the content and determines structure:
+- Markdown table, bullet list, nested sections, or mixed format?
+- Single file or multi-file organization?
 - Where paper titles appear and how links are organized?
-- Whether venue metadata is inline or grouped by sections?
+- Whether venue metadata is inline, in section headings, or in separate columns?
+- Whether the repo uses badges, emoji markers, or other conventions?
 
 ### 3. Write One-Off Parser
 
-Based on the structure analysis, the agent writes a one-off Python script (or processes directly in conversation code blocks) to extract paper information.
+Based on the structure analysis, the agent writes a one-off Python script (or processes directly in conversation) to extract paper information.
 
 Script requirements:
 - Output CSV with the same column order as `analysis_log.csv`
-- Handle common link patterns: arXiv abs/pdf, OpenReview, GitHub project page
-- Parse venues from text patterns like `(CVPR 2025)` / `[ICLR 2026]`
+- Handle common link patterns: arXiv abs/pdf, OpenReview, GitHub project page, conference proceedings (ACL Anthology, IEEE Xplore, etc.)
+- Parse venues from text patterns like `(CVPR 2025)` / `[ICLR 2026]` / section headings like `## NeurIPS 2025`
 - Deduplicate repeated appearances of the same paper
 
 ### 4. Filter and Deduplicate
@@ -87,7 +106,7 @@ After append, scan newly added rows for missing fields:
 | venue | empty or `Unknown` | lookup by paper_link via arXiv metadata / Semantic Scholar API | if unpublished at venue but public: `arXiv YYYY` (e.g., `arXiv 2025`) |
 | paper_link | empty | search arXiv / Google Scholar by paper_title | if not found: keep empty |
 | project_link_or_github_link | empty | search GitHub / Papers With Code by paper_title | if confirmed no open source: `N/A` |
-| sort | empty | infer from README section heading or ask user | keep empty for manual fill |
+| sort | empty | infer from source section heading or ask user | keep empty for manual fill |
 
 Then report and suggest:
 
@@ -111,7 +130,7 @@ If Python scripts are needed, follow Environment Detection rules from `code-cont
 
 ## Constraints
 
-- No prebuilt parser scripts; each awesome list format is adapted live
+- No prebuilt parser scripts; each repo format is adapted live
 - One-off scripts may be saved to `paperAnalysis/processing/github_awesome/<repo_slug>/parse_<timestamp>.py` for future reference
 - Do not auto-download PDFs (that is `papers-download-from-list`)
 - Do not auto-generate analysis notes (that is `papers-analyze-pdf`)
@@ -120,4 +139,8 @@ If Python scripts are needed, follow Environment Detection rules from `code-cont
 
 > "Collect papers from https://github.com/Foruck/Awesome-Human-Motion, only motion generation related"
 
-> "Organize papers from https://github.com/xxx/awesome-video-diffusion into analysis_log.csv"
+> "Organize papers from https://github.com/ChenHsing/Awesome-Video-Diffusion-Models into analysis_log.csv, focus on controllable generation sections"
+
+> "Collect ICLR 2026 accepted papers from https://github.com/xxx/iclr2026-papers"
+
+> "Extract papers from https://github.com/xxx/lab-publications, filter by 2025-2026"

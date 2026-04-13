@@ -37,8 +37,7 @@
 Give ResearchFlow a research topic and it can help you build the knowledge base step by step:
 
 ```text
-collect / Zotero sync → download* → analyze → build index → research assist
-                        (* Zotero sync skips download — PDFs already local)
+collect → download → analyze → build index → research assist
 ```
 
 You can use it in four modes:
@@ -74,7 +73,7 @@ I want to study text-driven reactive motion generation.
 Please propose 3 directions grounded in the local knowledge base.
 ```
 
-> Already have PDFs? Jump straight to analyze. Already have an idea? Jump to focus or reviewer stress testing. Already have a Zotero library? Start with `papers-sync-from-zotero`. Not sure which skill to use? Start with `research-workflow`.
+> Already have PDFs? Jump straight to analyze. Already have an idea? Jump to focus or reviewer stress testing. Not sure which skill to use? Start with `research-workflow`.
 
 > Analysis language: the default note language is **Chinese** (`analysis_language: zh`). To switch new analysis notes to English, change `analysis_language` to `en` in `AGENTS.md`, or explicitly ask for English output in the current prompt.
 
@@ -85,7 +84,6 @@ Please propose 3 directions grounded in the local knowledge base.
 | Capability              | What it does                                                                                                                             | Skill                                                                 |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Workflow entry          | Detects whether you are in collect / download / analyze / build / query / compare / ideate / focus / review and recommends the next step | `research-workflow`                                                 |
-| Zotero sync             | Imports papers from a Zotero library or a local PDF folder into RF's structured layout with incremental sync                             | `papers-sync-from-zotero`                                           |
 | Paper collection        | Collects candidate papers from web pages or GitHub awesome repositories and writes them into `analysis_log.csv`                        | `papers-collect-from-web` · `papers-collect-from-github-awesome` |
 | PDF download            | Downloads, deduplicates, and repairs PDFs from triage lists                                                                              | `papers-download-from-list`                                         |
 | Structured analysis     | Converts PDFs into Markdown notes with structured frontmatter                                                                            | `papers-analyze-pdf`                                                |
@@ -261,14 +259,14 @@ Prompt 4: rebuild indexes
 <details>
 <summary>2. Import papers from Zotero</summary>
 
-If you already manage papers in Zotero (or just have a folder of PDFs), one prompt is all you need — the agent will walk you through setup, security choices, and import options:
+ResearchFlow provides a skill template (`.claude/skills/papers-sync-from-zotero/`) that describes how to bridge Zotero with RF's folder layout. The actual integration code is not built-in — the agent generates it on the fly based on your environment, or you can implement it yourself.
 
 ```text
 /papers-sync-from-zotero
 Please guide me through connecting Zotero to ResearchFlow.
 ```
 
-The agent will ask about your setup (API vs local folder, collection scope, category mapping) and handle the rest. After sync, run `papers-analyze-pdf` on the newly imported entries.
+See `.claude/skills/papers-sync-from-zotero/README.md` for details on the two supported approaches (API mode vs folder mode).
 
 </details>
 
@@ -574,7 +572,7 @@ If you want to keep the methodology but use a more neutral framing, you can also
 
 ## 📝 Notes
 
-- The main state flow in `analysis_log.csv` is `Wait → Downloaded → checked`. Zotero sync enters at `Downloaded` directly (PDFs already local). Abnormal states: `analysis_mismatch` (incomplete analysis template) and `too_large` (PDF exceeds size limit). Side states: `Missing` and `Skip`. See `.claude/skills/STATE_CONVENTION.md` for full definitions.
+- The main state flow in `analysis_log.csv` is `Wait → Downloaded → checked`. Abnormal states: `analysis_mismatch` (incomplete analysis template) and `too_large` (PDF exceeds size limit). Side states: `Missing` and `Skip`. See `.claude/skills/STATE_CONVENTION.md` for full definitions.
 - If analysis notes are added or modified and you want refreshed `paperCollection/` pages, rebuild the index.
 - Obsidian is optional; the repository still works as a normal local folder for agents.
 - `.claude/skills` is the only maintained source.

@@ -5,14 +5,14 @@ ResearchFlow is an agent-ready research knowledge base, not just a paper folder.
 Core loop:
 
 ```text
-collect paper list -> paper analysis -> build index -> research assist
+Zotero sync / collect paper list -> paper analysis -> build index -> research assist
 ```
 
 `Download` sits inside the intake path between collection and analysis.
 
 ## What This Repository Is For
 
-- Build a local literature knowledge base from web pages, GitHub awesome lists, and PDFs
+- Build a local literature knowledge base from web pages, GitHub awesome lists, Zotero libraries, and PDFs
 - Convert papers into structured notes that can be queried by agents
 - Reuse the knowledge base for comparison, idea generation, question banks, reviewer-style critique, and code-grounded implementation planning
 
@@ -62,6 +62,7 @@ analysis_language: zh
   3. follow that skill file as the workflow definition
 - Use `.claude/skills/User_README.md` for the English quick skill map or `.claude/skills/User_README_CN.md` for the Chinese version
 - Main workflow families:
+  - Zotero sync and local PDF folder import
   - paper collection
   - PDF download and repair
   - paper analysis

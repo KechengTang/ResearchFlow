@@ -8,6 +8,7 @@ It is navigation-only and does not participate in execution.
 ## 1. Quick routing
 
 - Not sure how to start: `research-workflow`
+- Import papers from Zotero or a local PDF folder: `papers-sync-from-zotero`
 - Collect papers from the web or GitHub: `papers-collect-from-web` / `papers-collect-from-github-awesome`
 - Batch download and repair PDFs: `papers-download-from-list`
 - Analyze PDFs into the KB: `papers-analyze-pdf`
@@ -23,32 +24,32 @@ It is navigation-only and does not participate in execution.
 
 ### 2.1 KB construction
 
+- `papers-sync-from-zotero`
+  - When to use: you want to import papers from Zotero or a local PDF folder into ResearchFlow.
+  - Input: Zotero library ID + API key (API mode), or a PDF folder path (fallback mode).
+  - Output: PDFs copied to `paperPDFs/`, rich metadata to `manifest.jsonl`, lightweight rows appended to `analysis_log.csv`.
+  - Supports incremental sync.
 - `papers-collect-from-web`
   - When to use: you already have a page list and want to filter papers in batch.
   - Input: URLs plus keyword and venue constraints.
   - Output: a triage list that can be processed downstream.
-
 - `papers-collect-from-github-awesome`
-  - When to use: the source is an awesome or curated repository.
+  - When to use: the source is a GitHub repository (awesome lists, survey companion repos, lab paper lists, conference accepted-paper repos, etc.).
   - Input: a GitHub repository URL.
   - Output: a candidate list aligned with the local analysis workflow.
-
 - `papers-download-from-list`
   - When to use: you already have a manually filtered candidate list and need local PDFs.
   - Input: candidate lists such as `paperAnalysis/*.txt`.
   - Output: downloaded or repaired local PDFs plus status results.
-
 - `papers-analyze-pdf`
   - When to use: you want structured analysis for one PDF or a batch of PDFs.
   - Input: local PDF paths.
   - Output: structured Markdown under `paperAnalysis/`.
   - Language note: output language follows `analysis_language` in `AGENTS.md` (`zh` by default, switch to `en` for English notes). An explicit user request can override the default for one run.
-
 - `papers-audit-metadata-consistency`
   - When to use: you suspect the log and analysis notes are inconsistent.
   - Input: the current `paperAnalysis/`.
   - Output: a consistency audit report and quality issue list.
-
 - `papers-build-collection-index`
   - When to use: analysis notes changed and `paperCollection/` statistics / navigation pages need refresh.
   - Input: frontmatter in `paperAnalysis/`.
@@ -61,13 +62,11 @@ It is navigation-only and does not participate in execution.
   - Input: a research question, optionally with direction and constraints.
   - Output: KB-grounded answers with local evidence.
   - Routing note: if you need a structured table, use `papers-compare-table`; if this is for an upcoming code change, prefer `code-context-paper-retrieval`.
-
 - `papers-compare-table`
   - When to use: you need to choose between design alternatives (operators, representations, losses), write a Related Work table, select baselines, or present a method overview to collaborators.
   - Input: paper titles, query conditions, or analysis paths.
   - Output: a Markdown or CSV comparison table.
   - Routing note: if you only need a text summary, use `papers-query-knowledge-base`.
-
 - `code-context-paper-retrieval`
   - When to use: you are changing code and want paper support first.
   - Input: the current code context or target module.
@@ -81,14 +80,12 @@ It is navigation-only and does not participate in execution.
   - Input: a question or direction draft.
   - Output: structured idea candidates plus related work support.
   - Routing note: use this when the idea is still open-ended and you want candidate directions rather than scope cuts.
-
 - `idea-focus-coach`
   - When to use: the idea is too broad and needs gradual narrowing.
   - Input: an initial idea and goal preferences.
   - Output: focused goals, non-goals, prioritized hypotheses, and MVP experiments.
   - Independent use: it does not require prior brainstorm or reviewer output.
   - Routing note: use this when you already have a real direction and need scope cuts, hypothesis ranking, or MVP planning.
-
 - `reviewer-stress-test`
   - When to use: you want to pressure test an idea in ICLR/CVPR/SIGGRAPH style.
   - Input: an idea, roadmap, or full paper.
@@ -102,12 +99,10 @@ It is navigation-only and does not participate in execution.
   - When to use: you are unsure which stage you are in.
   - Input: a description of the current task.
   - Output: stage identification plus the recommended next skill.
-
 - `notes-export-share-version`
   - When to use: internal notes need to be shared externally.
   - Input: the note to export.
   - Output: a shareable Markdown version with internal traces removed.
-
 - `skill-fit-guard`
   - When to use: a skill output is obviously misaligned and the mismatch may recur.
   - Input: the mismatch symptom.
@@ -125,24 +120,27 @@ It is navigation-only and does not participate in execution.
 
 All skills are triggered either by description matching or explicit invocation. There is no automatic file-change trigger. The table below gives the recommended trigger mode for each skill.
 
-| Skill | Trigger mode | Typical timing |
-|-------|--------------|----------------|
-| `papers-collect-from-web` | explicit | When the user provides URLs plus topic constraints |
-| `papers-collect-from-github-awesome` | explicit | When the user provides a GitHub repository URL |
-| `papers-download-from-list` | explicit / suggestive | Suggest after collection is complete |
-| `papers-analyze-pdf` | explicit / suggestive | Suggest after download is complete |
-| `papers-audit-metadata-consistency` | suggestive | Suggest after a batch analysis pass |
-| `papers-build-collection-index` | suggestive | Suggest after analysis is complete if refreshed statistics / navigation pages are needed |
-| `papers-query-knowledge-base` | explicit / silent | Explicit for user queries; silent as an internal dependency |
-| `papers-compare-table` | explicit | When the user asks for a comparison |
-| `code-context-paper-retrieval` | explicit / suggestive | Suggest before model- or method-related code edits |
-| `research-brainstorm-from-kb` | explicit | When the user asks for open-ended candidate directions |
-| `idea-focus-coach` | explicit | When the user has a real direction and wants to narrow it into scope cuts or MVPs |
-| `reviewer-stress-test` | explicit | When the user has a formed idea and wants challenge rather than co-creation |
-| `research-workflow` | explicit / suggestive | When the user is unsure of the next step |
-| `notes-export-share-version` | explicit | When the user wants to share notes externally |
-| `skill-fit-guard` | suggestive | When the agent detects strong repeated mismatch |
-| `domain-fork` | explicit | When the user clearly asks to migrate ResearchFlow into another domain |
+
+| Skill                                | Trigger mode          | Typical timing                                                                           |
+| ------------------------------------ | --------------------- | ---------------------------------------------------------------------------------------- |
+| `papers-sync-from-zotero`            | explicit              | When the user wants to import from Zotero or a local PDF folder                         |
+| `papers-collect-from-web`            | explicit              | When the user provides URLs plus topic constraints                                       |
+| `papers-collect-from-github-awesome` | explicit              | When the user provides a GitHub repository URL                                           |
+| `papers-download-from-list`          | explicit / suggestive | Suggest after collection is complete                                                     |
+| `papers-analyze-pdf`                 | explicit / suggestive | Suggest after download is complete                                                       |
+| `papers-audit-metadata-consistency`  | suggestive            | Suggest after a batch analysis pass                                                      |
+| `papers-build-collection-index`      | suggestive            | Suggest after analysis is complete if refreshed statistics / navigation pages are needed |
+| `papers-query-knowledge-base`        | explicit / silent     | Explicit for user queries; silent as an internal dependency                              |
+| `papers-compare-table`               | explicit              | When the user asks for a comparison                                                      |
+| `code-context-paper-retrieval`       | explicit / suggestive | Suggest before model- or method-related code edits                                       |
+| `research-brainstorm-from-kb`        | explicit              | When the user asks for open-ended candidate directions                                   |
+| `idea-focus-coach`                   | explicit              | When the user has a real direction and wants to narrow it into scope cuts or MVPs        |
+| `reviewer-stress-test`               | explicit              | When the user has a formed idea and wants challenge rather than co-creation              |
+| `research-workflow`                  | explicit / suggestive | When the user is unsure of the next step                                                 |
+| `notes-export-share-version`         | explicit              | When the user wants to share notes externally                                            |
+| `skill-fit-guard`                    | suggestive            | When the agent detects strong repeated mismatch                                          |
+| `domain-fork`                        | explicit              | When the user clearly asks to migrate ResearchFlow into another domain                   |
+
 
 Trigger mode notes:
 
@@ -162,3 +160,4 @@ Trigger mode notes:
 - `.claude/skills` is the maintained source of truth. Run `python3 scripts/setup_shared_skills.py` or `py -3 scripts\setup_shared_skills.py` if you also need `.codex/skills` compatibility aliases.
 - This `User_README.md` is not part of the registry and does not affect execution.
 - `User_README_CN.md` is also navigation-only and does not affect execution.
+

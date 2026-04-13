@@ -13,10 +13,14 @@ This skills directory supports the local paper workflow covering **collect -> do
 
 ### 2. Paper pipeline skills
 
+- **papers-sync-from-zotero**
+  - Sync papers from a Zotero library (via pyzotero / Zotero API) or import from a flat PDF folder (fallback).
+  - Copies PDFs into `paperPDFs/`, writes rich metadata to `paperAnalysis/processing/zotero/manifest.jsonl`, appends lightweight rows to `analysis_log.csv`.
+  - Supports incremental sync.
 - **papers-collect-from-web**
-  - Collect candidate papers from web pages and generate a triage list under `paperAnalysis/`.
+  - Collect candidate papers from non-GitHub web pages (conference sites, lab homepages, proceedings) and generate a triage list under `paperAnalysis/`.
 - **papers-collect-from-github-awesome**
-  - Parse GitHub curated lists into an `analysis_log.csv`-aligned candidate list.
+  - Parse any GitHub repository (awesome lists, survey companion repos, lab paper lists, conference accepted-paper repos, etc.) into an `analysis_log.csv`-aligned candidate list.
 - **papers-download-from-list**
   - Download, verify, repair, and deduplicate PDFs into `paperPDFs/`.
 - **papers-analyze-pdf**
@@ -60,8 +64,9 @@ This skills directory supports the local paper workflow covering **collect -> do
 
 ### 7. Choosing a skill
 
+- Need to import papers from Zotero or a local PDF folder -> `papers-sync-from-zotero`
 - Need candidate papers from sites or review pages -> `papers-collect-from-web`
-- Need candidate papers from a GitHub curated repository -> `papers-collect-from-github-awesome`
+- Need candidate papers from a GitHub repository (awesome lists, survey repos, etc.) -> `papers-collect-from-github-awesome`
 - Already have candidate rows and need PDFs -> `papers-download-from-list`
 - Already have PDFs and need analysis notes -> `papers-analyze-pdf`
 - Changed or added notes and want refreshed statistics / navigation pages -> `papers-build-collection-index`

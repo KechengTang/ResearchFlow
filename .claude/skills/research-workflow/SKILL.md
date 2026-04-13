@@ -1,6 +1,13 @@
 ---
 name: research-workflow
-description: Unified entry for the research pipeline. Maps current work to one stage (collect/download/analyze/build/query/compare/ideate/focus/review/audit/export), recommends the right existing skill/command, supports step-by-step and end-to-end guidance, and keeps stage boundaries clear without duplicating underlying capabilities. Note: question-bank and pdfs-compress have been retired; their functions are covered by brainstorm and the download/analyze pipeline respectively.
+description: >
+  Unified entry for the research pipeline. Maps current work to one stage
+  (collect/sync/download/analyze/build/query/compare/ideate/focus/review/audit/export),
+  recommends the right existing skill/command, supports step-by-step and
+  end-to-end guidance, and keeps stage boundaries clear without duplicating
+  underlying capabilities. Note: question-bank and pdfs-compress have been
+  retired; their functions are covered by brainstorm and the download/analyze
+  pipeline respectively.
 ---
 
 # Research Workflow Entry
@@ -12,7 +19,8 @@ It does **not** replace underlying skills. It routes to them with a clear stage 
 ## Stage model
 
 KB build chain:
-- collect → download → analyze → (optional build)
+- sync / collect → download → analyze → (optional build)
+- note: sync (`papers-sync-from-zotero`) writes `Downloaded` directly, skipping download
 
 KB usage chain:
 - query / compare → ideate → focus → review
@@ -31,6 +39,8 @@ Support chain:
 
 ## Stage mapping (reuse existing skills)
 
+- sync
+  - `papers-sync-from-zotero` (Zotero API or local PDF folder import)
 - collect
   - `papers-collect-from-web`
   - `papers-collect-from-github-awesome`
@@ -59,6 +69,7 @@ Support chain:
 
 ## Input contract by stage
 
+- sync: Zotero library ID + API key, or local PDF folder path; optional collection/tag filter
 - collect: URLs or GitHub repo URL + venue/year + include/exclude
 - download: triage/log file path
 - analyze: PDF path or `Downloaded` queue

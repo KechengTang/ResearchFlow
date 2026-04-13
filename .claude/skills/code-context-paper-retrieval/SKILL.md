@@ -1,6 +1,12 @@
 ---
 name: code-context-paper-retrieval
-description: Retrieves code-context-relevant papers from the local knowledge base in two modes (brief/deep), using `paperAnalysis/` as the primary retrieval source and `paperPDFs/` for optional deeper reading. `paperCollection/` is optional and mainly serves statistics, Obsidian navigation, and backlink exploration. Environment detection prioritizes codebase environment files; asks user if none found. Trigger timing: BEFORE code modification, not after.
+description: >
+  Retrieves code-context-relevant papers from the local knowledge base in two
+  modes (brief/deep), using `paperAnalysis/` as the primary retrieval source
+  and `paperPDFs/` for optional deeper reading. `paperCollection/` is optional
+  and mainly serves statistics, Obsidian navigation, and backlink exploration.
+  Environment detection prioritizes codebase environment files; asks user if
+  none found. Trigger timing: BEFORE code modification, not after.
 ---
 
 # Code Context Paper Retrieval

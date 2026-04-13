@@ -8,6 +8,7 @@
 ## 1. 快速路由
 
 - 不知道从哪里开始：`research-workflow`
+- 从 Zotero 或本地 PDF 文件夹导入论文：`papers-sync-from-zotero`
 - 从网页或 GitHub 收集论文：`papers-collect-from-web` / `papers-collect-from-github-awesome`
 - 批量下载并修复 PDF：`papers-download-from-list`
 - 把 PDF 分析进知识库：`papers-analyze-pdf`
@@ -23,13 +24,19 @@
 
 ### 2.1 知识库构建
 
+- `papers-sync-from-zotero`
+  - 何时使用：你想从 Zotero 或本地 PDF 文件夹导入论文到 ResearchFlow。
+  - 输入：Zotero library ID + API key（API 模式），或 PDF 文件夹路径（fallback 模式）。
+  - 输出：PDF 复制到 `paperPDFs/`，富 metadata 写入 `manifest.jsonl`，轻量行追加到 `analysis_log.csv`。
+  - 支持增量同步。
+
 - `papers-collect-from-web`
   - 何时使用：你已经有一批网页列表，想批量筛论文。
   - 输入：URL + 关键词 + venue 约束。
   - 输出：后续可继续处理的 triage 列表。
 
 - `papers-collect-from-github-awesome`
-  - 何时使用：来源是 awesome / curated 仓库。
+  - 何时使用：来源是 GitHub 仓库（awesome list、survey 配套 repo、lab paper list、conference accepted paper repo 等）。
   - 输入：GitHub 仓库 URL。
   - 输出：与本地分析流程对齐的候选列表。
 

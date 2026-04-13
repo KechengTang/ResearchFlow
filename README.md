@@ -27,7 +27,7 @@
 >
 > **Pure Markdown, zero lock-in.** The whole system is just local folders + Markdown + CSV. No database, no Docker, no backend service. Every skill is a `SKILL.md` file that Claude Code, Codex CLI, Cursor, or your own agent can read.
 >
-> _ResearchFlow is a methodology, not a platform. The valuable part is the research memory you accumulate._
+> *ResearchFlow is a methodology, not a platform. The valuable part is the research memory you accumulate.*
 
 ---
 
@@ -36,7 +36,8 @@
 Give ResearchFlow a research topic and it can help you build the knowledge base step by step:
 
 ```text
-collect → download → analyze → build index → research assist
+collect / Zotero sync → download* → analyze → build index → research assist
+                        (* Zotero sync skips download — PDFs already local)
 ```
 
 You can use it in four modes:
@@ -72,7 +73,7 @@ I want to study text-driven reactive motion generation.
 Please propose 3 directions grounded in the local knowledge base.
 ```
 
-> Already have PDFs? Jump straight to analyze. Already have an idea? Jump to focus or reviewer stress testing. Not sure which skill to use? Start with `research-workflow`.
+> Already have PDFs? Jump straight to analyze. Already have an idea? Jump to focus or reviewer stress testing. Already have a Zotero library? Start with `papers-sync-from-zotero`. Not sure which skill to use? Start with `research-workflow`.
 
 > Analysis language: the default note language is **Chinese** (`analysis_language: zh`). To switch new analysis notes to English, change `analysis_language` to `en` in `AGENTS.md`, or explicitly ask for English output in the current prompt.
 
@@ -80,24 +81,25 @@ Please propose 3 directions grounded in the local knowledge base.
 
 ## ✨ Core Capabilities
 
-| Capability | What it does | Skill |
-|---|---|---|
-| Workflow entry | Detects whether you are in collect / download / analyze / build / query / compare / ideate / focus / review and recommends the next step | `research-workflow` |
-| Paper collection | Collects candidate papers from web pages or GitHub awesome repositories and writes them into `analysis_log.csv` | `papers-collect-from-web` · `papers-collect-from-github-awesome` |
-| PDF download | Downloads, deduplicates, and repairs PDFs from triage lists | `papers-download-from-list` |
-| Structured analysis | Converts PDFs into Markdown notes with structured frontmatter | `papers-analyze-pdf` |
-| Index building | Builds task / technique / venue navigation pages from analysis notes | `papers-build-collection-index` |
-| Knowledge retrieval | Retrieves papers by title, task, technique tag, venue, or year and summarizes the evidence | `papers-query-knowledge-base` |
-| Paper comparison | Produces structured comparison tables for design decisions, related work, or baseline selection | `papers-compare-table` |
-| Idea generation | Produces research directions grounded in the knowledge base | `research-brainstorm-from-kb` |
-| Idea focusing | Narrows a broad idea into a scoped, executable plan with MVPs | `idea-focus-coach` |
-| Reviewer stress test | Challenges an idea from a reviewer perspective and surfaces major risks | `reviewer-stress-test` |
-| Code-grounded retrieval | Retrieves paper evidence before changing model / loss / training code | `code-context-paper-retrieval` |
-| Metadata audit | Checks title / venue / year / link consistency and produces a quality report | `papers-audit-metadata-consistency` |
-| Share-ready export | Converts internal notes into outward-facing share versions | `notes-export-share-version` |
-| Domain migration | Migrates the architecture into another professional domain | `domain-fork` |
+| Capability              | What it does                                                                                                                             | Skill                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Workflow entry          | Detects whether you are in collect / download / analyze / build / query / compare / ideate / focus / review and recommends the next step | `research-workflow`                                                 |
+| Zotero sync             | Imports papers from a Zotero library or a local PDF folder into RF's structured layout with incremental sync                             | `papers-sync-from-zotero`                                           |
+| Paper collection        | Collects candidate papers from web pages or GitHub awesome repositories and writes them into `analysis_log.csv`                        | `papers-collect-from-web` · `papers-collect-from-github-awesome` |
+| PDF download            | Downloads, deduplicates, and repairs PDFs from triage lists                                                                              | `papers-download-from-list`                                         |
+| Structured analysis     | Converts PDFs into Markdown notes with structured frontmatter                                                                            | `papers-analyze-pdf`                                                |
+| Index building          | Builds task / technique / venue navigation pages from analysis notes                                                                     | `papers-build-collection-index`                                     |
+| Knowledge retrieval     | Retrieves papers by title, task, technique tag, venue, or year and summarizes the evidence                                               | `papers-query-knowledge-base`                                       |
+| Paper comparison        | Produces structured comparison tables for design decisions, related work, or baseline selection                                          | `papers-compare-table`                                              |
+| Idea generation         | Produces research directions grounded in the knowledge base                                                                              | `research-brainstorm-from-kb`                                       |
+| Idea focusing           | Narrows a broad idea into a scoped, executable plan with MVPs                                                                            | `idea-focus-coach`                                                  |
+| Reviewer stress test    | Challenges an idea from a reviewer perspective and surfaces major risks                                                                  | `reviewer-stress-test`                                              |
+| Code-grounded retrieval | Retrieves paper evidence before changing model / loss / training code                                                                    | `code-context-paper-retrieval`                                      |
+| Metadata audit          | Checks title / venue / year / link consistency and produces a quality report                                                             | `papers-audit-metadata-consistency`                                 |
+| Share-ready export      | Converts internal notes into outward-facing share versions                                                                               | `notes-export-share-version`                                        |
+| Domain migration        | Migrates the architecture into another professional domain                                                                               | `domain-fork`                                                       |
 
-> For the full skill map and usage guide, see [`.claude/skills/User_README.md`](.claude/skills/User_README.md).
+> For the full skill map and usage guide, see `[.claude/skills/User_README.md](.claude/skills/User_README.md)`.
 
 ---
 
@@ -116,10 +118,10 @@ Please propose 3 directions grounded in the local knowledge base.
 └─────────────────────────────────────────────────────────┘
 ```
 
-- **`paperAnalysis/`** is the core of the system. Each paper gets one `.md` note with structured fields such as `core_operator`, `primary_logic`, `dataset`, `metrics`, and `venue`. Retrieval, comparison, ideation, and code-context steps all start here.
-- **`paperCollection/`** is an optional navigation layer mainly for Obsidian browsing, overview pages, and backlink exploration. Even without rebuilding it, retrieval and brainstorming still work.
-- **`paperPDFs/`** keeps the raw papers for deeper reading when the structured evidence is not enough.
-- **`paperIDEAs/`** stores downstream outputs such as brainstorm notes, focused plans, and reviewer-style critiques.
+- `**paperAnalysis/**` is the core of the system. Each paper gets one `.md` note with structured fields such as `core_operator`, `primary_logic`, `dataset`, `metrics`, and `venue`. Retrieval, comparison, ideation, and code-context steps all start here.
+- `**paperCollection/**` is an optional navigation layer mainly for Obsidian browsing, overview pages, and backlink exploration. Even without rebuilding it, retrieval and brainstorming still work.
+- `**paperPDFs/**` keeps the raw papers for deeper reading when the structured evidence is not enough.
+- `**paperIDEAs/**` stores downstream outputs such as brainstorm notes, focused plans, and reviewer-style critiques.
 
 A practical rule of thumb:
 
@@ -256,7 +258,66 @@ Prompt 4: rebuild indexes
 </details>
 
 <details>
-<summary>2. Incrementally refresh the knowledge base after new PDFs arrive</summary>
+<summary>2. Import papers from Zotero</summary>
+
+If you already manage papers in Zotero, sync them into ResearchFlow instead of collecting from scratch.
+
+> **Security note:** Passing your Zotero API key directly to an agent is risky — the key may end up in logs, transcripts, or shell history, and a read-write key grants full access to your library (including deletion). The recommended approach is to run the API call yourself and let the agent handle the local files only.
+
+**Recommended: manual export + agent import (no API key exposure)**
+
+Step 1 — Export from Zotero yourself (run in your own terminal):
+
+```bash
+# 1. Verify your API key works (one-time check, run manually)
+curl -sS \
+  -H "Zotero-API-Key: YOUR_API_KEY" \
+  https://api.zotero.org/keys/current
+
+# 2. Export a collection as BibTeX via Zotero desktop:
+#    Right-click collection → Export Collection → BibTeX → Save as refs.bib
+#
+# 3. Copy the PDFs from Zotero storage to a staging folder:
+cp -r ~/Zotero/storage/TARGET_COLLECTION ~/staging_pdfs/
+```
+
+Step 2 — Let the agent import the local files (no key needed):
+
+```text
+/papers-sync-from-zotero
+Import PDFs from ~/staging_pdfs/ into ResearchFlow.
+Use ~/refs.bib for metadata. Category is Motion_Generation.
+```
+
+**Alternative: agent-driven API sync (if you accept the risk)**
+
+If your Zotero API key is read-only and you are comfortable with the agent seeing it:
+
+```text
+/papers-sync-from-zotero
+Sync my Zotero library into ResearchFlow. My library ID is 12345 and API key is xxx.
+```
+
+To sync only a specific collection:
+
+```text
+/papers-sync-from-zotero
+Sync only the 'Video Generation' collection from Zotero.
+```
+
+If you have a local folder of PDFs without Zotero:
+
+```text
+/papers-sync-from-zotero
+Import PDFs from ~/Downloads/papers/ into ResearchFlow. They are all CVPR 2025 papers.
+```
+
+After sync, run `papers-analyze-pdf` on the newly imported entries, then `papers-build-collection-index` to update indexes. Synced papers enter the pipeline at `Downloaded` state since PDFs are already local.
+
+</details>
+
+<details>
+<summary>3. Incrementally refresh the knowledge base after new PDFs arrive</summary>
 
 Minimal version:
 
@@ -282,7 +343,7 @@ Write new analysis notes into paperAnalysis/ and report which papers were added 
 </details>
 
 <details>
-<summary>3. Run a knowledge base health check</summary>
+<summary>4. Run a knowledge base health check</summary>
 
 ```text
 /papers-audit-metadata-consistency
@@ -295,7 +356,7 @@ This is especially useful after large collection or analysis batches. By default
 ### B. Make knowledge-driven research decisions
 
 <details>
-<summary>4. Compare papers for a design decision</summary>
+<summary>5. Compare papers for a design decision</summary>
 
 When you need to choose between multiple design alternatives, write a Related Work table, pick baselines, or present a method overview:
 
@@ -312,7 +373,7 @@ If you only need a text summary rather than a structured table, use `papers-quer
 </details>
 
 <details>
-<summary>5. Run targeted retrieval from the knowledge base</summary>
+<summary>6. Run targeted retrieval from the knowledge base</summary>
 
 ```text
 /papers-query-knowledge-base
@@ -326,7 +387,7 @@ This is a good entry point when you want to understand the evidence landscape be
 </details>
 
 <details>
-<summary>6. Generate candidate ideas from the knowledge base</summary>
+<summary>7. Generate candidate ideas from the knowledge base</summary>
 
 Short version:
 
@@ -354,7 +415,7 @@ Write the final result into paperIDEAs/.
 </details>
 
 <details>
-<summary>7. Turn a broad idea into an executable plan</summary>
+<summary>8. Turn a broad idea into an executable plan</summary>
 
 If you want to narrow the scope interactively:
 
@@ -381,7 +442,7 @@ Write the result back into the markdown file.
 </details>
 
 <details>
-<summary>8. Pressure-test an idea like a reviewer</summary>
+<summary>9. Pressure-test an idea like a reviewer</summary>
 
 Short version:
 
@@ -408,7 +469,7 @@ Write the result back into the markdown file.
 ### C. Work with code and multi-agent systems
 
 <details>
-<summary>9. Retrieve paper support before coding</summary>
+<summary>10. Retrieve paper support before coding</summary>
 
 Short version:
 
@@ -437,7 +498,7 @@ After this retrieval step, continue the actual code change in a separate coding 
 </details>
 
 <details>
-<summary>10. Use ResearchFlow as a shared knowledge layer for automation</summary>
+<summary>11. Use ResearchFlow as a shared knowledge layer for automation</summary>
 
 ResearchFlow is a plain file-based knowledge layer, so any agent that can read files can use it:
 
@@ -557,7 +618,7 @@ If you want to keep the methodology but use a more neutral framing, you can also
 
 ## 📝 Notes
 
-- The main state flow in `analysis_log.csv` is `Wait → Downloaded → checked`. Abnormal states: `analysis_mismatch` (incomplete analysis template) and `too_large` (PDF exceeds size limit). Side states: `Missing` and `Skip`. See `.claude/skills/STATE_CONVENTION.md` for full definitions.
+- The main state flow in `analysis_log.csv` is `Wait → Downloaded → checked`. Zotero sync enters at `Downloaded` directly (PDFs already local). Abnormal states: `analysis_mismatch` (incomplete analysis template) and `too_large` (PDF exceeds size limit). Side states: `Missing` and `Skip`. See `.claude/skills/STATE_CONVENTION.md` for full definitions.
 - If analysis notes are added or modified and you want refreshed `paperCollection/` pages, rebuild the index.
 - Obsidian is optional; the repository still works as a normal local folder for agents.
 - `.claude/skills` is the only maintained source.

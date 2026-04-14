@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+                "file": "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing"
+              "title": "2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation"
             }
           },
           {
@@ -107,7 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 323.5
   },
   "right": {
     "id": "2ecfdbf951cdb1cc",
@@ -123,7 +123,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+                "file": "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing 的反向链接列表"
+              "title": "2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation 的反向链接列表"
             }
           },
           {
@@ -142,12 +142,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+                "file": "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing 的出链列表"
+              "title": "2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation 的出链列表"
             }
           },
           {
@@ -185,13 +185,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+                "file": "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing 的大纲"
+              "title": "2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation 的大纲"
             }
           }
         ]
@@ -212,10 +212,11 @@
       "bases:新建数据库": false
     }
   },
-  "active": "94bd6acfb2eba04f",
+  "active": "695323c46f6b65a6",
   "lastOpenFiles": [
-    "paperIDEAs/2026-04-10_4dgs_appearance_edit_gaussian_partition_compare.md",
+    "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
     "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+    "paperIDEAs/2026-04-10_4dgs_appearance_edit_gaussian_partition_compare.md",
     "paperIDEAs/2026-04-10_4dgs_gaussian_semantic_partition_compare.md",
     "paperIDEAs/2026-04-09_4dgs_semantic_feedforward_ideas.md",
     "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
@@ -243,7 +244,6 @@
     "paperAnalysis/Gaussian_Splatting_Foundation/NeurIPS_2025/2025_Motion4D_Learning_3D_Consistent_Motion_and_Semantics_for_4D_Scene_Understanding.md",
     "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2025/2025_FLEG_Feed_Forward_Language_Embedded_Gaussian_Splatting_from_Any_Views.md",
     "paperAnalysis/Gaussian_Splatting_Foundation/NeurIPS_2025/2025_4DGT_Learning_a_4D_Gaussian_Transformer_Using_Real_World_Monocular_Videos.md",
-    "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
     "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2026/2026_4D_Synchronized_Fields_Motion_Language_Gaussian_Splatting_for_Temporal_Scene_Understanding.md",
     "paperAnalysis/4DGS_Editing/CVPR_2024/2024_Instruct_4D_to_4D_Editing_4D_Scenes_as_Pseudo_3D_Scenes_Using_2D_Diffusion.md",
     "paperCollection/by_technique/semantic-grounding.md",

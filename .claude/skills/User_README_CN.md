@@ -12,12 +12,13 @@
 - 从网页或 GitHub 收集论文：`papers-collect-from-web` / `papers-collect-from-github-awesome`
 - 批量下载并修复 PDF：`papers-download-from-list`
 - 把 PDF 分析进知识库：`papers-analyze-pdf`
-- 重建统计 / 导航页或检索知识库：`papers-build-collection-index` / `papers-query-knowledge-base`
-- 生成论文对比表：`papers-compare-table`
+- 重建索引或检索知识库：`papers-build-collection-index` / `papers-query-knowledge-base`
+- 生成论文文字对比：`papers-query-knowledge-base`
 - 方向仍然开放、需要发散 idea：`research-brainstorm-from-kb`
 - 已经有方向，需要收敛成可执行方案：`idea-focus-coach`
 - 想做严格的审稿式压测，而不是共创收敛：`reviewer-stress-test`
 - 诊断反复出现的 skill 失配：`skill-fit-guard`
+- 写或更新每日研究日志：`write-daily-log`
 - 将 ResearchFlow 迁移到其他专业领域：`domain-fork`
 
 ## 2. 分类与 skill 简述
@@ -57,29 +58,16 @@
   - 输出：一致性审计报告与质量问题列表。
 
 - `papers-build-collection-index`
-  - 何时使用：分析笔记变更后，需要刷新 `paperCollection/` 的统计页 / 导航页。
+  - 何时使用：分析笔记变更后，需要刷新索引。
   - 输入：`paperAnalysis/` 中的 frontmatter。
-  - 输出：更新后的 `paperCollection/`。
+  - 输出：写入或刷新 `paperCollection/index.jsonl`（agent 索引）和 `paperCollection/` Obsidian 导航页。
 
 ### 2.2 知识库检索与代码前论文检索
 
 - `papers-query-knowledge-base`
-  - 何时使用：你需要从本地知识库中找论文、取证据，或做跨论文的文字型综合总结。
-  - 输入：研究问题，可附带方向和约束。
-  - 输出：基于本地知识库证据的回答。
-  - 路由说明：如果你需要结构化表格，请用 `papers-compare-table`；如果这是为了即将开始的代码修改，请优先用 `code-context-paper-retrieval`。
-
-- `papers-compare-table`
-  - 何时使用：你需要在多个设计方案之间做选择（选 operator、选表征、选 loss），或者要写 Related Work 表格、选 baseline、给导师/合作者做方法概览。
-  - 输入：论文标题、查询条件或 analysis 路径。
-  - 输出：Markdown 或 CSV 对比表。
-  - 路由说明：如果你只需要文字型综合总结，用 `papers-query-knowledge-base`。
-
-- `code-context-paper-retrieval`
-  - 何时使用：你准备改代码，想先拿到论文支撑。
-  - 输入：当前代码上下文或目标模块。
-  - 输出：brief / deep 两种检索结果。
-  - 说明：会优先从 `environment.yml` 等代码库文件检测环境；若检测失败，会主动询问用户。
+  - 何时使用：你需要从本地知识库中找论文、取证据，或做跨论文的文字型综合总结；也可用于代码修改前的论文检索（指定 `mode: code-context`）。
+  - 输入：研究问题，可附带方向和约束；code-context 模式下提供当前代码上下文或目标模块。
+  - 输出：基于本地知识库证据的回答；code-context 模式返回 brief / deep 两种检索结果，含环境检测。
 
 ### 2.3 Paper idea 与研究规划
 
@@ -120,6 +108,14 @@
   - 输入：失配现象。
   - 输出：可能原因、修订选项，以及是否立即修订的询问。
 
+- `write-daily-log`
+  - 何时使用：你想写或更新每日研究日志，总结当天进展。
+  - 输入：可选的目标文件路径；默认 `DailySummary/<today>.md`。
+  - 输出：结构化日报，包含今日进展、核心结论、问题与思考、明日任务。
+  - 证据来源：会话上下文 + workspace 下所有 git 仓库的 diff + 文件系统 artifact 扫描。
+  - 核心逻辑：只收集"改变未来判断"的证据，不写流水账。每条信息必须通过筛选门控（改变决策、影响复现、产生明确后续动作、或是当天最重要的定量结果）。写完后自动执行一致性校验。
+  - 禁止写入：活动流水账、未过滤的命令输出、无证据的推测性结论、混合评测环境的数字（除非显式标注）。
+
 ### 2.5 领域迁移
 
 - `domain-fork`
@@ -134,21 +130,21 @@
 
 | Skill | 触发方式 | 典型时机 |
 |-------|----------|----------|
+| `papers-sync-from-zotero` | 显式 | 用户想从 Zotero 或本地 PDF 文件夹导入论文时 |
 | `papers-collect-from-web` | 显式 | 用户给出 URL 和主题约束时 |
 | `papers-collect-from-github-awesome` | 显式 | 用户给出 GitHub 仓库 URL 时 |
 | `papers-download-from-list` | 显式 / 建议式 | 收集完成后建议执行 |
 | `papers-analyze-pdf` | 显式 / 建议式 | 下载完成后建议执行 |
 | `papers-audit-metadata-consistency` | 建议式 | 批量分析完成后建议执行 |
-| `papers-build-collection-index` | 建议式 | 分析完成后，如需刷新统计 / 导航页时 |
-| `papers-query-knowledge-base` | 显式 / 静默 | 用户问答时显式；作为内部依赖时静默调用 |
-| `papers-compare-table` | 显式 | 用户要求结构化对比时 |
-| `code-context-paper-retrieval` | 显式 / 建议式 | 模型 / 方法相关代码修改前建议执行 |
+| `papers-build-collection-index` | 建议式 | 分析完成后，如需刷新索引时 |
+| `papers-query-knowledge-base` | 显式 / 静默 | 用户问答时显式；作为内部依赖时静默调用；代码修改前建议 code-context 模式 |
 | `research-brainstorm-from-kb` | 显式 | 用户要求开放式候选方向时 |
 | `idea-focus-coach` | 显式 | 用户已有真实方向，想做 scope cut 或 MVP 规划时 |
 | `reviewer-stress-test` | 显式 | 用户已有较成型 idea，想先接受压测时 |
 | `research-workflow` | 显式 / 建议式 | 用户不确定下一步做什么时 |
 | `notes-export-share-version` | 显式 | 用户想对外分享笔记时 |
 | `skill-fit-guard` | 建议式 | agent 检测到明显且反复的 skill 失配时 |
+| `write-daily-log` | 显式 / 建议式 | 用户说"写日志"/"日报"，或长研究会话结束时 |
 | `domain-fork` | 显式 | 用户明确要求把 ResearchFlow 迁移到其他领域时 |
 
 触发方式说明：
@@ -167,5 +163,6 @@
 
 - 实际路由只依赖 `.claude/skills-config.json` 与各 skill 的 `SKILL.md`
 - `.claude/skills` 是唯一维护源。如需 `.codex/skills` 的兼容路径，请运行 `python3 scripts/setup_shared_skills.py` 或 `py -3 scripts\setup_shared_skills.py`
+- `paperCollection/index.jsonl` 会在首次运行 `papers-build-collection-index` 后生成；在此之前直接从 `paperAnalysis/` 检索即可
 - 本 `User_README_CN.md` 仅作导航，不影响执行
 - `User_README.md` 同样仅作导航，不在注册表中

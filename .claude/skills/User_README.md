@@ -12,12 +12,13 @@ It is navigation-only and does not participate in execution.
 - Collect papers from the web or GitHub: `papers-collect-from-web` / `papers-collect-from-github-awesome`
 - Batch download and repair PDFs: `papers-download-from-list`
 - Analyze PDFs into the KB: `papers-analyze-pdf`
-- Rebuild statistics / navigation pages or search the KB: `papers-build-collection-index` / `papers-query-knowledge-base`
-- Build a paper comparison table: `papers-compare-table`
+- Rebuild indexes or search the KB: `papers-build-collection-index` / `papers-query-knowledge-base`
+- Compare papers in prose: `papers-query-knowledge-base`
 - Explore research ideas when the direction is still open-ended: `research-brainstorm-from-kb`
 - Narrow an existing direction into an executable plan: `idea-focus-coach`
 - Run strict reviewer-style pressure testing when you want challenge rather than co-creation: `reviewer-stress-test`
 - Diagnose repeated skill mismatch: `skill-fit-guard`
+- Write or update a daily research log: `write-daily-log`
 - Fork ResearchFlow into another domain: `domain-fork`
 
 ## 2. Categories and skill summaries
@@ -51,27 +52,16 @@ It is navigation-only and does not participate in execution.
   - Input: the current `paperAnalysis/`.
   - Output: a consistency audit report and quality issue list.
 - `papers-build-collection-index`
-  - When to use: analysis notes changed and `paperCollection/` statistics / navigation pages need refresh.
+  - When to use: analysis notes changed and you want refreshed indexes.
   - Input: frontmatter in `paperAnalysis/`.
-  - Output: refreshed `paperCollection/`.
+  - Output: writes or refreshes `paperCollection/index.jsonl` (agent index) and `paperCollection/` Obsidian navigation pages.
 
 ### 2.2 KB query and code-context retrieval
 
 - `papers-query-knowledge-base`
-  - When to use: you need papers, evidence, or a text synthesis across papers from the local KB.
-  - Input: a research question, optionally with direction and constraints.
-  - Output: KB-grounded answers with local evidence.
-  - Routing note: if you need a structured table, use `papers-compare-table`; if this is for an upcoming code change, prefer `code-context-paper-retrieval`.
-- `papers-compare-table`
-  - When to use: you need to choose between design alternatives (operators, representations, losses), write a Related Work table, select baselines, or present a method overview to collaborators.
-  - Input: paper titles, query conditions, or analysis paths.
-  - Output: a Markdown or CSV comparison table.
-  - Routing note: if you only need a text summary, use `papers-query-knowledge-base`.
-- `code-context-paper-retrieval`
-  - When to use: you are changing code and want paper support first.
-  - Input: the current code context or target module.
-  - Output: brief or deep retrieval results.
-  - Note: it tries to detect the environment from codebase files such as `environment.yml`, and asks if detection fails.
+  - When to use: you need papers, evidence, or a text synthesis across papers from the local KB; also use for code-context retrieval before modifying model/method code (specify `mode: code-context`).
+  - Input: a research question, optionally with direction and constraints; for code-context mode, include the current code context or target module.
+  - Output: KB-grounded answers with local evidence; code-context mode returns brief or deep retrieval results with environment detection.
 
 ### 2.3 Paper ideas and research planning
 
@@ -107,6 +97,13 @@ It is navigation-only and does not participate in execution.
   - When to use: a skill output is obviously misaligned and the mismatch may recur.
   - Input: the mismatch symptom.
   - Output: likely causes, revision options, and a prompt asking whether to revise immediately.
+- `write-daily-log`
+  - When to use: you want to write or update a daily research log summarizing today's progress.
+  - Input: optional target file path; otherwise defaults to `DailySummary/<today>.md`.
+  - Output: a structured daily log with 今日进展, 核心结论, 问题与思考, 明日任务.
+  - Evidence sources: conversation context + git diffs + filesystem artifact scan across all workspace repos.
+  - Core logic: finds evidence that changes future judgment — not a chronological activity dump. Each item must pass a gate (changes a decision, affects reproducibility, produces a next action, or is the day's key quantitative result). A consistency check runs before finalizing.
+  - Prohibited: activity logs, unfiltered command output, speculative conclusions, mixed-environment numbers without annotation.
 
 ### 2.5 Domain migration
 
@@ -129,16 +126,15 @@ All skills are triggered either by description matching or explicit invocation. 
 | `papers-download-from-list`          | explicit / suggestive | Suggest after collection is complete                                                     |
 | `papers-analyze-pdf`                 | explicit / suggestive | Suggest after download is complete                                                       |
 | `papers-audit-metadata-consistency`  | suggestive            | Suggest after a batch analysis pass                                                      |
-| `papers-build-collection-index`      | suggestive            | Suggest after analysis is complete if refreshed statistics / navigation pages are needed |
-| `papers-query-knowledge-base`        | explicit / silent     | Explicit for user queries; silent as an internal dependency                              |
-| `papers-compare-table`               | explicit              | When the user asks for a comparison                                                      |
-| `code-context-paper-retrieval`       | explicit / suggestive | Suggest before model- or method-related code edits                                       |
+| `papers-build-collection-index`      | suggestive            | Suggest after analysis is complete if refreshed indexes are needed                       |
+| `papers-query-knowledge-base`        | explicit / silent     | Explicit for user queries; silent as an internal dependency; code-context mode before code edits |
 | `research-brainstorm-from-kb`        | explicit              | When the user asks for open-ended candidate directions                                   |
 | `idea-focus-coach`                   | explicit              | When the user has a real direction and wants to narrow it into scope cuts or MVPs        |
 | `reviewer-stress-test`               | explicit              | When the user has a formed idea and wants challenge rather than co-creation              |
 | `research-workflow`                  | explicit / suggestive | When the user is unsure of the next step                                                 |
 | `notes-export-share-version`         | explicit              | When the user wants to share notes externally                                            |
 | `skill-fit-guard`                    | suggestive            | When the agent detects strong repeated mismatch                                          |
+| `write-daily-log`                    | explicit / suggestive | When the user says "写日志" / "日报", or at end of a long research session               |
 | `domain-fork`                        | explicit              | When the user clearly asks to migrate ResearchFlow into another domain                   |
 
 
@@ -158,6 +154,6 @@ Trigger mode notes:
 
 - Actual routing depends only on `.claude/skills-config.json` and each skill's `SKILL.md`.
 - `.claude/skills` is the maintained source of truth. Run `python3 scripts/setup_shared_skills.py` or `py -3 scripts\setup_shared_skills.py` if you also need `.codex/skills` compatibility aliases.
+- `paperCollection/index.jsonl` is generated after the first `papers-build-collection-index` run; before that, query directly from `paperAnalysis/`.
 - This `User_README.md` is not part of the registry and does not affect execution.
 - `User_README_CN.md` is also navigation-only and does not affect execution.
-

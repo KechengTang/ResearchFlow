@@ -19,17 +19,16 @@ Zotero sync / collect paper list -> paper analysis -> build index -> research as
 ## Source of Truth
 
 - `paperAnalysis/`: authoritative structured evidence and the primary retrieval layer for agents
-- `paperCollection/`: generated statistics / navigation pages for Obsidian, overview browsing, and backlink exploration
+- `paperCollection/`: generated index and navigation layer — `index.jsonl` for agent retrieval after build, Obsidian pages for human browsing
 - `paperPDFs/`: local PDF storage
-- `QuestionBank/`: question and challenge outputs
 - `paperIDEAs/`: idea outputs
 - `scripts/`: maintenance and automation helpers
 
 ## Working Rules
 
-- For broad research questions, start from `paperAnalysis/` and use its frontmatter/body as the main evidence source
-- Use `paperCollection/` only when you want overview pages, statistics, or Obsidian navigation help
-- When analysis notes are added or updated, rebuild `paperCollection/` only if you want refreshed statistics / navigation pages
+- For broad research questions, start from `paperCollection/index.jsonl` to narrow candidates when it has been generated; otherwise search `paperAnalysis/` directly and read matching notes as the main evidence source
+- Use `paperCollection/` Obsidian pages only when you want navigation, graph view, or backlink exploration
+- When analysis notes are added or updated, run `papers-build-collection-index` to generate or refresh both `paperCollection/index.jsonl` (agent index) and Obsidian navigation pages
 - Prefer answers grounded in local note structure such as tags, venue, year, `core_operator`, and `primary_logic`
 - Treat this repository as shared memory that can support Claude Code, Codex CLI, and other agents
 - When code and KB need to work together, keep ResearchFlow as the active workspace and link external repositories under `linkedCodebases/` instead of linking ResearchFlow into a code repo
@@ -66,11 +65,11 @@ analysis_language: zh
   - paper collection
   - PDF download and repair
   - paper analysis
-  - collection index rebuild
-  - knowledge-base query and comparison
-  - question-bank and idea generation
+  - index rebuild (agent index + Obsidian navigation)
+  - knowledge-base query and code-context retrieval
+  - idea generation and focus coaching
   - reviewer-style stress testing
-  - code-context paper retrieval
+  - metadata audit and share export
 
 ## Typical Agent Tasks
 

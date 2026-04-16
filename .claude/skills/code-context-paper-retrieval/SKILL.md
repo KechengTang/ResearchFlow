@@ -11,6 +11,8 @@ description: >
 
 # Code Context Paper Retrieval
 
+This skill is a compatibility alias for `papers-query-knowledge-base` in `mode: code-context`.
+
 ## What this skill does
 
 For code implementation/refactor/planning tasks, this skill provides the most relevant paper evidence from the local knowledge base for the current code context.
@@ -19,7 +21,7 @@ Fixed retrieval order:
 
 1. `paperAnalysis/` (primary retrieval and evidence layer)
 2. `paperPDFs/` (recommend deeper reading only when necessary)
-3. `paperCollection/` (reference only when statistics, overview pages, Obsidian jumps, or backlink support are needed)
+3. `paperCollection/` (use `index.jsonl` for fast filtering when present; otherwise reference the Markdown pages only when statistics, overview pages, Obsidian jumps, or backlink support are needed)
 
 Two output levels:
 

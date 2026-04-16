@@ -11,7 +11,7 @@ description: Explores and structures research ideas into `paperIDEAs/` notes usi
 Use this skill in the following scenarios:
 
 - **Research question / idea input**: the user describes a research question, direction, or fragmented ideas in natural language and wants systematic brainstorming plus lightweight synthesis.
-- **Need local knowledge-base grounding**: rely primarily on retrieval from `paperAnalysis`, and optionally combine `paperCollection` statistics/navigation pages to produce "related-work support + research opportunity".
+- **Need local knowledge-base grounding**: rely primarily on retrieval from `paperAnalysis`, and use generated `paperCollection` indexes/navigation pages when they help produce "related-work support + research opportunity".
 - **Need reusable idea notes**: automatically write outputs as structured Markdown under local `paperIDEAs/` for later writing, experiments, and project management.
 
 ## 2. Dependencies and paths (Dependencies & paths)
@@ -19,7 +19,7 @@ Use this skill in the following scenarios:
 This skill depends on the local paper knowledge base and the `papers-query-knowledge-base` skill:
 
 - **Paper index and analysis**: see `papers-query-knowledge-base` skill (`paperCollection/` + `paperAnalysis/`)
-- **Primary paper retrieval and analysis**: see `papers-query-knowledge-base` skill (`paperAnalysis/` first, `paperCollection/` as auxiliary)
+- **Primary paper retrieval and analysis**: see `papers-query-knowledge-base` skill (`paperAnalysis/` for evidence, generated `paperCollection/` for fast filtering/navigation when useful)
 - **Idea note directory**: `paperIDEAs/`
 
 Path convention:
@@ -78,7 +78,7 @@ Always use the local KB through `papers-query-knowledge-base`:
 
 1. **Locate related tasks/techniques**:
    - Prioritize title, task path, tags, venue, year, `core_operator`, and `primary_logic` in `paperAnalysis/`.
-   - If overview pages/statistics/Obsidian navigation aid is needed, then reference `paperCollection/by_task/`, `by_technique/`, `by_venue/`.
+   - If fast filtering or overview/statistics/Obsidian navigation aid is needed, reference `paperCollection/index.jsonl`, `by_task/`, `by_technique/`, `by_venue/`.
 2. **Select representative papers**:
    - Choose 3-8 papers highly related to the idea.
    - For each paper, read `core_operator`, `primary_logic`, and TL;DR from the `paperAnalysis` note frontmatter.
@@ -149,7 +149,7 @@ updated: {{ISO_DATETIME_NOW}}
 
 # {{YYYY-MM-DD}} {{Brief core problem description}}
 
-> Systematic retrieval and brainstorming primarily grounded in `paperAnalysis`; optionally using `paperCollection` statistics/navigation pages, with frontier cross-domain support from image/video/MLLM/Agent/RL.
+> Systematic retrieval and brainstorming primarily grounded in `paperAnalysis`, using generated `paperCollection` index/navigation support when helpful, with frontier cross-domain support from image/video/MLLM/Agent/RL.
 
 ---
 

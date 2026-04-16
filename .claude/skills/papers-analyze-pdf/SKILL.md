@@ -11,7 +11,7 @@ Analyze one or more PDFs into structured analysis notes under `paperAnalysis/`, 
 ## Scope
 
 - **Input**: A single PDF path, a directory, or a batch list from `paperAnalysis/analysis_log.csv` (process `Downloaded` entries in order).
-- **Output**: One `.md` per PDF at the correct path under `paperAnalysis/`. After each batch, update `analysis_log.csv` state to `checked`.
+- **Output**: One `.md` per PDF at the correct path under `paperAnalysis/`. After each batch, update `analysis_log.csv` state to `checked`. `paperCollection/index.jsonl` is refreshed only by `papers-build-collection-index`.
 
 Assume repository root is the folder that contains `paperPDFs/` and `paperAnalysis/`.
 
@@ -264,7 +264,7 @@ Must match `pdf_ref` in frontmatter.
 - **Context isolation**: each paper must be analyzed only from its own PDF. Do not cross-reference or carry information across papers in the same batch.
 - **Parallelism**: PDFs in one batch can be read/analyzed concurrently. Resolve paths and read all PDFs first, then generate each `.md` independently. Write files and update log after all analyses finish.
 - At batch end, output: list of written MD files, any `analysis_mismatch` with reason, and log status update preview.
-- **Next step (suggest only, no auto-run)**: suggest "If index refresh is needed, call `papers-build-collection-index` next." Do not auto-run build inside `papers-analyze-pdf` to avoid large index file churn on every analysis.
+- **Next step (suggest only, no auto-run)**: suggest "If index refresh is needed, call `papers-build-collection-index` next." Do not auto-run build inside `papers-analyze-pdf`; `paperCollection/index.jsonl` and the navigation pages are refreshed only in the build step.
 - Skip non-`Wait` entries.
 
 ---

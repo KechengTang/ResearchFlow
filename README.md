@@ -60,7 +60,7 @@ Which papers use diffusion + spatial control, and what are their core_operator f
 **Decision mode**: compare methods before changing a design, choosing baselines, or writing related work.
 
 ```text
-/papers-compare-table
+/papers-query-knowledge-base
 Compare the representation design of DART, OmniControl, and MoMask,
 with a focus on whether they can support long-horizon generation.
 ```
@@ -83,17 +83,15 @@ Please propose 3 directions grounded in the local knowledge base.
 
 | Capability              | What it does                                                                                                                             | Skill                                                                 |
 | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| Workflow entry          | Detects whether you are in collect / download / analyze / build / query / compare / ideate / focus / review and recommends the next step | `research-workflow`                                                 |
+| Workflow entry          | Detects whether you are in sync / collect / download / analyze / build / query / ideate / focus / review and recommends the next step | `research-workflow`                                                 |
 | Paper collection        | Collects candidate papers from web pages or GitHub awesome repositories and writes them into `analysis_log.csv`                        | `papers-collect-from-web` · `papers-collect-from-github-awesome` |
 | PDF download            | Downloads, deduplicates, and repairs PDFs from triage lists                                                                              | `papers-download-from-list`                                         |
 | Structured analysis     | Converts PDFs into Markdown notes with structured frontmatter                                                                            | `papers-analyze-pdf`                                                |
-| Index building          | Builds task / technique / venue navigation pages from analysis notes                                                                     | `papers-build-collection-index`                                     |
-| Knowledge retrieval     | Retrieves papers by title, task, technique tag, venue, or year and summarizes the evidence                                               | `papers-query-knowledge-base`                                       |
-| Paper comparison        | Produces structured comparison tables for design decisions, related work, or baseline selection                                          | `papers-compare-table`                                              |
+| Index building          | Builds `paperCollection/index.jsonl` (agent index) and Obsidian navigation pages from analysis notes                                    | `papers-build-collection-index`                                     |
+| Knowledge retrieval     | Retrieves papers by title, task, technique tag, venue, or year and summarizes the evidence; includes code-context mode for pre-coding retrieval | `papers-query-knowledge-base`                                       |
 | Idea generation         | Produces research directions grounded in the knowledge base                                                                              | `research-brainstorm-from-kb`                                       |
 | Idea focusing           | Narrows a broad idea into a scoped, executable plan with MVPs                                                                            | `idea-focus-coach`                                                  |
 | Reviewer stress test    | Challenges an idea from a reviewer perspective and surfaces major risks                                                                  | `reviewer-stress-test`                                              |
-| Code-grounded retrieval | Retrieves paper evidence before changing model / loss / training code                                                                    | `code-context-paper-retrieval`                                      |
 | Metadata audit          | Checks title / venue / year / link consistency and produces a quality report                                                             | `papers-audit-metadata-consistency`                                 |
 | Share-ready export      | Converts internal notes into outward-facing share versions                                                                               | `notes-export-share-version`                                        |
 | Domain migration        | Migrates the architecture into another professional domain                                                                               | `domain-fork`                                                       |
@@ -106,26 +104,29 @@ Please propose 3 directions grounded in the local knowledge base.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│  Output layer   paperIDEAs/                            │
-│                 ideas, plans, review notes             │
+│  Output layer   paperIDEAs/                             │
+│                 ideas, plans, review notes               │
 ├─────────────────────────────────────────────────────────┤
-│  Navigation     paperCollection/ (optional)            │
-│  layer          task / technique / venue overview      │
+│  Index layer    paperCollection/                        │
+│                 index.jsonl (agent) + Obsidian pages    │
 ├─────────────────────────────────────────────────────────┤
-│  Retrieval      paperAnalysis/ + paperPDFs/            │
-│  layer          structured notes + raw PDFs            │
+│  Retrieval      paperAnalysis/ + paperPDFs/             │
+│  layer          structured notes + raw PDFs             │
 └─────────────────────────────────────────────────────────┘
 ```
 
 - `**paperAnalysis/**` is the core of the system. Each paper gets one `.md` note with structured fields such as `core_operator`, `primary_logic`, `dataset`, `metrics`, and `venue`. Retrieval, comparison, ideation, and code-context steps all start here.
-- `**paperCollection/**` is an optional navigation layer mainly for Obsidian browsing, overview pages, and backlink exploration. Even without rebuilding it, retrieval and brainstorming still work.
+- `**paperCollection/**` is the index and navigation layer, serving both agents and humans:
+  - `index.jsonl` — one JSONL line per paper for fast agent retrieval at scale (5 000 notes → 20–50 candidates), generated after the first `papers-build-collection-index` run.
+  - `by_task/`, `by_technique/`, `by_venue/` — Obsidian navigation pages for graph view, backlinks, and human exploration.
+  - Both are generated by `papers-build-collection-index`.
 - `**paperPDFs/**` keeps the raw papers for deeper reading when the structured evidence is not enough.
 - `**paperIDEAs/**` stores downstream outputs such as brainstorm notes, focused plans, and reviewer-style critiques.
 
 A practical rule of thumb:
 
-- Start from `paperAnalysis/`
-- Use `paperCollection/` only when you want overview pages or statistics
+- At scale, after the first build, agents start from `paperCollection/index.jsonl` → filter → read matching `paperAnalysis/` notes
+- Humans browse `paperCollection/` in Obsidian for overview and graph exploration
 - Open `paperPDFs/` when you need deeper verification
 - Write outputs into `paperIDEAs/` or your linked code repository
 
@@ -259,7 +260,7 @@ Prompt 4: rebuild indexes
 <details>
 <summary>2. Import papers from Zotero</summary>
 
-ResearchFlow provides a skill template (`.claude/skills/papers-sync-from-zotero/`) that describes how to bridge Zotero with RF's folder layout. The actual integration code is not built-in — the agent generates it on the fly based on your environment, or you can implement it yourself.
+ResearchFlow includes a registered `papers-sync-from-zotero` skill for bridging Zotero with RF's folder layout. The actual environment-specific integration code is still generated on demand by the agent, or you can implement it yourself.
 
 ```text
 /papers-sync-from-zotero
@@ -315,14 +316,12 @@ This is especially useful after large collection or analysis batches. By default
 When you need to choose between multiple design alternatives, write a Related Work table, pick baselines, or present a method overview:
 
 ```text
-/papers-compare-table
+/papers-query-knowledge-base
 Compare DART, OmniControl, MoMask, and ReactDance, with a focus on their representation design.
 Based on the core thinking, applicable scenarios, and capability characteristics of each design,
 analyze whether they can support <XXX>.
 Save the comparison result into paperIDEAs/compare_motion_designs.md.
 ```
-
-If you only need a text summary rather than a structured table, use `papers-query-knowledge-base` instead.
 
 </details>
 
@@ -457,14 +456,16 @@ After this retrieval step, continue the actual code change in a separate coding 
 ResearchFlow is a plain file-based knowledge layer, so any agent that can read files can use it:
 
 ```text
-ResearchFlow/          ← shared knowledge layer
-├── paperAnalysis/     ← evidence source for all agents
-├── paperPDFs/         ← raw papers
-└── paperIDEAs/        ← research outputs written by agents
+ResearchFlow/              ← shared knowledge layer
+├── paperCollection/
+│   └── index.jsonl        ← agent index (generated after first build; read first to filter)
+├── paperAnalysis/         ← evidence source for all agents
+├── paperPDFs/             ← raw papers
+└── paperIDEAs/            ← research outputs written by agents
 
-Agent A (Claude Code)  ── reads paperAnalysis/ ──→ generates ideas
-Agent B (Codex CLI)    ── reads paperAnalysis/ ──→ assists code changes
-Agent C (custom)       ── reads paperAnalysis/ ──→ designs automated experiments
+Agent A (Claude Code)  ── reads index.jsonl → paperAnalysis/ ──→ generates ideas
+Agent B (Codex CLI)    ── reads index.jsonl → paperAnalysis/ ──→ assists code changes
+Agent C (custom)       ── reads index.jsonl → paperAnalysis/ ──→ designs automated experiments
 ```
 
 If you want to give explicit coordination rules to an agent, you can paste this:
@@ -472,8 +473,8 @@ If you want to give explicit coordination rules to an agent, you can paste this:
 ```text
 Treat ResearchFlow/ as the shared research memory and evidence layer for multiple agents in this project.
 Follow these conventions while working:
-- start retrieval from paperAnalysis/
-- use paperCollection/ only when you want statistics, overview pages, or Obsidian navigation / backlink exploration
+- if `paperCollection/index.jsonl` exists, start retrieval there to narrow candidates; otherwise search `paperAnalysis/` directly, then read matching notes
+- use paperCollection/ Obsidian pages only when you want navigation / backlink exploration
 - write new research ideas into paperIDEAs/
 - if the local knowledge base already covers the relevant papers, do not restate the whole literature chain from scratch
 - before proposing a new idea or code change, first check whether the local knowledge base already contains reusable operators, baselines, or reviewer concerns
@@ -494,7 +495,11 @@ ResearchFlow/
 │   └── README.md               # local Codex aliases are generated here by setup_shared_skills.py
 ├── paperAnalysis/              # structured paper notes (core data source)
 │   └── analysis_log.csv        # candidate list and status tracking
-├── paperCollection/            # optional generated navigation indexes
+├── paperCollection/            # index & navigation layer
+│   ├── index.jsonl             # agent index: generated after the first build
+│   ├── by_task/                # Obsidian navigation by task
+│   ├── by_technique/           # Obsidian navigation by technique
+│   └── by_venue/               # Obsidian navigation by venue
 ├── paperPDFs/                  # raw PDFs
 ├── paperIDEAs/                 # downstream outputs: ideas, plans, reviews
 ├── scripts/                    # helper scripts
@@ -502,7 +507,7 @@ ResearchFlow/
 ```
 
 - `paperAnalysis/` is the primary agent-facing evidence layer.
-- `paperCollection/` is the generated navigation / statistics layer, not the primary retrieval layer.
+- `paperCollection/` is the generated index and navigation layer — `index.jsonl` for agent retrieval after build, Obsidian pages for human browsing.
 - `paperIDEAs/` stores downstream research outputs.
 - `.claude/skills` is the only source of truth.
 - `.codex/` is optional local generated state for Codex CLI compatibility and is not tracked by git.
@@ -573,11 +578,11 @@ If you want to keep the methodology but use a more neutral framing, you can also
 ## 📝 Notes
 
 - The main state flow in `analysis_log.csv` is `Wait → Downloaded → checked`. Abnormal states: `analysis_mismatch` (incomplete analysis template) and `too_large` (PDF exceeds size limit). Side states: `Missing` and `Skip`. See `.claude/skills/STATE_CONVENTION.md` for full definitions.
-- If analysis notes are added or modified and you want refreshed `paperCollection/` pages, rebuild the index.
+- If analysis notes are added or modified and you want refreshed indexes, rebuild with `papers-build-collection-index` (generates or updates both `paperCollection/index.jsonl` and Obsidian navigation pages).
 - Obsidian is optional; the repository still works as a normal local folder for agents.
 - `.claude/skills` is the only maintained source.
 - `.codex/` is local generated state; Codex users should run `scripts/setup_shared_skills.py` after clone.
-- `build index` is optional for agents. Run it when you want overview pages and statistics.
+- `build index` is optional for agents when the knowledge base is small. At scale (1 000+ notes), run one build first, then read `paperCollection/index.jsonl` for efficient retrieval.
 
 ## License
 

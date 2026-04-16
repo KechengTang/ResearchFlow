@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import os
 import re
 import subprocess
@@ -25,6 +26,9 @@ class Paper:
     year: str
     category: str
     tags: Tuple[str, ...]
+    core_operator: str
+    primary_logic: str
+    claims_count: int
     pdf_ref: str  # e.g. paperPDFs/.../xxx.pdf (posix) or ""
 
 
@@ -277,7 +281,16 @@ def load_papers() -> List[Paper]:
         title = str(fm.get("title") or md_path.stem).strip()
         venue = str(fm.get("venue") or "").strip() or "UnknownVenue"
         year = str(fm.get("year") or "").strip() or "UnknownYear"
+        core_operator = str(fm.get("core_operator") or "").strip()
+        primary_logic = str(fm.get("primary_logic") or "").strip()
         pdf_ref = str(fm.get("pdf_ref") or "").strip()
+        claims_raw = fm.get("claims")
+        if isinstance(claims_raw, list):
+            claims_count = len([str(x).strip() for x in claims_raw if str(x).strip()])
+        elif isinstance(claims_raw, str):
+            claims_count = 1 if claims_raw.strip() else 0
+        else:
+            claims_count = 0
 
         # Heuristic filter: only index notes that clearly correspond to a paper PDF.
         # This avoids pulling in helper docs (e.g., SKILL.md) under paperAnalysis.
@@ -295,6 +308,9 @@ def load_papers() -> List[Paper]:
                 year=year,
                 category=task,
                 tags=tech,
+                core_operator=core_operator,
+                primary_logic=primary_logic,
+                claims_count=claims_count,
                 pdf_ref=pdf_ref,
             )
         )
@@ -346,6 +362,35 @@ def write_text(path: Path, text: str) -> None:
     path.write_text(text, encoding="utf-8")
 
 
+def to_year_value(year: str):
+    digits = re.sub(r"\D+", "", str(year))
+    if digits:
+        try:
+            return int(digits)
+        except ValueError:
+            return year
+    return year
+
+
+def build_agent_index_jsonl(papers: List[Paper]) -> str:
+    lines: List[str] = []
+    for p in papers:
+        row = {
+            "path": p.analysis_rel,
+            "title": p.title,
+            "category": p.category,
+            "venue": p.venue,
+            "year": to_year_value(p.year),
+            "tags": list(p.tags),
+            "core_operator": p.core_operator,
+            "primary_logic": p.primary_logic,
+            "claims_count": p.claims_count,
+            "pdf_ref": p.pdf_ref,
+        }
+        lines.append(json.dumps(row, ensure_ascii=False))
+    return ("\n".join(lines) + "\n") if lines else ""
+
+
 def group_by(items: Iterable[Paper], key_fn) -> Dict[str, List[Paper]]:
     out: Dict[str, List[Paper]] = {}
     for it in items:
@@ -369,7 +414,7 @@ def build_readme(papers: List[Paper], now: str) -> str:
     lines.append("")
     lines.append("# paperCollection")
     lines.append("")
-    lines.append("This directory is auto-generated from `paperAnalysis/` and is used for **statistical overview**, **Obsidian jumps**, and **backlink-friendly browsing**.")
+    lines.append("This directory is auto-generated from `paperAnalysis/` and is used for **agent-side fast filtering**, **statistical overview**, **Obsidian jumps**, and **backlink-friendly browsing**.")
     lines.append("")
     lines.append("## Start here")
     lines.append("")
@@ -384,8 +429,9 @@ def build_readme(papers: List[Paper], now: str) -> str:
     lines.append("")
     lines.append("## Notes")
     lines.append("")
+    lines.append("- `index.jsonl` is the fast filter layer for agents; the Markdown pages are for human navigation.")
     lines.append("- This index links out by default and does not embed PDFs (to avoid heavy pages).")
-    lines.append("- `paperAnalysis` is the primary agent-facing content layer; `paperCollection` is mainly for statistics, navigation, and aggregated browsing.")
+    lines.append("- `paperAnalysis` remains the primary evidence layer; `paperCollection` adds generated index and navigation outputs.")
     lines.append("")
     lines.append("## Counts")
     lines.append("")
@@ -623,7 +669,8 @@ def main() -> int:
     clean_md_dir(PAPER_COLLECTION_DIR / "by_technique")
     clean_md_dir(PAPER_COLLECTION_DIR / "by_venue")
 
-    # Home + all
+    # Agent index + home + all
+    write_text(PAPER_COLLECTION_DIR / "index.jsonl", build_agent_index_jsonl(papers))
     write_text(PAPER_COLLECTION_DIR / "README.md", build_readme(papers, now))
     write_text(PAPER_COLLECTION_DIR / "_AllPapers.md", build_all_papers(papers, now))
 

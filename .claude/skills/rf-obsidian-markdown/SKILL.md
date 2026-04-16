@@ -147,8 +147,9 @@ tags:
 - Body: lists of `[[wikilinks]]` to analysis notes, grouped by venue/year/technique
 - Purpose: Obsidian graph view navigation for humans
 
-### Wiki layer (`wiki/`)
-- `index.md`: structured directory for agent consumption, with `[[wikilinks]]` to analysis notes
+### Index layer (`paperCollection/`)
+- `index.jsonl`: structured JSONL index for agent consumption
+- Obsidian navigation pages with `[[wikilinks]]` to analysis notes
 - `log.md`: append-only, no wikilinks needed
 - `query_pack.md`: query results with `[[wikilinks]]` to cited papers
 

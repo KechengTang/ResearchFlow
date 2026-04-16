@@ -2,7 +2,7 @@
 name: research-workflow
 description: >
   Unified entry for the research pipeline. Maps current work to one stage
-  (collect/sync/download/analyze/build/query/compare/ideate/focus/review/audit/export),
+  (sync/collect/download/analyze/build/query/ideate/focus/review/audit/export),
   recommends the right existing skill/command, supports step-by-step and
   end-to-end guidance, and keeps stage boundaries clear without duplicating
   underlying capabilities. Note: question-bank and pdfs-compress have been
@@ -23,7 +23,7 @@ KB build chain:
 - note: sync (`papers-sync-from-zotero`) writes `Downloaded` directly, skipping download
 
 KB usage chain:
-- query / compare → ideate → focus → review
+- query (including comparison requests) → ideate → focus → review
 
 Support chain:
 - audit / export / code-context
@@ -48,14 +48,11 @@ Support chain:
   - `papers-download-from-list`
 - analyze
   - `papers-analyze-pdf`
-  - note: after analyze, you can go directly to query; run build only if you need statistics/navigation pages
+  - note: after analyze, you can go directly to query; run build only if you need refreshed indexes
 - build
-  - `papers-build-collection-index` (optional, refreshes `paperCollection/` statistics/navigation pages)
+  - `papers-build-collection-index` (refreshes both `paperCollection/index.jsonl` for agents and Obsidian navigation pages)
 - query
-  - `papers-query-knowledge-base`
-  - `code-context-paper-retrieval`
-- compare
-  - `papers-compare-table`
+  - `papers-query-knowledge-base` (includes code-context mode for pre-coding retrieval; also handles comparison requests)
 - ideate
   - `research-brainstorm-from-kb`
 - focus
@@ -74,8 +71,7 @@ Support chain:
 - download: triage/log file path
 - analyze: PDF path or `Downloaded` queue
 - build: no extra input (defaults to current repository)
-- query: task description/keywords (optional changed files, mode=brief/deep)
-- compare: paper list (title, path, or query filter)
+- query: task description/keywords (optional changed files, mode=brief/deep; comparison requests also route here)
 - ideate: research problem statement
 - focus: initial idea + goal preferences (can come from ideate or be independent input)
 - review: idea / roadmap / full paper (can come from focus or be independent input)

@@ -7,7 +7,7 @@ description: Migrates ResearchFlow's architecture to a new professional domain (
 
 ## Purpose
 
-Migrate the core ResearchFlow architecture (collect → download → analyze → build KB → query → compare → question discovery → ideation divergence → focus → review) into a user-specified professional domain, and generate a complete domain-adapted skill set plus folder structure in one pass.
+Migrate the core ResearchFlow architecture (sync/collect → download → analyze → build index → query → ideate → focus → review) into a user-specified professional domain, and generate a complete domain-adapted skill set plus folder structure in one pass.
 
 ## Trigger
 
@@ -44,7 +44,6 @@ Generate a ResearchFlow → target-domain concept mapping table for user confirm
 | paperCollection | (domain equivalent) | e.g., technical index, regulation index, topic index |
 | paperPDFs | (domain equivalent) | e.g., original articles, source regulations, source manuscripts |
 | paperIDEAs | (domain equivalent) | e.g., project proposals, audit strategies, topic plans |
-| QuestionBank | (domain equivalent) | e.g., technical problem bank, compliance issue bank, editorial issue bank |
 | core_operator | (domain equivalent) | e.g., core technical strategy, core regulation clause, core news angle |
 | primary_logic | (domain equivalent) | e.g., implementation flow, compliance-check flow, editorial flow |
 | analysis_log.csv | keep | main tracking log, with domain-adjusted columns |
@@ -52,27 +51,27 @@ Generate a ResearchFlow → target-domain concept mapping table for user confirm
 
 ### Step 3: Skill mapping confirmation
 
-Show how ResearchFlow's 17 skills map to target-domain skills:
+Show how ResearchFlow's 17 routed skills map to target-domain skills (the shared Markdown convention skill can be copied separately without renaming):
 
 | ResearchFlow Skill | Target-domain Skill | Keep? | Adjustment |
 |-------------------|---------------|---------|---------|
+| papers-sync-from-zotero | `<domain>-sync-from-source` | ✅/❌ | keep when the target domain has a source-of-truth library or inbox |
 | papers-collect-from-web | `<domain>-collect-from-web` | ✅ | source websites become domain-specific |
 | papers-collect-from-github-awesome | `<domain>-collect-from-curated-list` | ✅/❌ | depends on whether curated lists exist |
 | papers-download-from-list | `<domain>-download-from-list` | ✅ | download objects become domain documents |
-| pdfs-compress-large-files | `compress-large-files` | ✅/❌ | depends on document types |
 | papers-analyze-pdf | `<domain>-analyze-document` | ✅ | analysis template rewritten for domain |
 | papers-audit-metadata-consistency | `<domain>-audit-metadata` | ✅ | metadata fields adjusted for domain |
 | papers-build-collection-index | `<domain>-build-index` | ✅ | index dimensions adjusted for domain |
-| papers-query-knowledge-base | `<domain>-query-kb` | ✅ | query dimensions adjusted for domain |
-| papers-compare-table | `<domain>-compare-table` | ✅ | comparison fields adjusted for domain |
+| papers-query-knowledge-base | `<domain>-query-kb` | ✅ | query dimensions adjusted for domain; handles comparison requests |
 | code-context-paper-retrieval | `code-context-<domain>-retrieval` | ✅/❌ | keep only for code-related domains |
-| research-question-bank | `<domain>-question-bank` | ✅ | question dimensions adjusted for domain |
 | research-brainstorm-from-kb | `<domain>-brainstorm-from-kb` | ✅ | ideation dimensions adjusted for domain |
 | idea-focus-coach | `<domain>-focus-coach` | ✅ | focus dimensions adjusted for domain |
 | reviewer-stress-test | `<domain>-stress-test` | ✅ | review standards adjusted for domain |
 | research-workflow | `<domain>-workflow` | ✅ | stage naming adjusted for domain |
 | notes-export-share-version | `notes-export-share-version` | ✅ | generic, no change needed |
 | skill-fit-guard | `skill-fit-guard` | ✅ | generic, no change needed |
+| write-daily-log | `write-daily-log` | ✅/❌ | keep when the target domain needs evidence-based daily summaries |
+| domain-fork | `<domain>-fork` | ❌ | usually do not recurse the migration skill into the forked repo |
 
 User may:
 - remove unnecessary skills
@@ -102,7 +101,6 @@ After user confirmation, generate in one pass:
 │   └── by_<dim3>/
 ├── <SourceDir>/            # maps from paperPDFs
 ├── <IdeaDir>/              # maps from paperIDEAs
-├── QuestionBank/
 └── README.md
 ```
 

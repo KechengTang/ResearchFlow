@@ -1,14 +1,27 @@
 ---
 name: papers-build-collection-index
 follows: rf-obsidian-markdown
-description: Builds/refreshes `paperCollection/` index notes from `paperAnalysis/` frontmatter. Use when the user asks to update/rebuild `paperCollection`, regenerate indexes (by task/technique/venue), or after adding/editing analysis notes and PDF refs.
+description: Builds/refreshes `paperCollection/index.jsonl` (agent index) and `paperCollection/` Obsidian navigation pages from `paperAnalysis/` frontmatter. Use when the user asks to update/rebuild indexes, regenerate navigation pages (by task/technique/venue), or after adding/editing analysis notes and PDF refs.
 ---
 
-# Build paperCollection
+# Build Index
 
 ## What this skill does
 
-Regenerates the Obsidian index layer under `paperCollection/` by scanning `paperAnalysis/**/*.md`, extracting frontmatter and body hashtags (`#tag`), and emitting:
+Regenerates two index layers by scanning `paperAnalysis/**/*.md` and extracting frontmatter and body hashtags (`#tag`):
+
+1. **Agent index** — `paperCollection/index.jsonl`: one JSONL line per paper with retrieval-dimension fields only. Agents read this first to narrow thousands of notes down to a small candidate set.
+2. **Obsidian navigation** — `paperCollection/`: Markdown navigation pages for human browsing in Obsidian.
+
+This skill is the single writer for both outputs. `papers-analyze-pdf` does not append to `index.jsonl`.
+
+### paperCollection/index.jsonl format
+
+```jsonl
+{"path":"paperAnalysis/Cat/Venue_Year/Year_Title.md","title":"...","category":"Cat","venue":"CVPR","year":2026,"tags":["task/x","technique"],"core_operator":"...","primary_logic":"...","claims_count":2,"pdf_ref":"paperPDFs/Cat/Venue_Year/Year_Title.pdf"}
+```
+
+### paperCollection/ output
 
 - `paperCollection/README.md` (home)
 - `paperCollection/_AllPapers.md` (grouped view)
@@ -39,7 +52,7 @@ python .claude/skills/papers-build-collection-index/scripts/build_paper_collecti
 
 3. Confirm it succeeded:
    - Expect console output like `[OK] papers: ...` and `[OK] output: .../paperCollection`.
-   - Spot-check that `paperCollection/README.md` and `paperCollection/_AllPapers.md` are updated.
+   - Spot-check that `paperCollection/index.jsonl`, `paperCollection/README.md` and `paperCollection/_AllPapers.md` are updated.
 
 ## How categories / tags are interpreted
 
@@ -51,6 +64,7 @@ python .claude/skills/papers-build-collection-index/scripts/build_paper_collecti
 
 ## Examples (triggers)
 
-- "Refresh `paperCollection` / rebuild the index"
-- "I just added several `paperAnalysis` notes; regenerate `paperCollection`"
+- "Refresh indexes / rebuild the index"
+- "I just added several `paperAnalysis` notes; regenerate indexes"
 - "The by_technique / by_venue pages are incomplete; fix and rebuild"
+- "Update `paperCollection/index.jsonl` for agent retrieval"

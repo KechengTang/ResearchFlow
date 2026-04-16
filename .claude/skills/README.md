@@ -3,12 +3,12 @@
 Single source of truth: keep the maintained skill library in `.claude/skills`.
 If you also want Codex-compatible paths, run `python3 scripts/setup_shared_skills.py` on macOS/Linux or `py -3 scripts\setup_shared_skills.py` on Windows to generate `.codex/skills` aliases without copying.
 
-This skills directory supports the local paper workflow covering **collect -> download -> analyze -> build -> query -> compare -> ideate -> focus -> review**.
+This skills directory supports the local paper workflow covering **sync -> collect -> download -> analyze -> build -> query -> ideate -> focus -> review**.
 
 ### 1. Workflow entry
 
 - **research-workflow**
-  - Routes work to one stage among collect / download / analyze / build / query / compare / ideate / focus / review / audit / export.
+  - Routes work to one stage among sync / collect / download / analyze / build / query / ideate / focus / review / audit / export.
   - Returns the current stage, required inputs, suggested command or skill, expected outputs, and next step.
 
 ### 2. Paper pipeline skills
@@ -29,15 +29,13 @@ This skills directory supports the local paper workflow covering **collect -> do
 - **papers-audit-metadata-consistency**
   - Audit consistency between logs and analysis notes.
 - **papers-build-collection-index**
-  - Rebuild `paperCollection/` from `paperAnalysis/` frontmatter for statistics, Obsidian navigation, and backlink-friendly browsing.
+  - Rebuild `paperCollection/index.jsonl` (agent index) and `paperCollection/` Obsidian navigation pages from `paperAnalysis/` frontmatter.
 
 ### 3. KB query and code context
 
 - **papers-query-knowledge-base**
-  - Query the knowledge base primarily from `paperAnalysis/`, with `paperCollection/` as optional navigation support.
-- **papers-compare-table**
-  - Generate structured comparison tables for design decisions, Related Work writing, baseline selection, or method overviews.
-- **code-context-paper-retrieval**
+  - Query the knowledge base primarily from `paperAnalysis/`; when present, reads `paperCollection/index.jsonl` first for fast filtering. Includes code-context mode for pre-coding paper retrieval. Also handles comparison requests with honest text-based analysis.
+- **code-context-paper-retrieval** *(alias — routes to papers-query-knowledge-base code-context mode)*
   - Retrieve paper evidence relevant to a coding task. Triggers before code modification.
 
 ### 4. Research ideation and review
@@ -55,6 +53,12 @@ This skills directory supports the local paper workflow covering **collect -> do
   - Convert internal notes into external-share Markdown versions.
 - **skill-fit-guard**
   - Diagnose recurring skill mismatch after a skill call and ask whether that skill should be revised.
+- **write-daily-log**
+  - Generate or update a structured daily research log from git diffs, artifacts, and conversation context.
+  - Core logic: collect evidence that changes future judgment (not activity logs), then compress into a fixed template.
+  - Evidence channels: (A) current session context, (B) cross-session git diffs and filesystem artifact scan across all workspace repos.
+  - Output sections: 今日进展 / 核心结论 / 问题与思考 / 明日任务.
+  - Built-in consistency check: numbers must cite artifacts, old/new env results must not be mixed, 明日任务 must follow from conclusions.
 
 ### 6. Domain migration
 
@@ -69,13 +73,13 @@ This skills directory supports the local paper workflow covering **collect -> do
 - Need candidate papers from a GitHub repository (awesome lists, survey repos, etc.) -> `papers-collect-from-github-awesome`
 - Already have candidate rows and need PDFs -> `papers-download-from-list`
 - Already have PDFs and need analysis notes -> `papers-analyze-pdf`
-- Changed or added notes and want refreshed statistics / navigation pages -> `papers-build-collection-index`
+- Changed or added notes and want refreshed indexes → `papers-build-collection-index`
 - Need a metadata quality pass -> `papers-audit-metadata-consistency`
-- Need to search, summarize, or cite papers -> `papers-query-knowledge-base`
-- Need a side-by-side comparison table -> `papers-compare-table`
-- Need paper suggestions before coding -> `code-context-paper-retrieval`
+- Need to search, summarize, compare, or cite papers in prose -> `papers-query-knowledge-base`
+- Need paper suggestions before coding -> `papers-query-knowledge-base` (code-context mode)
 - Need idea generation backed by the knowledge base while the direction is still open-ended -> `research-brainstorm-from-kb`
 - Need collaborative narrowing from a broad-but-real idea to an executable plan -> `idea-focus-coach`
 - Need strict reviewer-mode challenge with repair paths -> `reviewer-stress-test`
 - A recently used skill seems repeatedly unfit -> `skill-fit-guard`
+- Need to write or update a daily research log -> `write-daily-log`
 - Want to create a domain-adapted version of ResearchFlow -> `domain-fork`

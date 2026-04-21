@@ -1,0 +1,15 @@
+---
+type: paper-index
+dimension: technique
+technique: multi-scale-style-loss
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: multi-scale-style-loss
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/3DGS_Editing/CVPR_2025/2025_SGSST_Scaling_Gaussian_Splatting_Style_Transfer.md|SGSST: Scaling Gaussian Splatting Style Transfer (CVPR 2025)]] · [[paperPDFs/3DGS_Editing/CVPR_2025/2025_SGSST_Scaling_Gaussian_Splatting_Style_Transfer.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]

@@ -1,0 +1,15 @@
+---
+type: paper-index
+dimension: technique
+technique: noise-robust-reconstruction
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: noise-robust-reconstruction
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.md|DenoiseSplat: Feed-Forward Gaussian Splatting for Noisy 3D Scene Reconstruction (arXiv 2026)]] · [[paperPDFs/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]

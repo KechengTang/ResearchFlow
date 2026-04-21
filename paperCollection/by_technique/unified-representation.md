@@ -1,0 +1,15 @@
+---
+type: paper-index
+dimension: technique
+technique: unified-representation
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: unified-representation
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/Gaussian_Splatting_Foundation/ICCV_2025/2025_7DGS_Unified_Spatial_Temporal_Angular_Gaussian_Splatting.md|7DGS: Unified Spatial-Temporal-Angular Gaussian Splatting (ICCV 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/ICCV_2025/2025_7DGS_Unified_Spatial_Temporal_Angular_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]

@@ -30,6 +30,7 @@ updated: 2026-04-10T14:26
 > [!abstract] **Quick Links & TL;DR**
 >
 > - **Links**: [Project Page](https://jsxzs.github.io/sa4d/) | [arXiv 2407.04504](https://arxiv.org/abs/2407.04504) | [PDF](https://arxiv.org/pdf/2407.04504.pdf) | [Official GitHub](https://github.com/jsxzs/SA4D) | [Reference Code](https://github.com/Marine318/sa4d)
+> - **Code Note**: `jsxzs/SA4D` 是论文作者仓库；`Marine318/sa4d` 更像基于论文整理补全的参考实现，可用于复现排查，但不应默认视为官方完整版代码。
 > - **Summary**: SA4D 不是把静态 3D segmentation 直接硬搬到 4D-GS，而是显式学习一个随时间变化的 identity field，把“这个 Gaussian 在当前时间属于哪个对象”建模成时变身份问题，从而解决 dynamic 4D scene 里最关键的 Gaussian drifting。之后再把对象级结果缓存成 Gaussian identity table，让分割、mask 渲染和对象编辑都能在秒级完成。
 > - **Key Performance**:
 >   - 在 HyperNeRF 上，完整方法达到 `89.86% mIoU / 99.24% mAcc`，显著高于 Gaussian Grouping 的 `69.53% / 91.55%`。

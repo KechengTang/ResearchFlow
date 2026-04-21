@@ -1,0 +1,15 @@
+---
+type: paper-index
+dimension: technique
+technique: promptable-segmentation
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: promptable-segmentation
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/Gaussian_Splatting_Foundation/AAAI_2025/2025_Segment_Any_3D_Gaussians.md|Segment Any 3D Gaussians (AAAI 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/AAAI_2025/2025_Segment_Any_3D_Gaussians.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]

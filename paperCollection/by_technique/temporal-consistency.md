@@ -5,11 +5,17 @@ technique: temporal-consistency
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-10T14:39
+generated: 2026-04-21T15:31
 ---
 
 # Technique: temporal-consistency
 
 - Back: [[paperCollection/by_technique/_Index.md|Technique index]]
 
+- [[paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md|Catalyst4D: High-Fidelity 3D-to-4D Scene Editing via Dynamic Propagation (CVPR 2026)]] · [[paperPDFs/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
 - [[paperAnalysis/4DGS_Editing/CVPR_2026/2026_Dynamic_eDiTor_Training_Free_Text_Driven_4D_Scene_Editing_with_Multimodal_Diffusion_Transformer.md|Dynamic-eDiTor: Training-Free Text-Driven 4D Scene Editing with Multimodal Diffusion Transformer (CVPR 2026)]] · [[paperPDFs/4DGS_Editing/CVPR_2026/2026_Dynamic_eDiTor_Training_Free_Text_Driven_4D_Scene_Editing_with_Multimodal_Diffusion_Transformer.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
+- [[paperAnalysis/4DGS_Editing/CVPR_2024/2024_Instruct_4D_to_4D_Editing_4D_Scenes_as_Pseudo_3D_Scenes_Using_2D_Diffusion.md|Instruct 4D-to-4D: Editing 4D Scenes as Pseudo-3D Scenes Using 2D Diffusion (CVPR 2024)]] · [[paperPDFs/4DGS_Editing/CVPR_2024/2024_Instruct_4D_to_4D_Editing_4D_Scenes_as_Pseudo_3D_Scenes_Using_2D_Diffusion.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
+- [[paperAnalysis/4DGS_Reconstruction/ECCV_2024/2024_SWinGS_Sliding_Windows_for_Dynamic_3D_Gaussian_Splatting.md|SWinGS: Sliding Windows for Dynamic 3D Gaussian Splatting (ECCV 2024)]] · [[paperPDFs/4DGS_Reconstruction/ECCV_2024/2024_SWinGS_Sliding_Windows_for_Dynamic_3D_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
+- [[paperAnalysis/4DGS_Reconstruction/SIGGRAPH_Asia_2025/2025_Clustered_Error_Correction_with_Grouped_4D_Gaussian_Splatting.md|Clustered Error Correction with Grouped 4D Gaussian Splatting (SIGGRAPH_Asia 2025)]] · [[paperPDFs/4DGS_Reconstruction/SIGGRAPH_Asia_2025/2025_Clustered_Error_Correction_with_Grouped_4D_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
+- [[paperAnalysis/Gaussian_Splatting_Foundation/CVPR_2024/2024_Align_Your_Gaussians_Text_to_4D_with_Dynamic_3D_Gaussians_and_Composed_Diffusion_Models.md|Align Your Gaussians: Text-to-4D with Dynamic 3D Gaussians and Composed Diffusion Models (CVPR 2024)]] · [[paperPDFs/Gaussian_Splatting_Foundation/CVPR_2024/2024_Align_Your_Gaussians_Text_to_4D_with_Dynamic_3D_Gaussians_and_Composed_Diffusion_Models.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
+- [[paperAnalysis/Gaussian_Splatting_Foundation/ECCV_2024/2024_STAG4D_Spatial_Temporal_Anchored_Generative_4D_Gaussians.md|STAG4D: Spatial-Temporal Anchored Generative 4D Gaussians (ECCV 2024)]] · [[paperPDFs/Gaussian_Splatting_Foundation/ECCV_2024/2024_STAG4D_Spatial_Temporal_Anchored_Generative_4D_Gaussians.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]

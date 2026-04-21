@@ -27,12 +27,40 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
+                "file": "paperCollection/by_technique/feed-forward.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation"
+              "title": "feed-forward"
+            }
+          },
+          {
+            "id": "ea40e2c5c3254062",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting"
+            }
+          },
+          {
+            "id": "584608e43ee13b3e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "paperAnalysis/4DGS_Reconstruction/CVPR_2026/2026_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_Images.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_Images"
             }
           },
           {
@@ -212,43 +240,43 @@
       "bases:新建数据库": false
     }
   },
-  "active": "695323c46f6b65a6",
+  "active": "94bd6acfb2eba04f",
   "lastOpenFiles": [
-    "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Editing/arXiv_2025/2025_4DGS_Craft_Consistent_and_Interactive_4D_Gaussian_Splatting_Editing.md",
+    "paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md",
+    "paperCollection/by_technique/feed-forward.md",
+    "paperAnalysis/4DGS_Reconstruction/CVPR_2026/2026_DGGT_Feedforward_4D_Reconstruction_of_Dynamic_Driving_Scenes_using_Unposed_Images.md",
     "paperIDEAs/2026-04-10_4dgs_appearance_edit_gaussian_partition_compare.md",
-    "paperIDEAs/2026-04-10_4dgs_gaussian_semantic_partition_compare.md",
-    "paperIDEAs/2026-04-09_4dgs_semantic_feedforward_ideas.md",
+    "paperAnalysis/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.md",
+    "paperAnalysis/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.md",
+    "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
+    "paperAnalysis/Gaussian_Splatting_Foundation/SIGGRAPH_Asia_2025/2025_Virtually_Being_Customizing_Camera_Controllable_Video_Diffusion_Models_with_Volumetric_Performance_Captures.md",
     "paperAnalysis/4DGS_Editing/CVPR_2026/2026_Catalyst4D_High_Fidelity_3D_to_4D_Scene_Editing_via_Dynamic_Propagation.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2026/2026_F4Splat_Feed_Forward_Predictive_Densification_for_Feed_Forward_3D_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Reconstruction/arXiv_2024/2024_DynaSurfGS_Dynamic_Surface_Reconstruction_with_Planar_based_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Reconstruction/arXiv_2024",
-    "paperPDFs/4DGS_Reconstruction/arXiv_2024/2024_DynaSurfGS_Dynamic_Surface_Reconstruction_with_Planar_based_Gaussian_Splatting.pdf",
-    "paperPDFs/Gaussian_Splatting_Foundation/arXiv_2026/2026_F4Splat_Feed_Forward_Predictive_Densification_for_Feed_Forward_3D_Gaussian_Splatting.pdf",
-    "paperPDFs/4DGS_Reconstruction/arXiv_2024",
-    "paperAnalysis/4DGS_Reconstruction/ICCV_2025/2025_MaGS_Reconstructing_and_Simulating_Dynamic_3D_Objects_with_Mesh_adsorbed_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Reconstruction/ICLR_2025/2025_Dynamic_Gaussians_Mesh_Consistent_Mesh_Reconstruction_from_Dynamic_Scenes.md",
-    "paperAnalysis/3DGS_Editing/NeurIPS_2024/2024_ReGS_Reference_based_Controllable_Scene_Stylization_with_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Reconstruction/ICCV_2025",
-    "paperAnalysis/4DGS_Reconstruction/ICLR_2025",
-    "paperAnalysis/3DGS_Editing/NeurIPS_2024",
-    "paperPDFs/3DGS_Editing/NeurIPS_2024/2024_ReGS_Reference_based_Controllable_Scene_Stylization_with_Gaussian_Splatting.pdf",
-    "paperPDFs/4DGS_Reconstruction/ICLR_2025/2025_Dynamic_Gaussians_Mesh_Consistent_Mesh_Reconstruction_from_Dynamic_Scenes.pdf",
-    "paperPDFs/4DGS_Reconstruction/ICCV_2025/2025_MaGS_Reconstructing_and_Simulating_Dynamic_3D_Objects_with_Mesh_adsorbed_Gaussian_Splatting.pdf",
-    "paperAnalysis/3DGS_Editing/ICLR_2025/2025_GaussianBlock_Building_Part_Aware_Compositional_and_Editable_3D_Scene_by_Primitives_and_Gaussians.md",
-    "paperAnalysis/3DGS_Editing/WACV_2026/2026_3DSceneEditor_Controllable_3D_Scene_Editing_with_Gaussian_Splatting.md",
-    "paperAnalysis/4DGS_Reconstruction/CVPR_2026/2026_MoVieS_Motion_Aware_4D_Dynamic_View_Synthesis_in_One_Second.md",
-    "paperAnalysis/4DGS_Reconstruction/NeurIPS_2025/2025_Feed_Forward_Bullet_Time_Reconstruction_of_Dynamic_Scenes_from_Monocular_Videos.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2025/2025_4DLangVGGT_4D_Language_Visual_Geometry_Grounded_Transformer.md",
-    "QuestionBank/2026-04-09_4dgs_semantic_feedforward_editing_plan.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/NeurIPS_2025/2025_Motion4D_Learning_3D_Consistent_Motion_and_Semantics_for_4D_Scene_Understanding.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2025/2025_FLEG_Feed_Forward_Language_Embedded_Gaussian_Splatting_from_Any_Views.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/NeurIPS_2025/2025_4DGT_Learning_a_4D_Gaussian_Transformer_Using_Real_World_Monocular_Videos.md",
-    "paperAnalysis/Gaussian_Splatting_Foundation/arXiv_2026/2026_4D_Synchronized_Fields_Motion_Language_Gaussian_Splatting_for_Temporal_Scene_Understanding.md",
-    "paperAnalysis/4DGS_Editing/CVPR_2024/2024_Instruct_4D_to_4D_Editing_4D_Scenes_as_Pseudo_3D_Scenes_Using_2D_Diffusion.md",
-    "paperCollection/by_technique/semantic-grounding.md",
-    "paperCollection/by_technique/dynamic-scene-editing.md",
-    "paperCollection/by_technique/gaussian-drifting.md",
-    "paperCollection/by_technique/temporal-identity-field.md"
+    "paperCollection/by_technique/STDC.md",
+    "paperCollection/by_technique/STO-GS.md",
+    "paperCollection/by_technique/sliding-window.md",
+    "paperCollection/by_technique/correlation-aware.md",
+    "paperCollection/by_technique/future-prediction.md",
+    "paperCollection/by_technique/future-view-synthesis.md",
+    "paperCollection/by_technique/GCTP.md",
+    "paperCollection/by_technique/Bi-LSTM.md",
+    "paperCollection/by_technique/diffusion-inpainting.md",
+    "paperCollection/by_technique/motion-decoupling.md",
+    "paperCollection/by_technique/dynamic-novel-view-synthesis.md",
+    "paperCollection/by_technique/layered-opacity.md",
+    "paperCollection/by_technique/local-rigidity.md",
+    "paperCollection/by_technique/mutual-information.md",
+    "paperCollection/by_technique/amodal-supervision.md",
+    "paperCollection/by_technique/world-model.md",
+    "paperCollection/by_technique/multi-subject-generation.md",
+    "paperAnalysis/3DGS_Reconstruction/ACMMM_2025",
+    "tmp_pdf_extracts_round3/2025_Anchored_4D_Gaussian_Splatting_for_Dynamic_Novel_View_Synthesis.txt",
+    "tmp_pdf_extracts_round3/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.txt",
+    "tmp_pdf_extracts_round3/2025_FutureGS_Structured_Gaussian_Fields_for_Future_Aware_Dynamic_Scene_Modeling.txt",
+    "tmp_pdf_extracts_round3/2025_CaDGS_Modeling_Inter_Gaussian_Mutual_Information_for_Dynamic_Novel_View_Synthesis.txt",
+    "tmp_pdf_extracts_round3",
+    "paperPDFs/Gaussian_Splatting_Foundation/ACMMM_2025/2025_FutureGS_Structured_Gaussian_Fields_for_Future_Aware_Dynamic_Scene_Modeling.pdf",
+    "paperPDFs/3DGS_Reconstruction/ACMMM_2025/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.pdf",
+    "paperPDFs/4DGS_Reconstruction/ACMMM_2025/2025_CaDGS_Modeling_Inter_Gaussian_Mutual_Information_for_Dynamic_Novel_View_Synthesis.pdf",
+    "paperPDFs/4DGS_Reconstruction/SIGGRAPH_Asia_2025/2025_Anchored_4D_Gaussian_Splatting_for_Dynamic_Novel_View_Synthesis.pdf"
   ]
 }

@@ -5,12 +5,19 @@ technique: scene-editing
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-10T14:39
+generated: 2026-04-21T15:31
 ---
 
 # Technique: scene-editing
 
 - Back: [[paperCollection/by_technique/_Index.md|Technique index]]
 
+- [[paperAnalysis/3DGS_Editing/ACMMM_2025/2025_D2Gaussian_Dynamic_Control_with_Discretized_3D_View_Modeling_for_Text_Driven_3D_Gaussian_Splatting_Editing.md|D2Gaussian: Dynamic Control with Discretized 3D View Modeling for Text-Driven 3D Gaussian Splatting Editing (ACMMM 2025)]] · [[paperPDFs/3DGS_Editing/ACMMM_2025/2025_D2Gaussian_Dynamic_Control_with_Discretized_3D_View_Modeling_for_Text_Driven_3D_Gaussian_Splatting_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/CVPR_2025/2025_3D_Gaussian_Inpainting_with_Depth_Guided_Cross_View_Consistency.md|3D Gaussian Inpainting with Depth-Guided Cross-View Consistency (CVPR 2025)]] · [[paperPDFs/3DGS_Editing/CVPR_2025/2025_3D_Gaussian_Inpainting_with_Depth_Guided_Cross_View_Consistency.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/CVPR_2025/2025_EditSplat_Multi_View_Fusion_and_Attention_Guided_Optimization_for_View_Consistent_3D_Scene_Editing_with_3D_Gaussian_Splatting.md|EditSplat: Multi-View Fusion and Attention-Guided Optimization for View-Consistent 3D Scene Editing with 3D Gaussian Splatting (CVPR 2025)]] · [[paperPDFs/3DGS_Editing/CVPR_2025/2025_EditSplat_Multi_View_Fusion_and_Attention_Guided_Optimization_for_View_Consistent_3D_Scene_Editing_with_3D_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
 - [[paperAnalysis/3DGS_Editing/CVPR_2024/2024_GaussianEditor_Swift_and_Controllable_3D_Editing_with_Gaussian_Splatting.md|GaussianEditor: Swift and Controllable 3D Editing with Gaussian Splatting (CVPR 2024)]] · [[paperPDFs/3DGS_Editing/CVPR_2024/2024_GaussianEditor_Swift_and_Controllable_3D_Editing_with_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/ECCV_2024/2024_DGE_Direct_Gaussian_3D_Editing_by_Consistent_Multi_view_Editing.md|DGE: Direct Gaussian 3D Editing by Consistent Multi-view Editing (ECCV 2024)]] · [[paperPDFs/3DGS_Editing/ECCV_2024/2024_DGE_Direct_Gaussian_3D_Editing_by_Consistent_Multi_view_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/ECCV_2024/2024_GaussCtrl_Multi_View_Consistent_Text_Driven_3D_Gaussian_Splatting_Editing.md|GaussCtrl: Multi-View Consistent Text-Driven 3D Gaussian Splatting Editing (ECCV 2024)]] · [[paperPDFs/3DGS_Editing/ECCV_2024/2024_GaussCtrl_Multi_View_Consistent_Text_Driven_3D_Gaussian_Splatting_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/ECCV_2024/2024_View_Consistent_3D_Editing_with_Gaussian_Splatting.md|View-Consistent 3D Editing with Gaussian Splatting (ECCV 2024)]] · [[paperPDFs/3DGS_Editing/ECCV_2024/2024_View_Consistent_3D_Editing_with_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
 - [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.md|Variation-aware Flexible 3D Gaussian Editing (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/WACV_2026/2026_3DSceneEditor_Controllable_3D_Scene_Editing_with_Gaussian_Splatting.md|3DSceneEditor: Controllable 3D Scene Editing with Gaussian Splatting (WACV 2026)]] · [[paperPDFs/3DGS_Editing/WACV_2026/2026_3DSceneEditor_Controllable_3D_Scene_Editing_with_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]

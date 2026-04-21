@@ -5,7 +5,7 @@ technique: native-3d-editing
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-10T14:39
+generated: 2026-04-21T15:31
 ---
 
 # Technique: native-3d-editing

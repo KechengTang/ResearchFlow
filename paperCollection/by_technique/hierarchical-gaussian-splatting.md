@@ -5,7 +5,7 @@ technique: hierarchical-gaussian-splatting
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-10T14:39
+generated: 2026-04-21T15:31
 ---
 
 # Technique: hierarchical-gaussian-splatting

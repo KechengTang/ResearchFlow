@@ -2,7 +2,7 @@
 type: paper-collection-home
 tags:
   - paperCollection
-generated: 2026-04-10T14:39
+generated: 2026-04-21T15:31
 ---
 
 # paperCollection
@@ -14,6 +14,7 @@ generated: 2026-04-10T14:39
 - [[paperCollection/_AllPapers.md|All papers (grouped)]]
 - 按任务（Task）
   - [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+  - [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]
   - [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
   - [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
   - [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
@@ -30,7 +31,7 @@ generated: 2026-04-10T14:39
 
 ## Counts
 
-- papers: 20
-- tasks: 5
-- venues: 4
-- technique tags: 116
+- papers: 139
+- tasks: 6
+- venues: 15
+- technique tags: 494

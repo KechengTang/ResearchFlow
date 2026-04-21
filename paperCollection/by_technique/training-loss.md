@@ -1,0 +1,15 @@
+---
+type: paper-index
+dimension: technique
+technique: training-loss
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: training-loss
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/Gaussian_Splatting_Foundation/CVPR_2025/2025_VoxelSplat_Dynamic_Gaussian_Splatting_as_an_Effective_Loss_for_Occupancy_and_Flow_Prediction.md|VoxelSplat: Dynamic Gaussian Splatting as an Effective Loss for Occupancy and Flow Prediction (CVPR 2025)]] · [[paperPDFs/Gaussian_Splatting_Foundation/CVPR_2025/2025_VoxelSplat_Dynamic_Gaussian_Splatting_as_an_Effective_Loss_for_Occupancy_and_Flow_Prediction.pdf|PDF]] · task: [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]

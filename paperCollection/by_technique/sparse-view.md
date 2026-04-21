@@ -1,0 +1,16 @@
+---
+type: paper-index
+dimension: technique
+technique: sparse-view
+tags:
+  - paperCollection
+  - index/technique
+generated: 2026-04-21T15:31
+---
+
+# Technique: sparse-view
+
+- Back: [[paperCollection/by_technique/_Index.md|Technique index]]
+
+- [[paperAnalysis/3DGS_Reconstruction/ACMMM_2025/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.md|See Through the Occlusions: Few-Shot Gaussian Splatting with Layered Amodal Supervision (ACMMM 2025)]] · [[paperPDFs/3DGS_Reconstruction/ACMMM_2025/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]
+- [[paperAnalysis/3DGS_Reconstruction/CVPR_2025/2025_Generative_Sparse_View_Gaussian_Splatting.md|Generative Sparse-View Gaussian Splatting (CVPR 2025)]] · [[paperPDFs/3DGS_Reconstruction/CVPR_2025/2025_Generative_Sparse_View_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]

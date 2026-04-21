@@ -11,7 +11,7 @@ tags:
   - compact-3dgs
   - uncalibrated-reconstruction
   - multiscale-prediction
-  - VGGT
+  - vggt
   - status/analyzed
 core_operator: 把传统 3DGS 的 densification 改写成一个前向可预测的多尺度 allocation 问题，先预测 multi-scale Gaussian maps 与 densification score maps，再通过 threshold-controlled exclusive level selection 和 budget matching，在不重训的前提下根据目标 Gaussian budget 自适应分配 primitives。
 primary_logic: |

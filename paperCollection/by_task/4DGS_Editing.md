@@ -5,7 +5,7 @@ task: 4DGS_Editing
 tags:
   - paperCollection
   - index/task
-generated: 2026-04-21T15:31
+generated: 2026-04-21T18:57
 ---
 
 # Task: 4DGS_Editing

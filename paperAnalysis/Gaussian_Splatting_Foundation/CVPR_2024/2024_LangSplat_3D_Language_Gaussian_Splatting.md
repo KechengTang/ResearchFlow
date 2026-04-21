@@ -8,7 +8,7 @@ tags:
   - 3dgs
   - 3d-language-field
   - clip-features
-  - SAM-hierarchy
+  - sam-hierarchy
   - scene-wise-autoencoder
   - open-vocabulary-query
   - semantic-segmentation

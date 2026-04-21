@@ -1,7 +1,7 @@
 {
  "skills": {
   "code-context-paper-retrieval": {
-   "description": "Retrieves code-context-relevant papers from local knowledge base in two modes (brief/deep), with fixed order paperCollection -> paperAnalysis -> optional paperPDFs. Trigger timing: BEFORE code modification — when agent receives a coding task involving model/method changes, it should ask the user whether to retrieve relevant papers first. Environment detection prioritizes codebase environment files; asks user if none found.",
+   "description": "Alias for papers-query-knowledge-base in code-context mode. Retrieves code-context-relevant papers from local knowledge base in two modes (brief/deep), using paperAnalysis as the primary retrieval source. When paperCollection/index.jsonl is present, reads it first for fast filtering. Trigger timing: BEFORE code modification. Environment detection prioritizes codebase environment files; asks user if none found.",
    "path": ".claude/skills/code-context-paper-retrieval/SKILL.md"
   },
   "idea-focus-coach": {
@@ -21,7 +21,7 @@
    "path": ".claude/skills/papers-audit-metadata-consistency/SKILL.md"
   },
   "papers-build-collection-index": {
-   "description": "Builds/refreshes `paperCollection/` index notes from `paperAnalysis/` frontmatter. Use when the user asks to update/rebuild `paperCollection`, regenerate indexes (by task/technique/venue), or after adding/editing analysis notes and PDF refs.",
+   "description": "Builds/refreshes `paperCollection/index.jsonl` (agent index) and `paperCollection/` Obsidian navigation pages from `paperAnalysis/` frontmatter. Use when the user asks to update/rebuild indexes, regenerate navigation pages (by task/technique/venue), or after adding/editing analysis notes and PDF refs.",
    "path": ".claude/skills/papers-build-collection-index/SKILL.md"
   },
   "papers-collect-from-github-awesome": {
@@ -29,35 +29,27 @@
    "path": ".claude/skills/papers-collect-from-github-awesome/SKILL.md"
   },
   "papers-collect-from-web": {
-   "description": "Collects paper candidates from web URLs by fetching and storing pages locally, then generating a pipe-delimited triage list (status | title | venue&time | paper link | project/github link | category) under `paperAnalysis/`. Use when the user provides URLs + keyword constraints + venue/year and wants a processing list like ICLR_2026.txt.",
+   "description": "Collects paper candidates from web URLs by fetching and storing pages locally, then appending rows to `paperAnalysis/analysis_log.csv`. Use when the user provides URLs + keyword constraints + venue/year and wants candidates added to the unified log.",
    "path": ".claude/skills/papers-collect-from-web/SKILL.md"
-  },
-  "papers-compare-table": {
-   "description": "Generates structured comparison tables for N papers from paperAnalysis frontmatter (core_operator, primary_logic, dataset, metrics, venue). Use when the user asks to compare methods, generate a related-work table, or needs a side-by-side summary of multiple papers.",
-   "path": ".claude/skills/papers-compare-table/SKILL.md"
   },
   "papers-download-from-list": {
    "description": "Uses colocated paper download tools to download, verify, and repair local PDFs according to triage logs (e.g., ICLR_2026.txt) so that `paperPDFs/` stays complete and deduplicated. Use when you have a curated candidate list under `paperAnalysis/` and want all corresponding PDFs downloaded/checked before analysis or collection rebuild.",
    "path": ".claude/skills/papers-download-from-list/SKILL.md"
   },
   "papers-query-knowledge-base": {
-   "description": "Queries the local paper collection and analysis notes for research. Finds papers by task, technique, or venue; summarizes or compares methods; cites core_operator and primary_logic from analysis frontmatter. Use when the user asks to find papers, list papers by topic/technique/venue, compare motion or interaction methods, cite from their paper analyses, or when the workspace contains the local vault (paperCollection, paperAnalysis). Index layer paperCollection (254 papers, 7 tasks, 587 technique tags, 17 venues) links to paperAnalysis notes and PDFs.",
+   "description": "Queries the local paperAnalysis notes for research. Finds papers by title, task path, technique tags, venue, or year; summarizes methods and evidence across papers; cites core_operator and primary_logic from analysis frontmatter. Includes code-context mode (mode: code-context) for retrieving paper evidence before code modifications. Also handles comparison requests with honest text-based analysis. When paperCollection/index.jsonl is present, reads it first for fast filtering.",
    "path": ".claude/skills/papers-query-knowledge-base/SKILL.md"
   },
-  "pdfs-compress-large-files": {
-   "description": "Checks and compresses all PDFs larger than 20 MB under paperPDFs/ using Ghostscript, preserving high quality. Use when the user asks to compress PDFs, reduce PDF sizes, or prepare paperPDFs for analysis. Runs scripts/compress_large_pdfs.py which scans paperPDFs/, compresses in-place with /ebook settings (fallback to /screen), and prints a summary report.",
-   "path": ".claude/skills/pdfs-compress-large-files/SKILL.md"
+  "papers-sync-from-zotero": {
+   "description": "Syncs papers from a Zotero library into RF's structured layout via pyzotero / Zotero API (primary) or flat PDF folder import (fallback). Copies PDFs into `paperPDFs/<Category>/<Venue_Year>/`, writes rich metadata to `paperAnalysis/processing/zotero/manifest.jsonl`, and appends lightweight rows to `analysis_log.csv`. Supports incremental sync. Use when the user wants to import papers from Zotero into the ResearchFlow pipeline.",
+   "path": ".claude/skills/papers-sync-from-zotero/SKILL.md"
   },
   "research-brainstorm-from-kb": {
-   "description": "Structures and refines research ideas into `paperIDEAs/` notes using the paper knowledge base and frontier techniques. Use when the user provides research questions or ideas and wants decomposed, scenario-driven optimization, related-work analysis based on `paperCollection` + `paperAnalysis`, and cross-domain support from image/video generation, MLLM, Agent, or RL, automatically saved as dated idea notes under `paperIDEAs/`.",
+   "description": "Explores and structures research ideas into `paperIDEAs/` notes using the paper knowledge base and frontier techniques. Use when the user provides research questions or ideas and wants decomposed candidate directions, related-work analysis based primarily on paperAnalysis, with paperCollection used as the generated index/navigation support layer when helpful, plus cross-domain support from image/video generation, MLLM, Agent, or RL.",
    "path": ".claude/skills/research-brainstorm-from-kb/SKILL.md"
   },
-  "research-question-bank": {
-   "description": "Given a research direction and rough task description, generates a structured question/challenge list grounded in local KB and web search, covering domain open problems, top-venue reviewer concerns, and actionable research cuts. Saves output to QuestionBank/. Use when the user wants to map out the question landscape for a research area before committing to a specific idea.",
-   "path": ".claude/skills/research-question-bank/SKILL.md"
-  },
   "research-workflow": {
-   "description": "Unified entry for the research pipeline. Maps current work to one stage (collect/download/analyze/build/query/ideate/compare/audit/export), recommends the right existing skill/command, supports step-by-step and end-to-end guidance, and keeps stage boundaries clear without duplicating underlying capabilities.",
+   "description": "Unified entry for the research pipeline. Maps current work to one stage (sync/collect/download/analyze/build/query/ideate/focus/review/audit/export), recommends the right existing skill/command, supports step-by-step and end-to-end guidance, and keeps stage boundaries clear without duplicating underlying capabilities.",
    "path": ".claude/skills/research-workflow/SKILL.md"
   },
   "reviewer-stress-test": {
@@ -68,9 +60,17 @@
    "description": "Detects post-invocation skill mismatch patterns, summarizes why they may recur, and asks whether to revise the skill now. Use when a called .claude skill output is clearly unfit for the user intent and similar mismatch is likely to happen again.",
    "path": ".claude/skills/skill-fit-guard/SKILL.md"
   },
+  "write-daily-log": {
+   "description": "Generates or updates a structured daily research log by collecting evidence from git diffs, artifacts, and conversation context, then compressing into a decision-oriented summary. Use when the user says \"写日志\", \"write daily log\", \"日报\", \"update daily summary\", or asks to summarize today's research progress.",
+   "path": ".claude/skills/write-daily-log/SKILL.md"
+  },
   "domain-fork": {
    "description": "Migrates ResearchFlow's architecture to a new professional domain (e.g. frontend dev, accounting, journalism). Interactive session: confirms domain, generates concept mapping, adapts all skills and folder structure. Explicit trigger only — must be directly invoked by the user.",
    "path": ".claude/skills/domain-fork/SKILL.md"
+  },
+  "rf-obsidian-markdown": {
+   "description": "Obsidian Flavored Markdown conventions for ResearchFlow. Defines wikilink, embed, callout, frontmatter, and tag rules that all .md-generating skills must follow. Ensures output renders correctly in Obsidian reading view, graph view, and backlink panels. Adapted from kepano/obsidian-skills.",
+   "path": ".claude/skills/rf-obsidian-markdown/SKILL.md"
   }
  }
 }

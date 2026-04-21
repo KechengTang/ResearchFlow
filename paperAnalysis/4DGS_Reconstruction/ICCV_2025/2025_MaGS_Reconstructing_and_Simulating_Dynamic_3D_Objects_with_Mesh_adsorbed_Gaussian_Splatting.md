@@ -9,8 +9,8 @@ tags:
   - dynamic-scene
   - simulation
   - mesh-adsorbed-gaussians
-  - ARAP
-  - SMPL
+  - arap
+  - SMPL-X
   - soft-body-simulation
   - status/analyzed
 core_operator: 构造 mesh-adsorbed Gaussian 表示，让高斯在 mesh 附近“游走”而非刚性绑死；再用 MPE-Net、RMD-Net、RGD-Net 分别从 guide mesh 中提取姿态、细化 mesh 形变、预测高斯相对位移，从而统一重建与 simulation。

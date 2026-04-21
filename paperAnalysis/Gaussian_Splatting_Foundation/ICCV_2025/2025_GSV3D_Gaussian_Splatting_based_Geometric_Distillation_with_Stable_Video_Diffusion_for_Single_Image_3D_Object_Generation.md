@@ -6,7 +6,7 @@ tags:
   - Gaussian_Splatting_Foundation
   - gaussian-splatting
   - single-image-3d
-  - video-diffusion
+  - video-generation
   - geometric-distillation
   - multiview-consistency
   - object-generation

@@ -6,7 +6,7 @@ tags:
   - Gaussian_Splatting_Foundation
   - gaussian-splatting
   - 3d-scene-generation
-  - video-diffusion
+  - video-generation
   - feature-field
   - multiview-consistency
   - generative-model

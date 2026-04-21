@@ -1,45 +1,47 @@
 ## ResearchFlow Skills Overview
 
-This skills directory supports the local paper workflow covering **collect -> download -> analyze -> build -> query -> compare -> ideate -> focus -> review**.
+Single source of truth: keep the maintained skill library in `.claude/skills`.
+If you also want Codex-compatible paths, run `python3 scripts/setup_shared_skills.py` on macOS/Linux or `py -3 scripts\setup_shared_skills.py` on Windows to generate `.codex/skills` aliases without copying.
+
+This skills directory supports the local paper workflow covering **sync -> collect -> download -> analyze -> build -> query -> ideate -> focus -> review**.
 
 ### 1. Workflow entry
 
 - **research-workflow**
-  - Routes work to one stage among collect / download / analyze / build / query / compare / ideate / focus / review / audit / export.
+  - Routes work to one stage among sync / collect / download / analyze / build / query / ideate / focus / review / audit / export.
   - Returns the current stage, required inputs, suggested command or skill, expected outputs, and next step.
 
 ### 2. Paper pipeline skills
 
+- **papers-sync-from-zotero**
+  - Sync papers from a Zotero library (via pyzotero / Zotero API) or import from a flat PDF folder (fallback).
+  - Copies PDFs into `paperPDFs/`, writes rich metadata to `paperAnalysis/processing/zotero/manifest.jsonl`, appends lightweight rows to `analysis_log.csv`.
+  - Supports incremental sync.
 - **papers-collect-from-web**
-  - Collect candidate papers from web pages and generate a triage list under `paperAnalysis/`.
+  - Collect candidate papers from non-GitHub web pages (conference sites, lab homepages, proceedings) and generate a triage list under `paperAnalysis/`.
 - **papers-collect-from-github-awesome**
-  - Parse GitHub curated lists into an `analysis_log.csv`-aligned candidate list.
+  - Parse any GitHub repository (awesome lists, survey companion repos, lab paper lists, conference accepted-paper repos, etc.) into an `analysis_log.csv`-aligned candidate list.
 - **papers-download-from-list**
   - Download, verify, repair, and deduplicate PDFs into `paperPDFs/`.
-- **pdfs-compress-large-files**
-  - Compress oversized PDFs in `paperPDFs/`.
 - **papers-analyze-pdf**
   - Convert local PDFs into structured `paperAnalysis/*.md` notes.
+  - Default output language is Chinese. Change `analysis_language` in `AGENTS.md` to `en`, or explicitly request English output in the current prompt if needed.
 - **papers-audit-metadata-consistency**
   - Audit consistency between logs and analysis notes.
 - **papers-build-collection-index**
-  - Rebuild `paperCollection/` from `paperAnalysis/` frontmatter.
+  - Rebuild `paperCollection/index.jsonl` (agent index) and `paperCollection/` Obsidian navigation pages from `paperAnalysis/` frontmatter.
 
 ### 3. KB query and code context
 
 - **papers-query-knowledge-base**
-  - Query the knowledge base by task, technique, and venue.
-- **papers-compare-table**
-  - Generate structured comparison tables for multiple papers.
-- **code-context-paper-retrieval**
+  - Query the knowledge base primarily from `paperAnalysis/`; when present, reads `paperCollection/index.jsonl` first for fast filtering. Includes code-context mode for pre-coding paper retrieval. Also handles comparison requests with honest text-based analysis.
+- **code-context-paper-retrieval** *(alias — routes to papers-query-knowledge-base code-context mode)*
   - Retrieve paper evidence relevant to a coding task. Triggers before code modification.
 
 ### 4. Research ideation and review
 
 - **research-brainstorm-from-kb**
   - Turn a research question into structured idea notes using the local knowledge base.
-- **research-question-bank**
-  - Generate a structured question and challenge list for a research direction, grounded in the KB and web search. Saves to `QuestionBank/`.
 - **idea-focus-coach** (independent)
   - Co-create and narrow broad ideas into focused goals, scope cuts, and next experiments.
 - **reviewer-stress-test** (independent)
@@ -51,6 +53,12 @@ This skills directory supports the local paper workflow covering **collect -> do
   - Convert internal notes into external-share Markdown versions.
 - **skill-fit-guard**
   - Diagnose recurring skill mismatch after a skill call and ask whether that skill should be revised.
+- **write-daily-log**
+  - Generate or update a structured daily research log from git diffs, artifacts, and conversation context.
+  - Core logic: collect evidence that changes future judgment (not activity logs), then compress into a fixed template.
+  - Evidence channels: (A) current session context, (B) cross-session git diffs and filesystem artifact scan across all workspace repos.
+  - Output sections: 今日进展 / 核心结论 / 问题与思考 / 明日任务.
+  - Built-in consistency check: numbers must cite artifacts, old/new env results must not be mixed, 明日任务 must follow from conclusions.
 
 ### 6. Domain migration
 
@@ -60,18 +68,18 @@ This skills directory supports the local paper workflow covering **collect -> do
 
 ### 7. Choosing a skill
 
+- Need to import papers from Zotero or a local PDF folder -> `papers-sync-from-zotero`
 - Need candidate papers from sites or review pages -> `papers-collect-from-web`
-- Need candidate papers from a GitHub curated repository -> `papers-collect-from-github-awesome`
+- Need candidate papers from a GitHub repository (awesome lists, survey repos, etc.) -> `papers-collect-from-github-awesome`
 - Already have candidate rows and need PDFs -> `papers-download-from-list`
 - Already have PDFs and need analysis notes -> `papers-analyze-pdf`
-- Changed or added notes and need indexes -> `papers-build-collection-index`
+- Changed or added notes and want refreshed indexes → `papers-build-collection-index`
 - Need a metadata quality pass -> `papers-audit-metadata-consistency`
-- Need to search, compare, or cite papers -> `papers-query-knowledge-base`
-- Need a side-by-side comparison table -> `papers-compare-table`
-- Need paper suggestions before coding -> `code-context-paper-retrieval`
-- Need idea generation backed by the knowledge base -> `research-brainstorm-from-kb`
-- Need to map out questions and challenges for a research direction -> `research-question-bank`
-- Need collaborative narrowing from a broad idea to an executable plan -> `idea-focus-coach`
+- Need to search, summarize, compare, or cite papers in prose -> `papers-query-knowledge-base`
+- Need paper suggestions before coding -> `papers-query-knowledge-base` (code-context mode)
+- Need idea generation backed by the knowledge base while the direction is still open-ended -> `research-brainstorm-from-kb`
+- Need collaborative narrowing from a broad-but-real idea to an executable plan -> `idea-focus-coach`
 - Need strict reviewer-mode challenge with repair paths -> `reviewer-stress-test`
 - A recently used skill seems repeatedly unfit -> `skill-fit-guard`
+- Need to write or update a daily research log -> `write-daily-log`
 - Want to create a domain-adapted version of ResearchFlow -> `domain-fork`

@@ -5,7 +5,7 @@ year: 2025
 tags:
   - Gaussian_Splatting_Foundation
   - gaussian-splatting
-  - video-diffusion
+  - video-generation
   - camera-control
   - multi-view-identity
   - volumetric-capture

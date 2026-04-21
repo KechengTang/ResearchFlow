@@ -1,4 +1,34 @@
+# === IDE / OS ===
+__pycache__/
+.obsidian/
 obsidian setting.zip
 obsidian setting
+
+.codex/
+
+# === Private workspace (never publish) ===
+_private/
+DailySummary/
+
+# === Personal task / session files ===
+CLAUDE.md
+TODO.md
+MIG.sh
+showlab.sh
+showlab.yaml
+batch_analyze.log
+
+# === Paper data (large / personal) ===
 /paperPDFs
+paperAnalysis/processing/
 /tmp_*
+
+# === PaperBite (separate project, not for this repo) ===
+PaperBite/
+
+# === linkedCodebases (symlinks, keep README only) ===
+linkedCodebases/*
+!linkedCodebases/README.md
+
+# === Assets (originals too large) ===
+assets/LOGO.original.png

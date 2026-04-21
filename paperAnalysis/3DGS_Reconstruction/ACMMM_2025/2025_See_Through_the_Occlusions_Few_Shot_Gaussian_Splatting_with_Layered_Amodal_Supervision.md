@@ -9,7 +9,7 @@ tags:
   - sparse-view
   - occlusion-aware
   - amodal-supervision
-  - STO-GS
+  - sto-gs
   - diffusion-inpainting
   - layered-opacity
   - status/analyzed

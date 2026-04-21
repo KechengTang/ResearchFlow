@@ -9,7 +9,7 @@ tags:
   - dynamic-surface-reconstruction
   - planar-based-splatting
   - normal-regularization
-  - ARAP
+  - arap
   - hexplane-deformation
   - mesh-extraction
   - status/analyzed

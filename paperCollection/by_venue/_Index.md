@@ -4,7 +4,7 @@ dimension: venue
 tags:
   - paperCollection
   - index/venue
-generated: 2026-04-21T15:31
+generated: 2026-04-21T18:57
 ---
 
 # Venue index
@@ -25,4 +25,5 @@ generated: 2026-04-21T15:31
 - [[paperCollection/by_venue/SIGGRAPH.md|SIGGRAPH]]
 - [[paperCollection/by_venue/SIGGRAPH Asia.md|SIGGRAPH Asia]]
 - [[paperCollection/by_venue/SIGGRAPH_Asia.md|SIGGRAPH_Asia]]
+- [[paperCollection/by_venue/Technical Report.md|Technical Report]]
 - [[paperCollection/by_venue/WACV.md|WACV]]

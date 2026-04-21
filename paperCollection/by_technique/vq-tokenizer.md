@@ -5,11 +5,11 @@ technique: vq-tokenizer
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T15:31
+generated: 2026-04-21T18:57
 ---
 
 # Technique: vq-tokenizer
 
 - Back: [[paperCollection/by_technique/_Index.md|Technique index]]
 
-- [[paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.md|ReactDance: Hierarchical Representation for High-Fidelity and Coherent Long-Form Reactive Dance Generation (ICLR 2026)]] · [[paperPDFs/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.pdf|PDF]] · task: [[paperCollection/by_task/Motion_Generation_Text_Speech_Music_Driven.md|Motion_Generation_Text_Speech_Music_Driven]]
+- [[paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.md|ReactDance: Hierarchical Representation for High-Fidelity and Coherent Long-Form Reactive Dance Generation (ICLR 2026)]] · [[paperPDFs/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.pdf|PDF]] · task: [[paperCollection/by_task/Motion_Generation_Text_Speech_Music_Driven.md|Motion_Generation_Text_Speech_Music_Driven]] · techniques: #task/reactive-dance-generation #diffusion #vq-tokenizer #hierarchical-representation #dataset/dd100 #repr/smpl #opensource/full

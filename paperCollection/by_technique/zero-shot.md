@@ -5,11 +5,11 @@ technique: zero-shot
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T15:31
+generated: 2026-04-21T18:57
 ---
 
 # Technique: zero-shot
 
 - Back: [[paperCollection/by_technique/_Index.md|Technique index]]
 
-- [[paperAnalysis/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.md|A3GS: Arbitrary Artistic Style into Arbitrary 3D Gaussian Splatting (ICCV 2025)]] · [[paperPDFs/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
+- [[paperAnalysis/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.md|A3GS: Arbitrary Artistic Style into Arbitrary 3D Gaussian Splatting (ICCV 2025)]] · [[paperPDFs/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]] · techniques: #gaussian-splatting #3dgs #stylization #feed-forward #zero-shot #gcn-autoencoder #adain-style-injection #large-scale-scene

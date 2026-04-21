@@ -6,7 +6,7 @@ tags:
   - Gaussian_Splatting_Foundation
   - gaussian-splatting
   - 4d-generation
-  - video-diffusion
+  - video-generation
   - content-creation
   - text-guided-editing
   - spatial-temporal-consistency

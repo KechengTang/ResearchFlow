@@ -9,7 +9,7 @@ tags:
   - multi-object
   - occlusion-aware
   - joint-splatting
-  - object-centric-SDS
+  - object-centric-sds
   - point-tracking
   - monocular-video
   - status/analyzed

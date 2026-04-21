@@ -1,60 +1,71 @@
 ---
 name: papers-collect-from-web
-description: Collects paper candidates from web URLs by fetching and storing pages locally, then generating a pipe-delimited triage list (status | title | venue&time | paper link | project/github link | category) under `paperAnalysis/`. Use when the user provides URLs + keyword constraints + venue/year and wants a processing list like ICLR_2026.txt.
+description: "Collects paper candidates from non-GitHub web URLs — conference sites, lab homepages, proceedings pages, Google Scholar results, blog posts with paper lists, etc. Fetches and stores pages locally, then appends rows to `paperAnalysis/analysis_log.csv`. Use when the user provides web URLs (not GitHub repos) + keyword constraints + venue/year and wants candidates added to the unified log. For GitHub repos, use `papers-collect-from-github-repo` instead."
 ---
 
-# Paper Collector (Online)
+# Paper Collector (Online / Web)
 
-Fetch web pages to local storage, extract paper candidates, and generate a triage list similar to `paperAnalysis/ICLR_2026.txt`.
+Fetch web pages to local storage, extract paper candidates, and append them to `paperAnalysis/analysis_log.csv`.
+
+Use this skill for **non-GitHub web sources**: conference sites, lab homepages, proceedings pages (ACL Anthology, IEEE Xplore, etc.), Google Scholar results, blog posts with paper lists, etc.
+
+For **GitHub repositories** (awesome lists, survey repos, lab paper repos, conference paper repos), use `papers-collect-from-github-repo` instead — it handles raw Markdown and multi-file repo structures better.
 
 ## Scope
 
-- **Input**: one or more URLs + include/exclude keyword constraints + target venue/year label.
+- **Input**: one or more web URLs + include/exclude keyword constraints + target venue/year label.
 - **Output**:
-  - Saved source pages under `paperSources/<run_id>/...`
-- A pipe-delimited list at `paperAnalysis/<VENUE>_<YEAR>.txt`
+  - saved source pages under `paperSources/<run_id>/...`
+  - new rows appended to `paperAnalysis/analysis_log.csv`
 
-## Output format (exact columns)
+## Output format (CSV columns, same as analysis_log.csv)
 
-Each line must be:
-
-`状态 | title | 会议&时间 | paper link | project link/github link | 文章分类`
+```
+state,importance,paper_title,venue,project_link_or_github_link,paper_link,sort,pdf_path
+```
 
 Defaults:
-- **状态**: `Wait`（新收集）或 `Skip`（人工标记跳过）
-- **会议&时间**: user-provided label like `ICLR 2026`
-- **文章分类**: leave blank if not known; user can fill per item later
+- **state**: `Wait` (newly collected) or `Skip` (manually marked skip)
+- **importance**: empty (user fills later)
+- **venue**: user-provided label such as `ICLR 2026`
+- **sort**: leave blank if unknown; user can fill per item later
+- **pdf_path**: empty (filled later by `papers-download-from-list`)
 
-> 状态约定见 `STATE_CONVENTION.md`：主流程 `Wait → Downloaded → checked`，非主流程 `Skip` / `Missing`。
+> State convention is defined in `STATE_CONVENTION.md`: main pipeline `Wait → Downloaded → checked`; out-of-band states `Skip` / `Missing`.
 
 ## Workflow
 
-1. Ask the user for:
+1. Ask user for:
    - URLs (one or many)
-   - Include keywords (optional) and exclude keywords (optional)
-   - Venue/time label, and target output filename (e.g. `ICLR_2026.txt`)
-   - Whether to overwrite or append if the output file exists
-2. Run the collector script (preferred default):
-   - `python3 ".claude/skills/papers-collect-from-web/scripts/paper_collector_online/collect_from_urls.py" --venue-time "ICLR 2026" --out "paperAnalysis/ICLR_2026.txt" --urls "<URL1>" "<URL2>" --include "motion;diffusion" --exclude "workshop;dataset" --append`
-3. Verify the generated list:
-   - Columns present and in order
-   - Dedup applied by normalized paper link
-   - Links are well-formed (no surrounding punctuation)
-4. If extraction quality is poor for a particular URL:
-   - Re-run with tighter keywords; or
-   - Run per-source URLs separately; or
-   - Manually paste a short snippet list into a text file and extend the script patterns (only if needed).
+   - include keywords (optional) and exclude keywords (optional)
+   - venue/time label (for example `ICLR 2026`)
+   - whether to overwrite or append if rows already exist for this venue
+2. Run collector script (preferred default):
+   - `python3 ".claude/skills/papers-collect-from-web/scripts/paper_collector_online/collect_from_urls.py" --venue-time "ICLR 2026" --urls "<URL1>" "<URL2>" --include "motion;diffusion" --exclude "workshop;dataset" --append`
+3. Verify generated rows:
+   - columns present and in correct order
+   - dedup applied by normalized paper link against existing `analysis_log.csv`
+   - links are well-formed (no surrounding punctuation)
+4. If extraction quality is poor for a URL:
+   - rerun with tighter keywords, or
+   - run per-source URLs separately, or
+   - manually provide a short snippet list and extend script patterns only if needed.
 
 ## Rules and heuristics (defaults)
 
 - **Fetch**: store HTML as-is (no JS rendering).
-- **Dedup**: by normalized `paper link` (e.g. arXiv pdf/abs normalized).
+- **Dedup**: by normalized `paper link` (for example normalize arXiv pdf/abs).
 - **Project link**: best-effort heuristic; may be empty.
-- **Keywords**: matched against title + nearby anchor text (case-insensitive).
+- **Keywords**: match against title + nearby anchor text (case-insensitive).
 - **Safety**: respect reasonable timeouts; do not brute-force crawl.
 
 ## Notes
 
-- This skill intentionally does **not** download PDFs. It only produces a triage list for later analysis/ingest.
-- The repository root is the folder that contains `paperAnalysis/` and `paperPDFs/`.
+- This skill intentionally does **not** download PDFs. It only appends candidate rows to `analysis_log.csv` for later processing.
+- Output format is unified with `papers-collect-from-github-repo` — both write to `analysis_log.csv`.
+- Repository root is the folder containing `paperAnalysis/` and `paperPDFs/`.
 
+## Relationship to papers-collect-from-github-repo
+
+- **This skill** (`papers-collect-from-web`): optimized for arbitrary web pages — fetches rendered HTML, uses link-based extraction, stores source HTML locally
+- **`papers-collect-from-github-repo`**: optimized for GitHub repos — fetches raw Markdown, understands repo structure, handles multi-file layouts, writes one-off parsers

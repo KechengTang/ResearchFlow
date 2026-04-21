@@ -1,0 +1,17 @@
+{
+  "generated": "2026-04-21T18:57",
+  "files_scanned": 160,
+  "files_rewritten": 0,
+  "task_dirs": [
+    "3DGS_Editing",
+    "3DGS_Reconstruction",
+    "4DGS_Editing",
+    "4DGS_Reconstruction",
+    "Gaussian_Splatting_Foundation",
+    "Human_Human_Interaction",
+    "Human_Object_Interaction",
+    "Human_Scene_Interaction",
+    "Motion_Generation_Text_Speech_Music_Driven"
+  ],
+  "top_changes": []
+}

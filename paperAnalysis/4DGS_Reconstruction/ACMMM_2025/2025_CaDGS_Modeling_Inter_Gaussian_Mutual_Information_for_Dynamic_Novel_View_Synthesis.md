@@ -8,8 +8,8 @@ tags:
   - 4dgs
   - mutual-information
   - correlation-aware
-  - GCTP
-  - STDC
+  - gctp
+  - stdc
   - dynamic-novel-view-synthesis
   - specular-scene
   - status/analyzed

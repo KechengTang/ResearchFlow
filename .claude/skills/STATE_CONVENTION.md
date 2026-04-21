@@ -1,39 +1,55 @@
 # Paper State Convention
 
-`analysis_log.csv` 中 `state` 列的统一定义。所有 skill 必须遵循此约定。
+Unified definitions for the `state` column in `analysis_log.csv`. All skills must follow this convention.
 
-## 主流程状态
+## State flow
 
 ```
 Wait → Downloaded → checked
+  │        │
+  │        ├→ too_large          (PDF exceeds size limit after compression)
+  │        └→ analysis_mismatch  (analysis template incomplete after retry)
+  │
+  ├→ Skip     (user manually excluded)
+  └→ Missing  (download failed, PDF unavailable)
 ```
 
-| state | 含义 | 由哪个阶段写入 |
-|-------|------|--------------|
-| `Wait` | 新收集的候选，等待下载 | collect（from-web / from-github-awesome） |
-| `Downloaded` | PDF 已下载到 `paperPDFs/`，等待分析 | download（papers-download-from-list） |
-| `checked` | 已完成结构化分析，`paperAnalysis/` 中有对应 `.md` | analyze（papers-analyze-pdf） |
+## Main pipeline states
 
-## 非主流程状态
+| state | Meaning | Written by | Next action |
+|-------|---------|------------|-------------|
+| `Wait` | Newly collected candidate, waiting for download | collect (from-web / from-github-awesome) | Run download |
+| `Downloaded` | PDF downloaded to `paperPDFs/`, waiting for analysis | download (`papers-download-from-list`) | Run analyze |
+| `checked` | Structured analysis completed; `.md` exists in `paperAnalysis/` | analyze (`papers-analyze-pdf`) | Ready for query / build index |
 
-| state | 含义 | 说明 |
-|-------|------|------|
-| `Skip` | 人工筛选后决定不处理 | 不进入主流程，保留在 log 中方便后续回顾 |
-| `Missing` | 多次下载尝试后仍无法获取 PDF | 保留在 log 中，后续可手动补充或重试 |
+## Abnormal states (from analyze stage)
 
-## 规则
+| state | Meaning | Written by | Recovery |
+|-------|---------|------------|----------|
+| `analysis_mismatch` | Analysis generated but required sections (Part I/II/III or Aha! Moment) are missing or too thin after one retry | analyze (`papers-analyze-pdf`) | Re-run analyze on this entry, or manually edit the `.md` then set state to `checked` |
+| `too_large` | PDF exceeds 20 MB after compression (`/ebook` then `/screen`); skipped | analyze (`papers-analyze-pdf`) | Manually compress or split the PDF, then set state back to `Downloaded` |
 
-1. 每条记录的 state 只能沿主流程单向推进：`Wait → Downloaded → checked`
-2. `Skip` 和 `Missing` 可从 `Wait` 转入，不可逆转回 `Wait`（除非用户手动修改）
-3. 下载时自动压缩超大 PDF（>20MB）
-4. 所有 skill 读取 log 时，只处理对应阶段的 state：
-   - download 只处理 `Wait`
-   - analyze 只处理 `Downloaded`
-   - build-collection-index 只处理 `checked`
+## Out-of-band states
+![1775910552974](image/STATE_CONVENTION/1775910552974.png)![1775910556384](image/STATE_CONVENTION/1775910556384.png)
+| state | Meaning | Written by | Recovery |
+|-------|---------|------------|----------|
+| `Skip` | Manually filtered out, not processed | User (manual edit) | Set back to `Wait` if reconsidered |
+| `Missing` | PDF unavailable after repeated download attempts | download (`papers-download-from-list`) | Retry later, or manually place PDF then set to `Downloaded` |
 
-## 字段 Fallback 值
+## Rules
 
-| 字段 | Fallback | 说明 |
-|------|---------|------|
-| venue | `arXiv YYYY` | 未被会议收录但在 arXiv 等公开平台发表，如 `arXiv 2025` |
-| project_link_or_github_link | `N/A` | 确认无开源代码或项目页 |
+1. Main pipeline moves forward only: `Wait → Downloaded → checked`.
+2. `Skip` and `Missing` are set from `Wait`; `too_large` and `analysis_mismatch` are set from `Downloaded`.
+3. Only the user may revert a state (e.g. `Missing → Wait`, `too_large → Downloaded`).
+4. Downloads automatically compress PDFs > 20 MB before analysis.
+5. Each skill only processes entries at its own input state:
+   - download processes `Wait`
+   - analyze processes `Downloaded`
+   - build-collection-index processes `checked`
+
+## Field fallback values
+
+| Field | Fallback | Notes |
+|-------|----------|-------|
+| venue | `arXiv YYYY` | For works not accepted by a venue but published on open platforms such as arXiv, e.g., `arXiv 2025` |
+| project_link_or_github_link | `N/A` | Confirmed no open-source code or project page |

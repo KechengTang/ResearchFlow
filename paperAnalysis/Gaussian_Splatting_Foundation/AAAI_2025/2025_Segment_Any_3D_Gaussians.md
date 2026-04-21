@@ -9,7 +9,7 @@ tags:
   - promptable-segmentation
   - gaussian-affinity-feature
   - scale-gate
-  - SAM-distillation
+  - sam-distillation
   - multi-granularity-segmentation
   - open-vocabulary-segmentation
   - status/analyzed

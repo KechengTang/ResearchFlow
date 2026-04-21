@@ -8,7 +8,7 @@ tags:
   - 4dgs
   - future-prediction
   - future-view-synthesis
-  - Bi-LSTM
+  - bi-lstm
   - sliding-window
   - local-rigidity
   - world-model

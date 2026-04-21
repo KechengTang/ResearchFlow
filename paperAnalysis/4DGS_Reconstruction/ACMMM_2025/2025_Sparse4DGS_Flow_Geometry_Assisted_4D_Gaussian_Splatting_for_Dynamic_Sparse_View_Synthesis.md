@@ -9,8 +9,8 @@ tags:
   - sparse-frame
   - low-fps
   - texture-aware-optimization
-  - TADR
-  - TACO
+  - tadr
+  - taco
   - monocular-depth-prior
   - status/analyzed
 core_operator: 用 Texture Intensity Gaussian Field 显式标记纹理丰富区域，在 deformation 侧用 TADR 做纹理感知深度对齐，在 canonical 侧用 TACO 以 SGLD 式噪声把高斯推向纹理富集区域，从而提升 sparse-frame 动态 4DGS 的几何与外观稳定性。

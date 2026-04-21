@@ -7,7 +7,7 @@ tags:
   - gaussian-splatting
   - panoramic-video
   - 4d-generation
-  - video-diffusion
+  - video-generation
   - immersive-vr-ar
   - panoramic-reconstruction
   - status/analyzed

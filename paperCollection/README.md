@@ -2,36 +2,40 @@
 type: paper-collection-home
 tags:
   - paperCollection
-generated: 2026-04-21T15:31
+generated: 2026-04-21T18:57
 ---
 
 # paperCollection
 
-这个目录由脚本自动从 `paperAnalysis/` 生成索引页，用于 **分类阅读** 与 **知识库入口层**。
+This directory is auto-generated from `paperAnalysis/` and is used for **agent-side fast filtering**, **statistical overview**, **Obsidian jumps**, and **backlink-friendly browsing**.
 
 ## Start here
 
 - [[paperCollection/_AllPapers.md|All papers (grouped)]]
-- 按任务（Task）
+- By task
   - [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
   - [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]
   - [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
   - [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
   - [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
+  - [[paperCollection/by_task/Human_Human_Interaction.md|Human_Human_Interaction]]
+  - [[paperCollection/by_task/Human_Object_Interaction.md|Human_Object_Interaction]]
+  - [[paperCollection/by_task/Human_Scene_Interaction.md|Human_Scene_Interaction]]
   - [[paperCollection/by_task/Motion_Generation_Text_Speech_Music_Driven.md|Motion_Generation_Text_Speech_Music_Driven]]
-- 按技术（Technique tags）
+- By technique (Technique tags)
   - [[paperCollection/by_technique/_Index.md|Technique index]]
-- 按会议/期刊（Venue）
+- By venue/journal
   - [[paperCollection/by_venue/_Index.md|Venue index]]
 
 ## Notes
 
-- 本索引默认只链接，不嵌入 PDF（避免页面过重）。
-- `paperAnalysis` 才是主内容；`paperCollection` 是便于检索与聚合的入口层。
+- `index.jsonl` is the fast filter layer for agents; the Markdown pages are for human navigation.
+- This index links out by default and does not embed PDFs (to avoid heavy pages).
+- `paperAnalysis` remains the primary evidence layer; `paperCollection` adds generated index and navigation outputs.
 
 ## Counts
 
-- papers: 139
-- tasks: 6
-- venues: 15
-- technique tags: 494
+- papers: 155
+- tasks: 9
+- venues: 16
+- technique tags: 530

@@ -5,7 +5,7 @@ venue: ICLR
 tags:
   - paperCollection
   - index/venue
-generated: 2026-04-21T18:57
+generated: 2026-04-21T19:25
 ---
 
 # Venue: ICLR
@@ -13,8 +13,8 @@ generated: 2026-04-21T18:57
 - Back: [[paperCollection/by_venue/_Index.md|Venue index]]
 
 ## 2026
-- [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md|Stylos: Multi-View 3D Stylization with Single-Forward Gaussian Splatting (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]] · techniques: #gaussian-splatting #3dgs #feed-forward #stylization #image-guided-editing #cross-view-consistency #cross-scene-generalization
 - [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.md|Variation-aware Flexible 3D Gaussian Editing (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]] · techniques: #gaussian-splatting #3dgs #scene-editing #native-3d-editing #knowledge-distillation #variation-prediction #cross-view-consistency #feed-forward #parallel-decoding #real-time
+- [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md|Stylos: Multi-View 3D Stylization with Single-Forward Gaussian Splatting (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.pdf|PDF]] · task: [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]] · techniques: #gaussian-splatting #3dgs #feed-forward #stylization #image-guided-editing #cross-view-consistency #cross-scene-generalization
 - [[paperAnalysis/4DGS_Reconstruction/ICLR_2026/2026_UFO_4D_Unposed_Feedforward_4D_Reconstruction_from_Two_Images.md|UFO-4D: Unposed Feedforward 4D Reconstruction from Two Images (ICLR 2026)]] · [[paperPDFs/4DGS_Reconstruction/ICLR_2026/2026_UFO_4D_Unposed_Feedforward_4D_Reconstruction_from_Two_Images.pdf|PDF]] · task: [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]] · techniques: #gaussian-splatting #4dgs #feed-forward #unposed-images #two-view #self-supervision #scene-flow #pose-estimation #4d-interpolation
 - [[paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.md|ReactDance: Hierarchical Representation for High-Fidelity and Coherent Long-Form Reactive Dance Generation (ICLR 2026)]] · [[paperPDFs/Motion_Generation_Text_Speech_Music_Driven/ICLR_2026/2026_ReactDance_Hierarchical_Representation_for_High_Fidelity_and_Coherent_Long_Form_Reactive_Dance_Generation.pdf|PDF]] · task: [[paperCollection/by_task/Motion_Generation_Text_Speech_Music_Driven.md|Motion_Generation_Text_Speech_Music_Driven]] · techniques: #task/reactive-dance-generation #diffusion #vq-tokenizer #hierarchical-representation #dataset/dd100 #repr/smpl #opensource/full
 

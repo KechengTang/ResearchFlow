@@ -5,12 +5,13 @@ task: 3DGS_Reconstruction
 tags:
   - paperCollection
   - index/task
-generated: 2026-04-21T18:57
+generated: 2026-04-21T19:25
 ---
 
 # Task: 3DGS_Reconstruction
 
 - Back: [[paperCollection/README.md|Home]]
+- Track status: primary Gaussian research track
 
 - [[paperAnalysis/3DGS_Reconstruction/ACMMM_2025/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.md|See Through the Occlusions: Few-Shot Gaussian Splatting with Layered Amodal Supervision (ACMMM 2025)]] · [[paperPDFs/3DGS_Reconstruction/ACMMM_2025/2025_See_Through_the_Occlusions_Few_Shot_Gaussian_Splatting_with_Layered_Amodal_Supervision.pdf|PDF]] · techniques: #gaussian-splatting #few-shot #sparse-view #occlusion-aware #amodal-supervision #sto-gs #diffusion-inpainting #layered-opacity
 - [[paperAnalysis/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.md|DenoiseSplat: Feed-Forward Gaussian Splatting for Noisy 3D Scene Reconstruction (arXiv 2026)]] · [[paperPDFs/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.pdf|PDF]] · techniques: #gaussian-splatting #3dgs #feed-forward #noise-robust-reconstruction #geometry-appearance-decoupling #multi-view-consistency #boundary-guided-refinement

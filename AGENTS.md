@@ -95,4 +95,5 @@ When adding new papers for the current user:
 - Keep using the shared `paperAnalysis/analysis_log.csv` as the intake log
 - Assign `analysis_log.csv.importance` automatically for new Gaussian-track papers instead of leaving it blank; use the rubric in `GAUSSIAN_SPLATTING_KB_GUIDE.md` and bias slightly high because the user usually curates strong papers
 - Treat the motion-related entries as reference examples unless the user explicitly asks about that domain
+- Keep motion / interaction side tracks visibly below the Gaussian tracks in generated indexes; default their `analysis_log.csv.importance` to low-priority reference levels unless the user explicitly promotes them
 - For KB-wide answers, ground Gaussian Splatting discussions in the user's own categories first, then reuse the existing framework for compare / question-bank / idea generation

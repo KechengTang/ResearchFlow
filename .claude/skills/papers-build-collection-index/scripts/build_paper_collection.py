@@ -15,7 +15,21 @@ from typing import Dict, Iterable, List, Optional, Tuple
 VAULT_ROOT = Path(__file__).resolve().parents[4]
 PAPER_ANALYSIS_DIR = VAULT_ROOT / "paperAnalysis"
 PAPER_COLLECTION_DIR = VAULT_ROOT / "paperCollection"
+ANALYSIS_LOG_CSV = PAPER_ANALYSIS_DIR / "analysis_log.csv"
 TAG_EXPLOSION_THRESHOLD = 500
+PRIMARY_TRACK_ORDER = {
+    "3DGS_Editing": 0,
+    "3DGS_Reconstruction": 1,
+    "4DGS_Editing": 2,
+    "4DGS_Reconstruction": 3,
+    "Gaussian_Splatting_Foundation": 4,
+}
+IMPORTANCE_ORDER = {
+    "S": 0,
+    "A": 1,
+    "B": 2,
+    "C": 3,
+}
 
 
 @dataclass(frozen=True)
@@ -30,6 +44,8 @@ class Paper:
     primary_logic: str
     claims_count: int
     pdf_ref: str  # e.g. paperPDFs/.../xxx.pdf (posix) or ""
+    importance: str
+    state: str
 
 
 FRONTMATTER_BOUNDARY = re.compile(r"^---\s*$")
@@ -51,6 +67,82 @@ def sanitize_filename(name: str, max_len: int = 120) -> str:
     if len(s) > max_len:
         s = s[:max_len].rstrip()
     return s
+
+
+def normalize_title_key(title: str) -> str:
+    s = str(title).strip().lower()
+    s = re.sub(r"[^a-z0-9]+", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def normalize_importance(raw: object) -> str:
+    s = str(raw or "").strip().upper()
+    return s if s in IMPORTANCE_ORDER else ""
+
+
+def category_priority(category: str) -> Tuple[int, str]:
+    return (PRIMARY_TRACK_ORDER.get(category, len(PRIMARY_TRACK_ORDER)), category.lower())
+
+
+def importance_rank(importance: str) -> int:
+    return IMPORTANCE_ORDER.get(normalize_importance(importance), len(IMPORTANCE_ORDER))
+
+
+def is_primary_track(category: str) -> bool:
+    return category in PRIMARY_TRACK_ORDER
+
+
+def year_sort_value(year: str) -> int:
+    digits = re.sub(r"\D+", "", str(year))
+    try:
+        return int(digits or "0")
+    except ValueError:
+        return 0
+
+
+def paper_order_key(p: "Paper") -> Tuple[int, str, int, int, str, str]:
+    cat_rank, cat_name = category_priority(p.category)
+    return (
+        cat_rank,
+        cat_name,
+        importance_rank(p.importance),
+        -year_sort_value(p.year),
+        p.venue.lower(),
+        p.title.lower(),
+    )
+
+
+def page_order_key(p: "Paper") -> Tuple[int, int, str, str]:
+    return (
+        importance_rank(p.importance),
+        -year_sort_value(p.year),
+        p.venue.lower(),
+        p.title.lower(),
+    )
+
+
+def load_analysis_log_metadata() -> Tuple[Dict[str, Dict[str, str]], Dict[str, Dict[str, str]]]:
+    by_pdf: Dict[str, Dict[str, str]] = {}
+    by_title: Dict[str, Dict[str, str]] = {}
+
+    if not ANALYSIS_LOG_CSV.exists():
+        return by_pdf, by_title
+
+    with ANALYSIS_LOG_CSV.open("r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            pdf_path = str(row.get("pdf_path") or "").strip().replace("\\", "/")
+            title_key = normalize_title_key(row.get("paper_title") or "")
+            meta = {
+                "importance": normalize_importance(row.get("importance")),
+                "state": str(row.get("state") or "").strip(),
+            }
+            if pdf_path and pdf_path not in by_pdf:
+                by_pdf[pdf_path] = meta
+            if title_key and title_key not in by_title:
+                by_title[title_key] = meta
+
+    return by_pdf, by_title
 
 
 def parse_frontmatter_bounds(lines: List[str]) -> Optional[Tuple[int, int]]:
@@ -274,6 +366,7 @@ def iter_analysis_mds() -> Iterable[Path]:
 
 def load_papers() -> List[Paper]:
     papers: List[Paper] = []
+    log_by_pdf, log_by_title = load_analysis_log_metadata()
     for md_path in iter_analysis_mds():
         rel = md_path.relative_to(VAULT_ROOT).as_posix()
         text = read_text(md_path)
@@ -299,6 +392,9 @@ def load_papers() -> List[Paper]:
 
         task = infer_task(fm, rel)
         tech = infer_technique_tags(fm, task, body)
+        csv_meta = log_by_pdf.get(pdf_ref) or log_by_title.get(normalize_title_key(title)) or {}
+        importance = normalize_importance(csv_meta.get("importance"))
+        state = str(csv_meta.get("state") or "").strip()
 
         papers.append(
             Paper(
@@ -312,18 +408,12 @@ def load_papers() -> List[Paper]:
                 primary_logic=primary_logic,
                 claims_count=claims_count,
                 pdf_ref=pdf_ref,
+                importance=importance,
+                state=state,
             )
         )
 
-    # stable sort: category -> venue -> year desc -> title
-    def sort_key(p: Paper) -> Tuple[str, str, int, str]:
-        try:
-            y = int(re.sub(r"\D+", "", p.year) or "0")
-        except ValueError:
-            y = 0
-        return (p.category.lower(), p.venue.lower(), -y, p.title.lower())
-
-    papers.sort(key=sort_key)
+    papers.sort(key=paper_order_key)
     return papers
 
 
@@ -386,6 +476,9 @@ def build_agent_index_jsonl(papers: List[Paper]) -> str:
             "primary_logic": p.primary_logic,
             "claims_count": p.claims_count,
             "pdf_ref": p.pdf_ref,
+            "importance": p.importance,
+            "state": p.state,
+            "primary_track": is_primary_track(p.category),
         }
         lines.append(json.dumps(row, ensure_ascii=False))
     return ("\n".join(lines) + "\n") if lines else ""
@@ -400,7 +493,9 @@ def group_by(items: Iterable[Paper], key_fn) -> Dict[str, List[Paper]]:
 
 
 def build_readme(papers: List[Paper], now: str) -> str:
-    tasks = sorted({p.category for p in papers}, key=lambda x: x.lower())
+    tasks = sorted({p.category for p in papers}, key=category_priority)
+    primary_tasks = [t for t in tasks if is_primary_track(t)]
+    side_tasks = [t for t in tasks if not is_primary_track(t)]
     venues = sorted({p.venue for p in papers}, key=lambda x: x.lower())
     techniques = sorted({t for p in papers for t in p.tags}, key=lambda x: x.lower())
 
@@ -419,9 +514,13 @@ def build_readme(papers: List[Paper], now: str) -> str:
     lines.append("## Start here")
     lines.append("")
     lines.append(f"- {md_link('paperCollection/_AllPapers.md', 'All papers (grouped)')}")
-    lines.append("- By task")
-    for t in tasks:
+    lines.append("- Primary research tracks")
+    for t in primary_tasks:
         lines.append(f"  - {md_link(f'paperCollection/by_task/{sanitize_filename(t)}.md', t)}")
+    if side_tasks:
+        lines.append("- Side-track references")
+        for t in side_tasks:
+            lines.append(f"  - {md_link(f'paperCollection/by_task/{sanitize_filename(t)}.md', t)}")
     lines.append("- By technique (Technique tags)")
     lines.append(f"  - {md_link('paperCollection/by_technique/_Index.md', 'Technique index')}")
     lines.append("- By venue/journal")
@@ -456,9 +555,11 @@ def build_all_papers(papers: List[Paper], now: str) -> str:
     lines.append("")
     lines.append("# All papers (grouped)")
     lines.append("")
+    lines.append("> Primary Gaussian tracks are listed first. Motion / interaction imports are kept as side-track references.")
+    lines.append("")
 
     by_task = group_by(papers, lambda p: p.category)
-    for task in sorted(by_task.keys(), key=lambda x: x.lower()):
+    for task in sorted(by_task.keys(), key=category_priority):
         lines.append(f"## {task}")
         task_papers = by_task[task]
         # subgroup by venue_year
@@ -468,9 +569,10 @@ def build_all_papers(papers: List[Paper], now: str) -> str:
 
         for vy in sorted(by_venue_year.keys(), key=lambda x: x.lower()):
             lines.append(f"### {vy}")
-            for p in by_venue_year[vy]:
+            for p in sorted(by_venue_year[vy], key=page_order_key):
                 alias = f"{p.title} ({p.venue} {p.year})"
                 ana = md_link(p.analysis_rel, alias)
+                prefix = f"[{p.importance}] " if p.importance else ""
                 if p.pdf_ref:
                     pdf = md_link(p.pdf_ref, "PDF")
                     lines.append(f"- {ana} · {pdf} · techniques: {format_tech_tags(p.tags)}")
@@ -496,9 +598,13 @@ def build_task_page(task: str, papers: List[Paper], now: str) -> str:
     lines.append(f"# Task: {task}")
     lines.append("")
     lines.append(f"- Back: {md_link('paperCollection/README.md', 'Home')}")
+    if is_primary_track(task):
+        lines.append("- Track status: primary Gaussian research track")
+    else:
+        lines.append("- Track status: side track / reference only for the current Gaussian-focused workflow")
     lines.append("")
 
-    for p in papers:
+    for p in sorted(papers, key=page_order_key):
         alias = f"{p.title} ({p.venue} {p.year})"
         ana = md_link(p.analysis_rel, alias)
         if p.pdf_ref:
@@ -548,7 +654,7 @@ def build_technique_page(technique: str, papers: List[Paper], now: str) -> str:
     lines.append(f"- Back: {md_link('paperCollection/by_technique/_Index.md', 'Technique index')}")
     lines.append("")
 
-    for p in papers:
+    for p in sorted(papers, key=paper_order_key):
         alias = f"{p.title} ({p.venue} {p.year})"
         ana = md_link(p.analysis_rel, alias)
         task_link = md_link(f'paperCollection/by_task/{sanitize_filename(p.category)}.md', p.category)
@@ -612,7 +718,7 @@ def build_venue_page(venue: str, papers: List[Paper], now: str) -> str:
     years_sorted = sorted(by_year.keys(), key=year_sort_key)
     for y in years_sorted:
         lines.append(f"## {y}")
-        for p in by_year[y]:
+        for p in sorted(by_year[y], key=paper_order_key):
             alias = f"{p.title} ({p.venue} {p.year})"
             ana = md_link(p.analysis_rel, alias)
             if p.pdf_ref:
@@ -676,7 +782,8 @@ def main() -> int:
 
     # By task
     by_task = group_by(papers, lambda p: p.category)
-    for task, task_papers in by_task.items():
+    for task in sorted(by_task.keys(), key=category_priority):
+        task_papers = by_task[task]
         out = PAPER_COLLECTION_DIR / "by_task" / f"{sanitize_filename(task)}.md"
         write_text(out, build_task_page(task, task_papers, now))
 

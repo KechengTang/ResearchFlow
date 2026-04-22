@@ -5,7 +5,7 @@ technique: temporal-extrapolation
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T18:57
+generated: 2026-04-21T19:25
 ---
 
 # Technique: temporal-extrapolation

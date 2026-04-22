@@ -2,7 +2,7 @@
 type: paper-collection-home
 tags:
   - paperCollection
-generated: 2026-04-21T18:57
+generated: 2026-04-21T19:25
 ---
 
 # paperCollection
@@ -12,12 +12,13 @@ This directory is auto-generated from `paperAnalysis/` and is used for **agent-s
 ## Start here
 
 - [[paperCollection/_AllPapers.md|All papers (grouped)]]
-- By task
+- Primary research tracks
   - [[paperCollection/by_task/3DGS_Editing.md|3DGS_Editing]]
   - [[paperCollection/by_task/3DGS_Reconstruction.md|3DGS_Reconstruction]]
   - [[paperCollection/by_task/4DGS_Editing.md|4DGS_Editing]]
   - [[paperCollection/by_task/4DGS_Reconstruction.md|4DGS_Reconstruction]]
   - [[paperCollection/by_task/Gaussian_Splatting_Foundation.md|Gaussian_Splatting_Foundation]]
+- Side-track references
   - [[paperCollection/by_task/Human_Human_Interaction.md|Human_Human_Interaction]]
   - [[paperCollection/by_task/Human_Object_Interaction.md|Human_Object_Interaction]]
   - [[paperCollection/by_task/Human_Scene_Interaction.md|Human_Scene_Interaction]]

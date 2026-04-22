@@ -5,7 +5,7 @@ technique: 3d-only-editing
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T18:57
+generated: 2026-04-21T19:25
 ---
 
 # Technique: 3d-only-editing

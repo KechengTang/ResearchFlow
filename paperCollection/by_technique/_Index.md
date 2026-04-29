@@ -4,7 +4,7 @@ dimension: technique
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # Technique index
@@ -296,6 +296,7 @@ generated: 2026-04-21T19:25
 - [[paperCollection/by_technique/multi-granularity-segmentation.md|multi-granularity-segmentation]]
 - [[paperCollection/by_technique/multi-level-guidance.md|multi-level-guidance]]
 - [[paperCollection/by_technique/multi-object.md|multi-object]]
+- [[paperCollection/by_technique/multi-reference-stylization.md|multi-reference-stylization]]
 - [[paperCollection/by_technique/multi-scale-style-loss.md|multi-scale-style-loss]]
 - [[paperCollection/by_technique/multi-scene-training.md|multi-scene-training]]
 - [[paperCollection/by_technique/multi-subject-generation.md|multi-subject-generation]]
@@ -359,6 +360,7 @@ generated: 2026-04-21T19:25
 - [[paperCollection/by_technique/partial-editing.md|partial-editing]]
 - [[paperCollection/by_technique/personalized-diffusion.md|personalized-diffusion]]
 - [[paperCollection/by_technique/photorealistic-avatar.md|photorealistic-avatar]]
+- [[paperCollection/by_technique/photorealistic-style-transfer.md|photorealistic-style-transfer]]
 - [[paperCollection/by_technique/planar-based-splatting.md|planar-based-splatting]]
 - [[paperCollection/by_technique/point-cloud-interpolation.md|point-cloud-interpolation]]
 - [[paperCollection/by_technique/point-level-localization.md|point-level-localization]]
@@ -413,6 +415,7 @@ generated: 2026-04-21T19:25
 - [[paperCollection/by_technique/self-supervision.md|self-supervision]]
 - [[paperCollection/by_technique/semantic-bridging-decoder.md|semantic-bridging-decoder]]
 - [[paperCollection/by_technique/semantic-context.md|semantic-context]]
+- [[paperCollection/by_technique/semantic-correspondence.md|semantic-correspondence]]
 - [[paperCollection/by_technique/semantic-disentanglement.md|semantic-disentanglement]]
 - [[paperCollection/by_technique/semantic-grounding.md|semantic-grounding]]
 - [[paperCollection/by_technique/semantic-reconstruction.md|semantic-reconstruction]]

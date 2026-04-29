@@ -5,7 +5,7 @@ technique: dataset/core4d
 tags:
   - paperCollection
   - index/technique
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # Technique: dataset/core4d

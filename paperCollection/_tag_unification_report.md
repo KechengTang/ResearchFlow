@@ -3,7 +3,7 @@ type: tag-audit
 tags:
   - paperCollection
   - maintenance/tags
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # Tag unification report (paperAnalysis → paperCollection)
@@ -12,7 +12,7 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 
 ## Summary
 
-- raw unique tags: 538
+- raw unique tags: 541
 - near-duplicate groups (variants>1): 0
 
 ## Top near-duplicate groups (by total frequency)
@@ -21,14 +21,14 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 ## Raw tag frequency (top 120)
 
 - `status/analyzed`: 136
-- `gaussian-splatting`: 131
+- `gaussian-splatting`: 132
 - `4dgs`: 65
 - `4DGS_Reconstruction`: 53
 - `Gaussian_Splatting_Foundation`: 43
-- `3dgs`: 36
-- `3DGS_Editing`: 26
+- `3dgs`: 37
+- `3DGS_Editing`: 27
 - `opensource/full`: 16
-- `feed-forward`: 15
+- `feed-forward`: 16
 - `monocular-video`: 15
 - `Motion_Generation_Text_Speech_Music_Driven`: 13
 - `dynamic-scene`: 12
@@ -42,11 +42,11 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 - `multi-view-consistency`: 8
 - `repr/smpl`: 7
 - `temporal-consistency`: 7
+- `stylization`: 7
 - `repr/humanml3d-263d`: 6
 - `deformable-gaussians`: 6
 - `real-time`: 6
 - `localized-editing`: 6
-- `stylization`: 6
 - `reinforcement-learning`: 5
 - `dynamic-scene-editing`: 5
 - `video-generation`: 5
@@ -57,6 +57,7 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 - `real-time-rendering`: 5
 - `text-guided-editing`: 5
 - `monocular-dynamic-scene`: 5
+- `appearance-editing`: 5
 - `diffusion-guidance`: 5
 - `cross-view-consistency`: 5
 - `dataset/kit-ml`: 4
@@ -70,8 +71,8 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 - `dynamic-scene-rendering`: 4
 - `motion-aware`: 4
 - `geometry-aware-editing`: 4
+- `view-consistency`: 4
 - `3DGS_Reconstruction`: 4
-- `appearance-editing`: 4
 - `task/physics-based-control`: 3
 - `opensource/partial`: 3
 - `task/human-object-interaction`: 3
@@ -100,7 +101,6 @@ This report identifies **synonymous or near-variant** tags in `paperAnalysis` as
 - `two-stage-optimization`: 3
 - `local-editing`: 3
 - `score-distillation`: 3
-- `view-consistency`: 3
 - `controlnet`: 3
 - `image-guided-editing`: 3
 - `dataset/motionx`: 2

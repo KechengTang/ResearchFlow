@@ -14,7 +14,7 @@ tags:
   - view-consistency
   - status/analyzed
 core_operator: 冻结预训练 3D 重建骨干，只在独立 style branch 中用 Long-CLIP 条件与 zero-conv 残差注入风格，再与原始几何参数重组，单次前向生成风格化 3DGS。
-primary_logic: |
+primary_logic: |-
   输入无位姿多视图内容图像与文本/风格图风格条件，
   先用冻结的 AnySplat backbone 恢复相机与几何，
   再在复制出来的 Aggregator 与 Gaussian Head 中注入 Long-CLIP 风格嵌入，只学习外观相关分支，

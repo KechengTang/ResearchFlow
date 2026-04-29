@@ -4,7 +4,7 @@ dimension: venue
 tags:
   - paperCollection
   - index/venue
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # Venue index
@@ -21,6 +21,7 @@ generated: 2026-04-21T19:25
 - [[paperCollection/by_venue/ICCV.md|ICCV]]
 - [[paperCollection/by_venue/ICLR.md|ICLR]]
 - [[paperCollection/by_venue/ICML.md|ICML]]
+- [[paperCollection/by_venue/IJCV.md|IJCV]]
 - [[paperCollection/by_venue/NeurIPS.md|NeurIPS]]
 - [[paperCollection/by_venue/SIGGRAPH.md|SIGGRAPH]]
 - [[paperCollection/by_venue/SIGGRAPH Asia.md|SIGGRAPH Asia]]

@@ -2,7 +2,7 @@
 type: paper-collection-home
 tags:
   - paperCollection
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # paperCollection
@@ -36,7 +36,7 @@ This directory is auto-generated from `paperAnalysis/` and is used for **agent-s
 
 ## Counts
 
-- papers: 155
+- papers: 156
 - tasks: 9
-- venues: 16
-- technique tags: 530
+- venues: 17
+- technique tags: 533

@@ -36,6 +36,34 @@
             }
           },
           {
+            "id": "fa5c545f1c2ea151",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "paperAnalysis/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting"
+            }
+          },
+          {
+            "id": "750bfd6608d4484b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting"
+            }
+          },
+          {
             "id": "ea40e2c5c3254062",
             "type": "leaf",
             "state": {
@@ -240,8 +268,19 @@
       "bases:新建数据库": false
     }
   },
-  "active": "94bd6acfb2eba04f",
+  "active": "695323c46f6b65a6",
   "lastOpenFiles": [
+    "paperAnalysis/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.md",
+    "paperCollection/by_technique/feed-forward.md",
+    "paperAnalysis/3DGS_Editing/ICCV_2025/2025_A3GS_Arbitrary_Artistic_Style_into_Arbitrary_3D_Gaussian_Splatting.md",
+    "paperPDFs/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.pdf",
+    "paperPDFs/3DGS_Editing/arXiv_2026/2026_AnyStyle_Single_Pass_Multimodal_Stylization_for_3D_Gaussian_Splatting.pdf",
+    "paperPDFs/4DGS_Reconstruction/NeurIPS_2025/2025_DGS_LRM_Real_Time_Deformable_3D_Gaussian_Reconstruction_From_Monocular_Videos.pdf",
+    "paperPDFs/3DGS_Reconstruction/arXiv_2026/2026_DenoiseSplat_Feed_Forward_Gaussian_Splatting_for_Noisy_3D_Scene_Reconstruction.pdf",
+    "paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md",
+    "paperCollection/by_technique/3d-language-field.md",
+    "paperCollection/by_technique/4d-language-field.md",
+    "paperCollection/by_technique/4d-language-grounding.md",
     "paperCollection/by_technique/object-centric-sds.md",
     "paperCollection/by_technique/vggt.md",
     "paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICLR_2025/2025_Language_Motion_Pretraining_for_Motion_Generation_Retrieval_and_Captioning.md",
@@ -261,23 +300,11 @@
     "paperCollection/by_technique/dataset_chairs.md",
     "paperCollection/by_technique/dataset_behave.md",
     "paperCollection/by_technique/dataset_babel.md",
-    "paperCollection/by_technique/dataset_amass.md",
-    "paperCollection/by_technique/dataset_100style.md",
     "scripts/setup_shared_skills.py",
-    "paperCollection/by_technique/sam-hierarchy.md",
-    "paperCollection/by_technique/sam-distillation.md",
-    "paperCollection/by_technique/arap.md",
-    "paperCollection/by_technique/taco.md",
-    "paperCollection/by_technique/tadr.md",
-    "paperCollection/by_technique/stdc.md",
     "paperCollection/index.jsonl",
     "paperCollection/_tag_raw_counts.json",
     "paperCollection/_tag_normalization_summary.json",
     "paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/Tencent_HY",
-    "paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/NeurIPS_2023",
-    "paperAnalysis/Motion_Generation_Text_Speech_Music_Driven/ICML_2025",
-    "paperAnalysis/Human_Human_Interaction/ICLR_2025",
-    "paperAnalysis/Human_Human_Interaction/CVPR_2025",
     "assets/LOGO.png"
   ]
 }

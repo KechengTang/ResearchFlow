@@ -4,7 +4,7 @@ dimension: all
 tags:
   - paperCollection
   - index/all
-generated: 2026-04-21T19:25
+generated: 2026-04-29T15:17
 ---
 
 # All papers (grouped)
@@ -49,6 +49,9 @@ generated: 2026-04-21T19:25
 ### ICLR 2026
 - [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.md|Variation-aware Flexible 3D Gaussian Editing (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Variation_aware_Flexible_3D_Gaussian_Editing.pdf|PDF]] · techniques: #gaussian-splatting #3dgs #scene-editing #native-3d-editing #knowledge-distillation #variation-prediction #cross-view-consistency #feed-forward #parallel-decoding #real-time
 - [[paperAnalysis/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.md|Stylos: Multi-View 3D Stylization with Single-Forward Gaussian Splatting (ICLR 2026)]] · [[paperPDFs/3DGS_Editing/ICLR_2026/2026_Stylos_Multi_View_3D_Stylization_with_Single_Forward_Gaussian_Splatting.pdf|PDF]] · techniques: #gaussian-splatting #3dgs #feed-forward #stylization #image-guided-editing #cross-view-consistency #cross-scene-generalization
+
+### IJCV 2026
+- [[paperAnalysis/3DGS_Editing/IJCV_2026/2026_FPGS_Feed_Forward_Semantic_aware_Photorealistic_Style_Transfer_of_Large_Scale_Gaussian_Splatting.md|FPGS: Feed-Forward Semantic-aware Photorealistic Style Transfer of Large-Scale Gaussian Splatting (IJCV 2026)]] · [[paperPDFs/3DGS_Editing/IJCV_2026/2026_FPGS_Feed_Forward_Semantic_aware_Photorealistic_Style_Transfer_of_Large_Scale_Gaussian_Splatting.pdf|PDF]] · techniques: #gaussian-splatting #3dgs #feed-forward #stylization #photorealistic-style-transfer #appearance-editing #large-scale-scene #semantic-correspondence #multi-reference-stylization #adain-style-injection #view-consistency
 
 ### NeurIPS 2024
 - [[paperAnalysis/3DGS_Editing/NeurIPS_2024/2024_ReGS_Reference_based_Controllable_Scene_Stylization_with_Gaussian_Splatting.md|ReGS: Reference-based Controllable Scene Stylization with Gaussian Splatting (NeurIPS 2024)]] · [[paperPDFs/3DGS_Editing/NeurIPS_2024/2024_ReGS_Reference_based_Controllable_Scene_Stylization_with_Gaussian_Splatting.pdf|PDF]] · techniques: #gaussian-splatting #stylization #reference-based #controllable-stylization #appearance-editing #real-time-rendering #texture-guided-control #view-consistency
